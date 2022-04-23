@@ -1,0 +1,127 @@
+
+ <br><br>
+ <nav class="navbar fixed-top navbar-dark bg-success justify-content-between py-0">
+ 
+   <div>
+     &nbsp;
+     <img src="/assets/img/logo.png" width="60" height="40" class="" alt="">
+ 
+   </div>
+ 
+   <div>
+     <h5 class="text-center"> أخبار</h5>
+     <h6 class="text-center"> <img src="/assets/img/location.png" width="15" height="20" class="d-inline-block align-top"
+         alt=""> برج سدرية</h6>
+   </div>
+ 
+ <div  class="text-center">
+       <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+         <button class="btn btn-outline-secondary me-2" id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">
+           <img src="/assets/img/tn.png" width="30" height="25" class="rounded ms-auto"  alt="">
+         </button>
+         <div ngbDropdownMenu aria-labelledby="dropdownManual">
+          <button ngbDropdownItem><img src="/assets/img/tn.png" width="30" height="25" class="rounded ms-auto"  alt=""> عربي</button>
+           <button  routerLink="/fr-news" ngbDropdownItem><img src="/assets/img/fr.png" width="30" height="25" class="rounded ms-auto"  alt=""> Français</button>
+           <button ngbDropdownItem><img src="/assets/img/en.png" width="30" height="25" class="rounded ms-auto"  alt=""> English</button>
+         </div>
+       </div>
+       
+       <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+         <button class="btn btn-outline-secondary me-2" id="dropdownManual2" ngbDropdownAnchor (focus)="myDrop.open()">
+           <img src="/assets/img/settings.png" width="30" height="25" alt="">
+         </button>
+         <div ngbDropdownMenu aria-labelledby="dropdownManual2">
+           <button ngbDropdownItem><img src="/assets/img/fr.png" width="30" height="25" class="rounded ms-auto"  alt=""> Français</button>
+           <button ngbDropdownItem><img src="/assets/img/tn.png" width="30" height="25" class="rounded ms-auto"  alt=""> عربي</button>
+           <button ngbDropdownItem><img src="/assets/img/en.png" width="30" height="25" class="rounded ms-auto"  alt=""> English</button>
+         </div>
+       </div>
+ 
+     
+     
+ 
+     
+     &nbsp;
+   
+ 
+ </div>
+ 
+ 
+ 
+ 
+ </nav>
+ 
+ 
+ 
+ <div id="news" style="background-image: url('/assets/img/background.jpeg');     background-repeat: no-repeat;
+   
+ background-size: 100% 100%; background-attachment: fixed;" class="container">
+   &nbsp;
+ 
+   <div class="card bg-light mb-3" style="width: 21rem;">
+ 
+     <p> &nbsp;<img class="text-end" src="assets/img/di-tox.png" width="40" height="40">
+       &nbsp;&nbsp;
+     <img src="/assets/img/person-fill.png" width="20" height="20" style=" float: center;" alt=""> Mohamed Dhia &nbsp;&nbsp;
+      <img src="/assets/img/calendar.png" width="20" height="20" style=" float: center;" alt=""> 2022/02/01
+     </p>
+     <img class="card-img-top" src="assets/img/problempicexp.jpg" alt="Card image cap">
+     
+     <div class="card-body">
+       <h5 class="card-title">السلة السامة</h5>
+       <p class="card-text">مواد سامة للغية عثر عليها فالشاطئ</p>
+ 
+       <p>
+         <button type="button" class="btn btn-outline-success" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"
+           aria-controls="collapseExample">
+           المزيد من المعلومات
+         </button>
+       </p>
+       <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+         <div class="card">
+           <div class="card-body">
+            .برميلان مقلوبان يحتويان على نفايات سامة في غابة الصنوبر بالقرب من الشاطئ ، مصدرها غير معروف
+           </div>
+         </div>
+       </div>
+ 
+     </div>
+   </div>
+ 
+  
+ 
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+ 
+   <br>
+ 
+ 
+   
+   <br>
+   <br>
+ </div>
+ 
+ <nav class="navbar fixed-bottom navbar-light bg-dark">
+   <img routerLink="/ar-profile" src="/assets/img/ar-profile.png" width="38" height="50" class="center" alt="">
+   <img routerLink="/ar-news" src="/assets/img/ar-news.png" width="38" height="50" class="center" alt="">
+   <img routerLink="/ar-report" src="/assets/img/ar-detect.png" width="38" height="50" class="center" alt="">
+   <img routerLink="/ar-events" src="/assets/img/ar-table.png" width="38" height="50" class="center" alt="">
+   <img routerLink="/ar-info" src="/assets/img/ar-others.png" width="38" height="50" class="center" alt="">
+ </nav>

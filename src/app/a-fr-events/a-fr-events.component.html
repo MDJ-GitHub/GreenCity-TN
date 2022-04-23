@@ -1,0 +1,138 @@
+<nav class="navbar fixed-top navbar-dark bg-primary justify-content-between py-0">
+
+    <div>
+      &nbsp;
+      <img src="/assets/img/logo.png" width="55" height="40" class="" alt="">
+  
+    </div>
+  
+    <div>
+      <h5 id="step" class="text-center">List des Événements</h5>
+    </div>
+  
+    <div>
+  
+        <button  type="button" class="btn btn-success btn-block">Ajouter un Événement</button>
+    </div>
+  
+    <div class="text-end">
+      <img src="/assets/img/person-fill.png" width="25" height="25" style=" float: left;" alt=""> &nbsp;Admin User&nbsp;
+  
+      <img src="/assets/img/location.png" width="20" height="25" class="d-inline-block align-top" alt=""> Borj Cedria
+  
+      &nbsp;
+      <img src="/assets/img/fr.png" width="30" height="25" class="rounded ms-auto" routerLink="/" alt="">
+      &nbsp;
+      <img src="/assets/img/settings.png" width="30" height="25" routerLink="/" alt="">
+      &nbsp;
+    </div>
+  </nav>
+  
+  <style>
+    body {
+      margin: 0;
+      font-family: "Lato", sans-serif;
+    }
+  
+    .sidebar {
+      margin: 0;
+      padding: 0;
+      width: 200px;
+      background-color: #adb5bd;
+      position: fixed;
+      height: 100%;
+      overflow: auto;
+    }
+  
+    .sidebar a {
+      display: block;
+      color: black;
+      padding: 16px;
+      text-decoration: none;
+    }
+  
+    .sidebar a.active {
+      background-color: cornflowerblue;
+      color: white;
+    }
+  
+    .sidebar a:hover:not(.active) {
+      background-color: #555;
+      color: white;
+    }
+  
+    div.content {
+      margin-left: 200px;
+      padding: 1px 16px;
+      height: 1000px;
+    }
+    div.contentx {
+      margin-left: 200px;
+      padding: 1px 16px;
+      height: 10px;
+    }
+  
+    @media screen and (max-width: 700px) {
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+      }
+  
+      .sidebar a {
+        float: left;
+      }
+  
+      div.content {
+        margin-left: 0;
+      }
+    }
+  
+    @media screen and (max-width: 400px) {
+      .sidebar a {
+        text-align: center;
+        float: none;
+      }
+    }
+  </style>
+  
+  <div class="sidebar">
+    <br>
+    <br>
+    <a  routerLink="/a-fr-accounts"><img src="/assets/img/laccounts.png" width="30" height="30" style="float: left;" alt="">&nbsp;&nbsp;Comptes</a>
+    <a  routerLink="/a-fr-reports"  ><img src="/assets/img/lreports.png" width="30" height="30"
+        style=" float: left;" alt="">&nbsp;&nbsp;Reports</a>
+    <a   routerLink="/a-fr-info"><img src="/assets/img/linfo.png" width="30" height="30" style="float: left;" alt="">&nbsp;
+      Problems</a>
+      <a  class="active" routerLink="/a-fr-events"><img src="/assets/img/calendar-fill.png" width="30" height="30" style="float: left;" alt="">&nbsp; Événements</a>
+  </div>
+  
+
+  
+  <div class="content">
+    <br><br>
+
+    <div class="card text-white bg-secondary mb-3">
+        <div class="card-body">
+          <h5 class="card-title">
+&nbsp;Rendons notre ville plus verte ! &nbsp;
+
+            <img src="/assets/img/calendar.png" width="20" height="20" style=" float: center;" alt=""> 2022/02/01
+            <img src="/assets/img/remove.png" width="20" height="20" style="float: right;" alt="">
+            <img src="/assets/img/empty.png" width="10" height="10" style="float: right;" alt="">
+            <img src="/assets/img/modify.png" width="20" height="20" style="float: right;" alt="">
+            <img src="/assets/img/empty.png" width="10" height="10" style="float: right;" alt="">
+            <img src="/assets/img/accept.png" width="20" height="20" style="float: right;" alt="">
+          </h5> &nbsp;
+          <p class="card-text">Un groupe de personnes organisera un événement consistant à planter divers types de plantes allant des arbres et des fleurs dans la partie principale de la ville de Borj Cedria.</p>
+          <p class="card-text bg-dark">Salut ! nous sommes un petit groupe de personnes en croissance visant à rendre votre ville plus belle en plantant plus d'arbres et de fleurs dans la plupart des quartiers de borj cedria,
+            prenez soin d'être un civil responsable et aidez-nous à rendre notre ville merveilleuse, contactez cet e-mail "x@x.com ?.</p>
+          <hr>
+          <img src="assets/img/7168985_Tt5j5S2Tz9u8eo8Vi7saCkMYbguMoBsggxAYantEv-U.jpg" width="150" height="125">
+          <img src="assets/img/empty.jpg" width="150" height="125">
+          <img src="assets/img/empty.jpg" width="150" height="125">
+          <img src="assets/img/empty.jpg" width="150" height="125">
+          <img src="assets/img/empty.jpg" width="150" height="125">
+        </div>
+      </div>
+  </div>

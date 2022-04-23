@@ -1,0 +1,125 @@
+<br><br>
+<nav class="navbar fixed-top navbar-dark bg-success justify-content-between py-0">
+
+    <div>
+      &nbsp;
+      <img src="/assets/img/logo.png" width="60" height="40" class="" alt="">
+  
+    </div>
+  
+    <div>
+      <h5 class="text-center"> Événements</h5>
+      <h6 id="currentposition" class="text-center"> <img src="/assets/img/location.png" width="15" height="20" class="d-inline-block align-top"
+        alt="">position actuel</h6>
+    </div>
+  
+    <div  class="text-center">
+      <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+        <button class="btn btn-outline-secondary me-2" id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">
+          <img src="/assets/img/fr.png" width="30" height="25" class="rounded ms-auto"  alt="">
+        </button>
+        <div ngbDropdownMenu aria-labelledby="dropdownManual">
+          <button ngbDropdownItem><img src="/assets/img/fr.png" width="30" height="25" class="rounded ms-auto"  alt=""> Français</button>
+          <button ngbDropdownItem><img src="/assets/img/tn.png" width="30" height="25" class="rounded ms-auto"  alt=""> عربي</button>
+          <button ngbDropdownItem><img src="/assets/img/en.png" width="30" height="25" class="rounded ms-auto"  alt=""> English</button>
+        </div>
+      </div>
+      
+      <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+        <button class="btn btn-outline-secondary me-2" id="dropdownManual2" ngbDropdownAnchor (focus)="myDrop.open()">
+          <img src="/assets/img/settings.png" width="30" height="25" alt="">
+        </button>
+        <div ngbDropdownMenu aria-labelledby="dropdownManual2">
+          <button ngbDropdownItem><img src="/assets/img/fr.png" width="30" height="25" class="rounded ms-auto"  alt=""> Français</button>
+          <button ngbDropdownItem><img src="/assets/img/tn.png" width="30" height="25" class="rounded ms-auto"  alt=""> عربي</button>
+          <button ngbDropdownItem><img src="/assets/img/en.png" width="30" height="25" class="rounded ms-auto"  alt=""> English</button>
+        </div>
+      </div>
+
+    
+    
+
+    
+    &nbsp;
+  
+
+</div>
+  
+  
+  
+  
+  
+  
+  </nav>
+  
+  
+  
+  <div id="news" style="background-image: url('/assets/img/wallpaperevents.jpg');     background-repeat: no-repeat;
+  
+        background-size: 100% 100%; background-attachment: fixed;" class="container">
+    &nbsp;
+  
+    <div class="card bg-light mb-3" style="width: 21rem;">
+      <img class="card-img-top" src="assets/img/7168985_Tt5j5S2Tz9u8eo8Vi7saCkMYbguMoBsggxAYantEv-U.jpg" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Rendons notre ville plus verte !</h5>
+        <p class="card-text">Un groupe de personnes organisera un événement consistant à planter divers types de plantes allant des arbres et des fleurs dans la partie principale de la ville de Borj Cedria.</p>
+        <a href="#" class="btn btn-link">Plus d'informations</a>
+        <br><img src="/assets/img/calendar.png" width="20" height="20" style=" float: center;" alt=""> 2022/02/01
+      </div>
+    </div>
+  
+    <div class="card bg-light mb-3" style="width: 21rem;">
+        <img class="card-img-top" src="assets/img/7168985_Tt5j5S2Tz9u8eo8Vi7saCkMYbguMoBsggxAYantEv-U.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Rendons notre ville plus verte !</h5>
+          <p class="card-text">Un groupe de personnes organisera un événement consistant à planter divers types de plantes allant des arbres et des fleurs dans la partie principale de la ville de Borj Cedria.</p>
+          <a href="#" class="btn btn-link">Plus d'informations</a>
+          <br><img src="/assets/img/calendar.png" width="20" height="20" style=" float: center;" alt=""> 2022/02/01
+        </div>
+      </div>
+  
+      <div class="card bg-light mb-3" style="width: 21rem;">
+        <img class="card-img-top" src="assets/img/7168985_Tt5j5S2Tz9u8eo8Vi7saCkMYbguMoBsggxAYantEv-U.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Rendons notre ville plus verte !</h5>
+          <p class="card-text">Un groupe de personnes organisera un événement consistant à planter divers types de plantes allant des arbres et des fleurs dans la partie principale de la ville de Borj Cedria.</p>
+          <a href="#" class="btn btn-link">Plus d'informations</a>
+          <br><img src="/assets/img/calendar.png" width="20" height="20" style=" float: center;" alt=""> 2022/02/01
+        </div>
+      </div>
+  
+
+  
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+  
+    <br>
+    <br>
+    <br>
+  </div>
+  
+  <nav class="navbar fixed-bottom navbar-light bg-dark">
+    <img routerLink="/fr-profile" src="/assets/img/fr-profile.png" width="38" height="50" class="center" alt="">
+    <img routerLink="/fr-news" src="/assets/img/fr-news.png" width="38" height="50" class="center" alt="">
+    <img routerLink="/fr-report" src="/assets/img/fr-detect.png" width="38" height="50" class="center" alt="">
+    <img routerLink="/fr-events" src="/assets/img/fr-table.png" width="38" height="50" class="center" alt="">
+    <img routerLink="/fr-info" src="/assets/img/fr-others.png" width="38" height="50" class="center" alt="">
+  </nav>

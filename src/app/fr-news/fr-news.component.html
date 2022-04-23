@@ -1,0 +1,111 @@
+<br><br>
+<nav class="navbar fixed-top navbar-dark bg-success justify-content-between py-0">
+
+  <div>
+    &nbsp;
+    <img src="/assets/img/logo.png" width="60" height="40" class="" alt="">
+
+  </div>
+
+  <div>
+    <h5 class="text-center"> Actualités</h5>
+    <h6 id="currentposition" class="text-center"> <img src="/assets/img/location.png" width="15" height="20"
+        class="d-inline-block align-top" alt="">position actuel</h6>
+  </div>
+
+
+
+  <div class="text-center">
+
+    <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+      <button class="btn btn-outline-secondary " id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">
+        <img src="/assets/img/settings.png" width="30" height="25" alt="">
+      </button>
+      <div ngbDropdownMenu aria-labelledby="dropdownManual">
+        <button routerLink="/fr-news-all" ngbDropdownItem><img src="/assets/img/documents.png" width="30" height="25"
+            class="rounded ms-auto" alt="">&nbsp;Tous les problèmes</button>
+        <button routerLink="/fr-news" ngbDropdownItem><img src="/assets/img/fr.png" width="30" height="25"
+            class="rounded ms-auto" alt="">&nbsp;Français</button>
+        <button routerLink="/ar-news" ngbDropdownItem><img src="/assets/img/tn.png" width="30" height="25"
+            class="rounded ms-auto" alt="">&nbsp;عربي</button>
+        <button routerLink="/en-news" ngbDropdownItem><img src="/assets/img/en.png" width="30" height="25"
+            class="rounded ms-auto" alt="">&nbsp;English</button>
+      </div>
+    </div>
+
+
+
+
+
+    &nbsp;
+
+
+  </div>
+
+
+
+
+</nav>
+
+
+<div style="background-image: url('/assets/img/background.jpeg');     background-repeat: no-repeat;
+  
+background-size: 100% 100%; background-attachment: fixed;" class="">
+  <div id="news" style="background-image: url('/assets/img/background.jpeg');     background-repeat: no-repeat;
+  
+background-size: 100% 100%; background-attachment: fixed;" class="">
+    &nbsp;
+
+
+    <div class="card bg-light">
+      <table class="">
+        <thead>
+          <tr>
+            <td class="" style="width: 60px;" rowspan="2"> <img class="text-end" src="assets/img/person-fill.png"
+                width="50" height="50"> </td>
+            <td class="">Mohamed Dhia Jebali</td>
+
+          </tr>
+          <tr>
+            <td class=""><img src="/assets/img/calendar.png" width="18" height="18" style=" float: center;"
+                alt="">&nbsp; 00:00:00 - 01/01/2022 </td>
+          </tr>
+        </thead>
+      </table>
+      <h5 class="card-title text-center">Example</h5>
+      <img (click)="collapse('ee')" class="card-img-top" src="assets/img/exp1.jpg" style="max-height: 265px;"
+        alt="Card image cap">
+      <div class="card">
+        <div id="ee" style="display:none" class="">
+          Description
+          <table>
+            <tr>
+              <td> <img src="assets/img/empty.jpg" width="180" height="150"> </td>
+              <td> <img src="assets/img/empty.jpg" width="180" height="150"> </td>
+            </tr>
+            <tr>
+              <td> <img src="assets/img/empty.jpg" width="180" height="150"> </td>
+              <td> <img src="assets/img/empty.jpg" width="180" height="150"> </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="card-text">Example Sujet</p>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>
+<br><br><br><br>
+
+
+<nav class="navbar fixed-bottom navbar-light bg-dark">
+  <img routerLink="/fr-profile" src="/assets/img/fr-profile.png" width="38" height="50" class="center" alt="">
+  <img routerLink="/fr-news" src="/assets/img/fr-news.png" width="38" height="50" class="center" alt="">
+  <img routerLink="/fr-report" src="/assets/img/fr-detect.png" width="38" height="50" class="center" alt="">
+  <img routerLink="/fr-events" src="/assets/img/fr-table.png" width="38" height="50" class="center" alt="">
+  <img routerLink="/fr-info" src="/assets/img/fr-others.png" width="38" height="50" class="center" alt="">
+</nav>

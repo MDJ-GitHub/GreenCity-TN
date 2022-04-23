@@ -1,0 +1,186 @@
+<nav class="navbar fixed-top navbar-dark bg-primary justify-content-between py-0">
+
+  <div>
+    &nbsp;
+    <img src="/assets/img/logo.png" width="55" height="40" class="" alt="">
+
+  </div>
+
+  <div>
+    <h5 id="step" class="text-center">List des Reports</h5>
+  </div>
+
+  <div>
+
+
+  </div>
+
+  <div class="text-end">
+    <img src="/assets/img/person-fill.png" width="25" height="25" style=" float: left;" alt=""> &nbsp;Admin User&nbsp;
+
+    <img src="/assets/img/location.png" width="20" height="25" class="d-inline-block align-top" alt=""> Borj Cedria
+
+    &nbsp;
+    <img src="/assets/img/settings.png" width="30" height="25" routerLink="/" alt="">
+    &nbsp;
+  </div>
+</nav>
+
+<style>
+  body {
+    margin: 0;
+    font-family: "Lato", sans-serif;
+  }
+
+  .sidebar {
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #adb5bd;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+  }
+
+  .sidebar a {
+    display: block;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+  }
+
+  .sidebar a.active {
+    background-color: cornflowerblue;
+    color: white;
+  }
+
+  .sidebar a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+  }
+
+  div.content {
+    margin-left: 200px;
+    padding: 1px 16px;
+    height: 1000px;
+  }
+
+  @media screen and (max-width: 700px) {
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+
+    .sidebar a {
+      float: left;
+    }
+
+    div.content {
+      margin-left: 0;
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    .sidebar a {
+      text-align: center;
+      float: none;
+    }
+  }
+</style>
+<br>
+<br>
+<div class="sidebar">
+
+  <a  routerLink="/a-fr-accounts"><img src="/assets/img/laccounts.png" width="30" height="30" style="float: left;" alt="">&nbsp;&nbsp;Comptes</a>
+  <a  routerLink="/a-fr-reports" class="active" ><img src="/assets/img/lreports.png" width="30" height="30"
+      style="filter:invert(1); float: left;" alt="">&nbsp;&nbsp;Reports</a>
+  <a  routerLink="/a-fr-info"><img src="/assets/img/linfo.png" width="30" height="30" style="float: left;" alt="">&nbsp;
+    Problems</a>
+    <a  routerLink="/a-fr-events"><img src="/assets/img/calendar-fill.png" width="30" height="30" style="filter:invert(1); float: left;" alt="">&nbsp; Événements</a>
+</div>
+
+<div id="news" class="content">
+
+  <div class="card text-white bg-secondary mb-3">
+    <div class="card-body">
+      <h5 class="card-title">
+        <img src="/assets/img/di-med.png" width="40" height="40" style="float: left;" alt="">
+        &nbsp;&nbsp;Corbeille de Guérison &nbsp;
+        <img src="/assets/img/person-fill.png" width="20" height="20" style=" float: center;" alt=""> User &nbsp;
+        <img src="/assets/img/calendar.png" width="20" height="20" style=" float: center;" alt=""> 2022/02/01
+        <img src="/assets/img/remove.png" width="20" height="20" style="float: right;" alt="">
+        <img src="/assets/img/empty.png" width="10" height="10" style="float: right;" alt="">
+        <img src="/assets/img/modify.png" width="20" height="20" style="float: right;" alt="">
+        <img src="/assets/img/empty.png" width="10" height="10" style="float: right;" alt="">
+        <img src="/assets/img/accept.png" width="20" height="20" style="float: right;" alt="">
+      </h5> &nbsp;
+      <p class="card-text">Déchets médiaux en sac jaune standard trouvés dans la forêt de borj cedria.</p>
+      <p class="card-text bg-dark">Dans la pinède de borj cedria, autour des buissons et des arbres légèrement proches
+        de l'entrée de la gare, un sac poubelle médical ouvert contenant des déchets médicaux tels que des aiguilles y a
+        été retrouvé.</p>
+      <hr>
+      <img src="assets/img/exp1.jpg" width="150" height="125">
+      <img src="assets/img/exp2.jpg" width="150" height="125">
+      <img src="assets/img/empty.jpg" width="150" height="125">
+      <img src="assets/img/empty.jpg" width="150" height="125">
+      <img src="assets/img/empty.jpg" width="150" height="125">
+    </div>
+  </div>
+
+  <div class="card text-white bg-secondary mb-3">
+    <div class="card-body">
+      <h5 class="card-title">
+        <label for="idtitlex">Title</label>
+        <input type="text" class="form-control" id="idtitlex" placeholder="title">
+        <label for="idtitlex">Subject</label>
+        <textarea  type="textarea" class="form-control" id="idsubjectx" placeholder="subject" rows="3"></textarea>
+        <label for="idtitlex">Desciption</label>
+        <textarea  type="textarea" class="form-control" id="iddescriptionx" placeholder="description" rows="5"></textarea>
+        <label for="idtypex">Type</label>
+      <select id="idtypex" class="form-control">
+        <option selected  value="type_domestic">Domestique</option>
+        <option value="type_domestic">Domestique</option>
+        <option value="type_medical">Médical</option>
+        <option value="type_chemical">Chémique</option>
+        <option value="type_toxic">Toxique</option>
+        <option value="type_brokenroad">Route Cassée</option>
+        <option value="type_obstacleroad">R.Obstacle</option>
+        <option value="type_train">Train Panne</option>
+      </select>
+      <br>
+      Nouvelles Images
+      <br>   <br>
+      <button type="file" (click)="picupload()" accept="image/*" class="btn btn-success">
+        <img src="/assets/img/arrow-bar-up.png" width="30" height="25" style="filter: invert(1); float: left;"
+          alt="">&nbsp; Télecharger</button>
+          <br>   <br>
+      <div class=" row">
+          <div class="col" style="background-color: aliceblue;" id="pic1">&nbsp;</div>&nbsp;
+          <div class="col" style="background-color: aliceblue;" id="pic2">&nbsp;</div>&nbsp;
+          <div class="col" style="background-color: aliceblue;" id="pic3">&nbsp;</div>&nbsp;
+          <div class="col" style="background-color: aliceblue;" id="pic4">&nbsp;</div>&nbsp;
+          <div class="col" style="background-color: aliceblue;" id="pic5">&nbsp;</div>
+      </div>
+      <br>
+
+      Images Actuelles
+      <br>
+      <br>
+      <img src="assets/img/exp1.jpg" width="150" height="125"> &nbsp;
+      <img src="assets/img/exp2.jpg" width="150" height="125"> &nbsp;
+      <img src="assets/img/empty.jpg" width="150" height="125"> &nbsp;
+      <img src="assets/img/empty.jpg" width="150" height="125"> &nbsp;
+      <img src="assets/img/empty.jpg" width="150" height="125">
+      </h5> &nbsp;
+<br>
+      <button type="file" (click)="modify('d')" accept="image/*" class="btn text-end btn-warning">
+        <img src="/assets/img/arrow-bar-up.png" width="30" height="25" style="filter: invert(1); float: left;"
+          alt="">&nbsp; Modifier</button>
+
+    </div>
+  </div>
+ 
+
+
+</div>

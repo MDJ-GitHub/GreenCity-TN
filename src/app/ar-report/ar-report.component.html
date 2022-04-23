@@ -1,0 +1,453 @@
+<nav class="navbar fixed-top navbar-dark bg-primary justify-content-between py-0">
+
+    <div>
+      &nbsp;
+      <img src="/assets/img/logo.png" width="60" height="40" class="" alt="">
+  
+    </div>
+  
+    <div>
+      <h5 id="step" class="text-center"> بلغ</h5>
+      <h6 class="text-center"> <img src="/assets/img/location.png" width="15" height="20" class="d-inline-block align-top"
+          alt=""> برج سدرية</h6>
+    </div>
+  
+    <div  class="text-center">
+      <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+        <button class="btn btn-outline-secondary me-2" id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">
+          <img src="/assets/img/tn.png" width="30" height="25" class="rounded ms-auto"  alt="">
+        </button>
+        <div ngbDropdownMenu aria-labelledby="dropdownManual">
+          <button ngbDropdownItem><img src="/assets/img/fr.png" width="30" height="25" class="rounded ms-auto"  alt=""> Français</button>
+          <button ngbDropdownItem><img src="/assets/img/tn.png" width="30" height="25" class="rounded ms-auto"  alt=""> عربي</button>
+          <button ngbDropdownItem><img src="/assets/img/en.png" width="30" height="25" class="rounded ms-auto"  alt=""> English</button>
+        </div>
+      </div>
+      
+      <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+        <button class="btn btn-outline-secondary me-2" id="dropdownManual2" ngbDropdownAnchor (focus)="myDrop.open()">
+          <img src="/assets/img/settings.png" width="30" height="25" alt="">
+        </button>
+        <div ngbDropdownMenu aria-labelledby="dropdownManual2">
+          <button ngbDropdownItem><img src="/assets/img/fr.png" width="30" height="25" class="rounded ms-auto"  alt=""> Français</button>
+          <button ngbDropdownItem><img src="/assets/img/tn.png" width="30" height="25" class="rounded ms-auto"  alt=""> عربي</button>
+          <button ngbDropdownItem><img src="/assets/img/en.png" width="30" height="25" class="rounded ms-auto"  alt=""> English</button>
+        </div>
+      </div>
+      </div>
+  </nav>
+  
+  <div>
+    <div style="background-image: url('/assets/img/reportbackground.png');     background-repeat: no-repeat;   background-size: 100% 100%;"> 
+      <br><br><br>
+  
+      <div class="text-center">
+        <div id="b1" class="inline-block">
+          <img id="b1" src="/assets/img/slotf.png" width="30" height="30" class="center">
+        </div>
+        &nbsp;
+        <div id="b2" class="inline-block">
+          <img src="/assets/img/slot.png" width="30" height="30" class="center" alt="">
+        </div>
+        &nbsp;
+        <div id="b3" class="inline-block">
+          <img src="/assets/img/slot.png" width="30" height="30" class="center" alt="">
+        </div>
+        &nbsp;
+        <div id="b4" class="inline-block">
+          <img src="/assets/img/slot.png" width="30" height="30" class="center" alt="">
+        </div>
+        &nbsp;
+        <div id="b5" class="inline-block">
+          <img src="/assets/img/slot.png" width="30" height="30" class="center" alt="">
+        </div>
+  
+  
+      </div>
+  
+      <br>
+      <div id="card1" class="card  text-white bg-primary mb-3" style="max-width: 22rem; max-height: 9rem;">
+        <h5 class="card-header">1 - صور
+        </h5>
+        <div class="card-body">
+          <p class="card-text">.التقط بحد أقصى 5 صور للمشكلة التي تم اكتشافها<img
+              src="/assets/img/pictureicon.png" width="50" height="50" style="float: right;" alt=""></p>
+          <br>
+        </div>
+      </div>
+  
+      <div id="card2" class="card text-white bg-primary mb-3" style="display:none; max-width: 22rem; max-height: 9rem;">
+        <h5 class="card-header">2 - مكان
+        </h5>
+        <div class="card-body">
+          <p class="card-text">.حدد موقع المشكلة ، الحالية أو غيرها<img
+              src="/assets/img/locationicon.png" width="50" height="50" style="float: right;" alt=""></p>
+          <br>
+        </div>
+      </div>
+  
+      <div id="card3" class="card text-white bg-primary mb-3" style="display:none; max-width: 22rem; max-height: 9rem;">
+        <h5 class="card-header">3 - نوع
+        </h5>
+        <div class="card-body">
+          <p class="card-text">.حدد نوع المشكلة الصحيح <img src="/assets/img/alerticon.png" width="50"
+              height="50" style="float: right;" alt=""></p>
+          <br>
+        </div>
+      </div>
+  
+      <div id="card4" class="card text-white bg-primary mb-3" style="display:none; max-width: 22rem; max-height: 9rem;">
+        <h5 class="card-header">4 - تفاصيل
+        </h5>
+        <div class="card-body">
+          <p class="card-text">.قدم المعلومات الضرورية التي تصف المشكلة على أفضل وجه <img
+              src="/assets/img/infoicon.png" width="50" height="50" style="float: right;" alt=""></p>
+          <br>
+        </div>
+      </div>
+  
+      <div id="card5" class="card text-white bg-primary mb-3" style="display:none; max-width: 22rem; max-height: 9rem;">
+        <h5 class="card-header">5 - تحقق
+        </h5>
+        <div class="card-body">
+          <p class="card-text">.إرسال تقرير المشكلة مع التحقق من اسمك <img
+              src="/assets/img/sendicon.png" width="50" height="50" style="float: right;" alt=""></p>
+          <br>
+        </div>
+      </div>
+  
+    </div>
+    <div
+      style="background-image: url('/assets/img/backgrounda.jpg');     background-repeat: no-repeat;   background-size: 100% 100%;">
+  
+  
+  
+  
+  
+      <div id="input1">
+        <div class="text-center">
+          <div id="capture">
+            <webcam [width]="375  " [height]="667"></webcam>
+          </div>
+  
+          <button type="button" (click)="capture()" class="btn btn-success">
+            <img src="/assets/img/camera.png" width="30" height="25" style="filter: invert(1); float: left;" alt="">&nbsp;
+            التقط</button> &nbsp;
+  
+          <button type="file" (click)="picupload ()" class="btn btn-success">
+            <img src="/assets/img/arrow-bar-up.png" width="30" height="25" style="filter: invert(1); float: left;"
+              alt="">&nbsp; نزل</button>
+        </div>
+        <br>
+  
+        <div class="card text-white bg-secondary mb-3" style="max-width: 19rem;">
+  
+          <div class="card-body">
+  
+  
+  
+            <h5 class="card-title"> <img src="/assets/img/image-fill.png" width="30" height="30"
+                style="filter: invert(1); float: left;" alt=""> &nbsp; &nbsp;:الصور المراد إرسالها</h5> &nbsp;
+  
+  
+            <div class="card border-dark mb-3" style="width: 15rem; height: 15rem;">
+              <div class="card-body text-dark">
+                <div id="pic1"></div>
+              </div>
+            </div>
+  
+            <div class="card border-dark mb-3" style="width: 15rem; height: 15rem;">
+              <div class="card-body text-dark">
+                <div id="pic2"></div>
+              </div>
+            </div>
+  
+            <div class="card border-dark mb-3" style="width: 15rem; height: 15rem;">
+              <div class="card-body text-dark">
+                <div id="pic3"></div>
+              </div>
+            </div>
+  
+            <div class="card border-dark mb-3" style="width: 15rem; height: 15rem;">
+              <div class="card-body text-dark">
+                <div id="pic4"></div>
+              </div>
+            </div>
+  
+            <div class="card border-dark mb-3" style="width: 15rem; height: 15rem;">
+              <div class="card-body text-dark">
+                <div id="pic5"></div>
+              </div>
+            </div>
+  
+  
+  
+          </div>
+  
+        </div>
+  
+        <br>
+        <div class="text-center"> <button type="button" (click)="back()" class="btn btn-dark" disabled>◄</button>
+          &nbsp;
+          <button type="button" (click)="next()" class="btn btn-primary">Suivant ➤</button>
+        </div>
+  
+  
+      </div>
+      <div id="input2" style="display: none;">
+  
+        <div class="card text-white bg-secondary mb-3" style="max-width: 19rem;">
+  
+          <div class="card-body">
+  
+            <h5 class="card-title"> <img src="/assets/img/flag-fill.png" width="25" height="30"
+                style="filter: invert(1); float: left;" alt=""> &nbsp; &nbsp;Localisation Actuelle</h5> &nbsp;
+            <p class="card-text">Votre position actuelle en ce moment est :</p>
+            <h3>Borj Cedria</h3>
+            <input class="form-check-input" type="radio" name="locationrad" id="locationrad1" value="option1" checked>
+            &nbsp;
+            <label class="form-check-label" for="locationrad1">
+              Sélectionner localisation actuel
+            </label>
+          </div>
+        </div>
+  
+  
+        <div class="card text-white bg-secondary mb-3" style="width: 19rem;">
+  
+          <div class="card-body">
+  
+            <h5 class="card-title"> <img src="/assets/img/flag.png" width="25" height="30"
+                style="filter: invert(1); float: left;" alt=""> &nbsp; &nbsp;Localisation Manuel</h5> &nbsp;
+            <p class="card-text">Sélectionnez un autre localisation manuellement.</p>
+  
+            <select class="form-select" aria-label="Sélectionnez localisation manuel">
+              <option selected>Open this select menu</option>
+              <option value="Tunis">Tunis</option>
+              <option value="Sfax">Sfax</option>
+              <option value="Sousse">Sousse</option>
+            </select>
+  
+            <input class="form-check-input" type="radio" name="locationrad" id="locationrad2" value="option2"> &nbsp;
+            <label class="form-check-label" for="locationrad2">
+              Sélectionner localisation manuel
+            </label>
+          </div>
+        </div>
+  
+        <br>
+        <div class="text-center"> <button type="button" (click)="back()" class="btn btn-dark">◄</button>
+          &nbsp;
+          <button type="button" (click)="next()" class="btn btn-primary">Suivant ➤</button>
+        </div>
+  
+      </div>
+  
+  
+  
+      <div id="input3" style="display: none;">
+  
+        <div class="card text-white bg-secondary mb-3" style="max-width: 19rem; max-height: 6rem;">
+          <div class="card-body">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="dtype" id="didom">
+              <label class="form-check-label" for="didom">
+                <h3><img src="/assets/img/di-dom.png" width="50" height="50" style="float: left;" alt=""> &nbsp;
+                  &nbsp;Déchets &nbsp;&nbsp;&nbsp;Domestiques</h3>
+              </label>
+            </div>
+          </div>
+        </div>
+  
+        <div class="card text-white bg-secondary mb-3" style="max-width: 19rem; max-height: 6rem;">
+          <div class="card-body">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="dtype" id="dimed">
+              <label class="form-check-label" for="dimed">
+                <h3><img src="/assets/img/di-med.png" width="50" height="50" style="float: left;" alt=""> &nbsp;
+                  &nbsp;Déchets &nbsp;&nbsp;&nbsp;Médical</h3>
+              </label>
+            </div>
+          </div>
+        </div>
+  
+        <div class="card text-white bg-secondary mb-3" style="max-width: 19rem; max-height: 6rem;">
+          <div class="card-body">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="dtype" id="diche">
+              <label class="form-check-label" for="diche">
+                <h3><img src="/assets/img/di-che.png" width="50" height="50" style="float: left;" alt=""> &nbsp;
+                  &nbsp;Déchets &nbsp;&nbsp;&nbsp;Chémique</h3>
+              </label>
+            </div>
+          </div>
+        </div>
+  
+        <div class="card text-white bg-secondary mb-3" style="max-width: 19rem; max-height: 6rem;">
+          <div class="card-body">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="dtype" id="ditox">
+              <label class="form-check-label" for="ditox">
+                <h3><img src="/assets/img/di-tox.png" width="50" height="50" style="float: left;" alt=""> &nbsp;
+                  &nbsp;Déchets &nbsp;&nbsp;&nbsp;Toxique</h3>
+              </label>
+            </div>
+          </div>
+        </div>
+  
+  
+        <div class="card text-white bg-secondary mb-3" style="max-width: 19rem; max-height: 6rem;">
+          <div class="card-body">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="dtype" id="direc">
+              <label class="form-check-label" for="direc">
+                <h3><img src="/assets/img/di-rec.png" width="50" height="50" style="float: left;" alt=""> &nbsp;
+                  &nbsp;Déchets &nbsp;&nbsp;&nbsp;Recyclable</h3>
+              </label>
+            </div>
+          </div>
+        </div>
+  
+        <div class="card text-white bg-secondary mb-3" style="max-width: 19rem; max-height: 6rem;">
+          <div class="card-body">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="dtype" id="dirc">
+              <label class="form-check-label" for="dirc">
+                <h3><img src="/assets/img/di-rc.png" width="50" height="50" style="float: left;" alt=""> &nbsp;
+                  &nbsp;Route Cassée</h3>
+              </label>
+            </div>
+          </div>
+        </div>
+  
+        <div class="card text-white bg-secondary mb-3" style="max-width: 19rem; max-height: 6rem;">
+          <div class="card-body">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="dtype" id="dior">
+              <label class="form-check-label" for="dior">
+                <h3><img src="/assets/img/di-or.png" width="50" height="50" style="float: left;" alt=""> &nbsp;
+                  &nbsp;Obstacle sur la  &nbsp;&nbsp; &nbsp; &nbsp;Route</h3>
+              </label>
+            </div>
+          </div>
+        </div>
+  
+        <br>
+        <div class="text-center"> <button type="button" (click)="back()" class="btn btn-dark">◄</button>
+          &nbsp;
+          <button type="button" (click)="next()" class="btn btn-primary">Suivant ➤</button>
+        </div>
+  
+  
+  
+      </div>
+  
+  
+      <div id="input4" style="display: none;">
+  
+  
+        <div class="card text-white bg-secondary mb-3" style="max-width: 19rem;">
+  
+          <div class="card-body">
+  
+            <h5 class="card-title"> <img src="/assets/img/fonts.png" width="25" height="30"
+                style="filter: invert(1); float: left;" alt=""> &nbsp; &nbsp;Titre</h5> &nbsp;
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">➤</span>
+              </div>
+              <input type="text" class="form-control" placeholder="Insérez le titre ici" aria-label="Username"
+                aria-describedby="basic-addon1">
+            </div>
+            <p class="card-text">Donnez un titre approprié au problème.</p>
+          </div>
+        </div>
+  
+        <div class="card text-white bg-secondary mb-3" style="max-width: 19rem;">
+  
+          <div class="card-body">
+  
+            <h5 class="card-title"> <img src="/assets/img/title.png" width="25" height="30" style="float: left;" alt="">
+              &nbsp;&nbsp;Sujet</h5> &nbsp;
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">➤</span>
+              </div>
+              <textarea class="form-control" placeholder="Insérez le sujet ici" aria-label="With textarea"></textarea>
+            </div>
+            <p class="card-text">Donnez une petite description rapide mais informative adaptée au problème.</p>
+          </div>
+        </div>
+  
+        <div class="card text-white bg-secondary mb-3" style="max-width: 19rem;">
+  
+          <div class="card-body">
+  
+            <h5 class="card-title"> <img src="/assets/img/description.png" width="25" height="30" style="float: left;"
+                alt=""> &nbsp; &nbsp;Description</h5> &nbsp;
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">➤</span>
+              </div>
+              <textarea class="form-control" placeholder="Insérez la description ici"
+                aria-label="With textarea"></textarea>
+            </div>
+            <p class="card-text">Décrivez le problème soigneusement et profondément avec le plus de détails possible.</p>
+          </div>
+        </div>
+        <br>
+        <div class="text-center"> <button type="button" (click)="back()" class="btn btn-dark">◄</button>
+          &nbsp;
+          <button type="button" (click)="next()" class="btn btn-primary">Suivant ➤</button>
+        </div>
+      </div>
+      <div id="input5" style="display: none;">
+  
+  
+        <div class="card text-white bg-secondary mb-3" style="max-width: 19rem;">
+  
+          <div class="card-body">
+  
+            <h5 class="card-title"> <img src="/assets/img/person-fill.png" width="30" height="30"
+                style="filter: invert(1); float: left;" alt=""> &nbsp; &nbsp;Votre Nom</h5> &nbsp;
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">➤</span>
+              </div>
+              <input type="text" class="form-control" placeholder="Anonyme" aria-label="Username"
+                aria-describedby="basic-addon1">
+            </div>
+            <p class="card-text">Insérez votre nom, si vous voulez bien sûr pour des éclaircissements.
+              Laisser vide pour un signalement anonyme.</p>
+          </div>
+        </div>
+  
+      
+      
+        <br>
+        <div class="text-center"> <button type="button" (click)="back()" class="btn btn-dark">◄</button>
+          &nbsp;
+          <button type="button" (click)="next()" class="btn btn-primary">Envoyer ✉</button>
+        </div>
+      
+      
+      </div>
+  
+  
+      <br><br><br><br>
+  
+    </div>
+  
+  
+  
+  
+  
+  
+  </div>
+  <nav class="navbar fixed-bottom navbar-light bg-dark">
+    <img routerLink="/fr-profile" src="/assets/img/fr-profile.png" width="38" height="50" class="center" alt="">
+    <img routerLink="/fr-news" src="/assets/img/fr-news.png" width="38" height="50" class="center" alt="">
+    <img routerLink="/fr-report" src="/assets/img/fr-detect.png" width="38" height="50" class="center" alt="">
+    <img routerLink="/fr-events" src="/assets/img/fr-table.png" width="38" height="50" class="center" alt="">
+    <img routerLink="/fr-info" src="/assets/img/fr-others.png" width="38" height="50" class="center" alt="">
+  </nav>
