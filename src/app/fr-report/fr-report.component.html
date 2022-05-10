@@ -1,33 +1,72 @@
 <nav class="navbar fixed-top navbar-dark bg-success justify-content-between py-0">
-
-  <div>
+  <div class="text-center">
     &nbsp;
-    <img src="/assets/img/logo.png" width="60" height="40" class="" alt="">
+    <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+      <button class="btn btn-outline-secondary " id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">
+        <img src="/assets/img/settings.png" width="30" height="25" alt="">
+      </button>
+      <div ngbDropdownMenu aria-labelledby="dropdownManual">
+        <button routerLink="/fr-account" ngbDropdownItem><img src="/assets/img/person-fill.png" width="25" height="25"
+            class=" ms-auto" alt="">&nbsp;Profil</button>
+        <button (click)="navselectall()" ngbDropdownItem><img src="/assets/img/documents.png" width="25" height="25"
+            class=" ms-auto" alt="">&nbsp;Tous</button>
+        <button (click)="viewselectman()" ngbDropdownItem><img src="/assets/img/map.png" width="25" height="25"
+            class=" ms-auto" alt="">&nbsp;Localisation Manuel</button>
+        <button (click)="navselectauto()" ngbDropdownItem><img src="/assets/img/geo.png" width="25" height="25"
+            class=" ms-auto" alt="">&nbsp;Localisation Actuelle</button>
+        <button routerLink="/fr-news" ngbDropdownItem><img src="/assets/img/fr.png" width="25" height="25"
+            class="rounded ms-auto" alt="">&nbsp;Français</button>
+        <button routerLink="/ar-news" ngbDropdownItem><img src="/assets/img/tn.png" width="25" height="25"
+            class="rounded ms-auto" alt="">&nbsp;عربي</button>
+        <button routerLink="/en-news" ngbDropdownItem><img src="/assets/img/en.png" width="25" height="25"
+            class="rounded ms-auto" alt="">&nbsp;English</button>
+      </div>
 
+    </div>
+    &nbsp;
+    <img src="/assets/img/logo.png" width="60" height="45" class="" alt="">
   </div>
 
   <div>
-    <h5 id="step" class="text-center"> Signaler</h5>
+    <h5 class="text-center"> Signaler</h5>
     <h6 id="currentposition" class="text-center"> <img src="/assets/img/location.png" width="15" height="20"
         class="d-inline-block align-top" alt="">position actuel</h6>
   </div>
 
+  <div></div>
 
-
-  <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
-    <button class="btn btn-outline-secondary me-2" id="dropdownManual2" ngbDropdownAnchor (focus)="myDrop.open()">
-      <img src="/assets/img/settings.png" width="30" height="25" alt="">
-    </button>
-    <div ngbDropdownMenu aria-labelledby="dropdownManual2">
-      <button ngbDropdownItem><img src="/assets/img/fr.png" width="30" height="25" class="rounded ms-auto" alt="">
-        Français</button>
-      <button ngbDropdownItem><img src="/assets/img/tn.png" width="30" height="25" class="rounded ms-auto" alt="">
-        عربي</button>
-      <button ngbDropdownItem><img src="/assets/img/en.png" width="30" height="25" class="rounded ms-auto" alt="">
-        English</button>
-    </div>
+  <div id="locman" class="text-center" style="display:none;">
+    &nbsp; &nbsp; <img src="/assets/img/map.png" width="38" height="38" class="rounded ms-auto" alt=""> &nbsp; &nbsp;
+    <select id="navman" class="text-center" aria-label="Sélectionnez localisation manuel">
+      <option selected value="Ariana">Ariana</option>
+      <option value="Béja">Béja</option>
+      <option value="Ben Arous">Ben Arous</option>
+      <option value="Gabès">Gabès</option>
+      <option value="Gafsa">Gafsa</option>
+      <option value="Jendouba">Jendouba</option>
+      <option value="Kairouan">Kairouan</option>
+      <option value="Kasserine">Kasserine</option>
+      <option value="Kebili">Kebili</option>
+      <option value="Kef">Kef</option>
+      <option value="Mahdia">Mahdia</option>
+      <option value="Manouba">Manouba</option>
+      <option value="Médenine">Médenine</option>
+      <option value="Monastir">Monastir</option>
+      <option value="Nabeul">Nabeul</option>
+      <option value="Sfax">Sfax</option>
+      <option value="Sidi Bouzid">Sidi Bouzid</option>
+      <option value="Siliana">Siliana</option>
+      <option value="Sousse">Sousse</option>
+      <option value="Tataouine">Tataouine</option>
+      <option value="Tozeur">Tozeur</option>
+      <option value="Tunis">Tunis</option>
+      <option value="Zaghouan">Zaghouan</option>
+    </select>
+    &nbsp; &nbsp;
+    <button (click)="navselectman()" class="inline-block btn btn-primary">
+      Selectionner</button>
+    <div></div>
   </div>
-
 </nav>
 
 <div>
@@ -37,7 +76,7 @@
 
     <div class="text-center">
       <div class="inline-block">
-        <button type="button" (click)="back()" class="btn btn-danger">🢀</button>
+        <button type="button" (click)="back()" class="btn btn-secondary">🢀</button>
       </div>
       &nbsp;
       <div id="b1" class="inline-block">
@@ -61,7 +100,7 @@
       </div>
       &nbsp;
       <div class="inline-block">
-        <button type="button" (click)="next()" class="btn btn-success">🢂</button>
+        <button type="button" (click)="next()" class="btn btn-primary">🢂</button>
       </div>
 
     </div>
@@ -82,7 +121,7 @@
       </h5>
       <div class="card-body">
         <p class="card-text">Sélectionnez la localisation du problème, actuel ou un autre. <img
-            src="/assets/img/locationicon.png" width="50" height="50" style="float: right;" alt=""></p>
+            src="/assets/img/map.png" width="50" height="50" style="float: right;" alt=""></p>
         <br>
       </div>
     </div>
@@ -129,9 +168,8 @@
       <div class="text-center">
 
 
-
         <div id="capture">
-          <webcam [width]="375  " [height]="667"></webcam>
+          <webcam [width]="370  " [height]="666"></webcam>
         </div>
 
         <button id="capsc" type="button" (click)="capture()" class="btn btn-success">
@@ -184,6 +222,10 @@
             </div>
           </div>
 
+          <div class="text-center"> <button class="text-center btn btn-danger" (click)="picdiscard()">
+              Jetter Capture</button></div>
+
+
 
 
         </div>
@@ -204,48 +246,89 @@
 
         <div class="card-body">
 
-          <h5 class="card-title"> <img src="/assets/img/flag-fill.png" width="25" height="30"
-              style="filter: invert(1); float: left;" alt=""> &nbsp; &nbsp;Localisation Actuelle</h5> &nbsp;
-          <p class="card-text">Votre position actuelle en ce moment est :</p>
-          <h3 id="currentloc">position actuel</h3>
-          <input class="form-check-input" type="radio" name="locationrad" id="locationrad1" value="autol" checked>
-          &nbsp;
-          <label class="form-check-label" for="locationrad1">
-            Sélectionner localisation actuel
-          </label>
-        </div>
-      </div>
-
-
-      <div class="card text-white bg-secondary mb-3" style="width: 19rem;">
-
-        <div class="card-body">
-
           <h5 class="card-title"> <img src="/assets/img/flag.png" width="25" height="30"
-              style="filter: invert(1); float: left;" alt=""> &nbsp; &nbsp;Localisation Manuel</h5> &nbsp;
-          <p class="card-text">Sélectionnez un autre localisation manuellement.</p>
+              style="filter: invert(1); float: left;" alt=""> &nbsp; Gouver./ Municp. &nbsp;</h5>
+          <p class="card-text">Le gps renverra la latitude et la longitude et le gouvernorat
+            de la localisation actuelle (configurable),
+            saisir la municipalité de la localisation.</p>
 
-          <select class="form-select" aria-label="Sélectionnez localisation manuel">
-            <option selected>Open this select menu</option>
-            <option value="Tunis">Tunis</option>
+          <h4>Gouvernorat</h4>
+          <select id="manl" class="form-select" (change)="selectm()" aria-label="Sélectionnez localisation manuel">
+            <option selected value="Ariana">Ariana</option>
+            <option value="Béja">Béja</option>
+            <option value="Ben Arous">Ben Arous</option>
+            <option value="Gabès">Gabès</option>
+            <option value="Gafsa">Gafsa</option>
+            <option value="Jendouba">Jendouba</option>
+            <option value="Kairouan">Kairouan</option>
+            <option value="Kasserine">Kasserine</option>
+            <option value="Kebili">Kebili</option>
+            <option value="Kef">Kef</option>
+            <option value="Mahdia">Mahdia</option>
+            <option value="Manouba">Manouba</option>
+            <option value="Médenine">Médenine</option>
+            <option value="Monastir">Monastir</option>
+            <option value="Nabeul">Nabeul</option>
             <option value="Sfax">Sfax</option>
+            <option value="Sidi Bouzid">Sidi Bouzid</option>
+            <option value="Siliana">Siliana</option>
             <option value="Sousse">Sousse</option>
+            <option value="Tataouine">Tataouine</option>
+            <option value="Tozeur">Tozeur</option>
+            <option value="Tunis">Tunis</option>
+            <option value="Zaghouan">Zaghouan</option>
           </select>
+          <p>Gouvernorat de la position du problème (GPS rempli)</p>
 
-          <input class="form-check-input" type="radio" name="locationrad" id="locationrad2" value="option2"> &nbsp;
-          <label class="form-check-label" for="locationrad2">
-            Sélectionner localisation manuel
-          </label>
+
+          <h5>Municipalité</h5>
+          <select id="mun" class="form-select" (change)="selecta()" aria-label="Sélectionnez municipalité">
+          </select>
+          <p>Municipalité de la position du problème (rempli manuel)</p>
+
+          <div id="bs" style="display:none;">
+            <h5>Arrondisments Municipaux</h5>
+            <select class="form-select" aria-label="Sélectionnez municipalité municipaux">
+              <option value="Bab Bhar">Bab Bhar</option>
+              <option value="La Médina">La Médina</option>
+              <option value="Bab souika">Bab souika</option>
+              <option value="Sidi Béchir">Sidi Béchir</option>
+              <option value="Essijoumi">Essijoumi</option>
+              <option value="El Omrane">El Omrane</option>
+              <option value="Cité El khadra">Cité El khadra</option>
+              <option value="El Ouardia">El Ouardia</option>
+              <option value="Ezzouhour">Ezzouhour</option>
+              <option value="Ettahrir">Ettahrir</option>
+              <option value="El Omrane Superieur">El Omrane Superieur</option>
+              <option value="El Menzah" s>El Menzah</option>
+              <option value="Jebel Jelloud">Jebel Jelloud</option>
+              <option value="El Kabaria">El Kabaria</option>
+              <option value="El Hrairia">El Hrairia</option>
+              <option value="Service central de l'état civil">Service central de l'état civil</option>
+            </select>
+          </div>
+
+          <hr>
+          <h5 class="card-title"> <img src="/assets/img/geo.png" width="25" height="30"
+            style="filter: invert(1); float: left;" alt=""> &nbsp; &nbsp;Coordinations</h5>
+            <br>
+
+          <div class="form-inline">
+            Latitude<input type="text" class="form-control form-control-sm" id="lat" value="0">
+            Longitude <input type="text" class="form-control form-control-sm" id="lon" value="0">
+            <p>Coordinations de la position du problème (GPS rempli)</p>
+          </div>
+
+          <br>
+          <div class="text-center"> <button type="button" (click)="back()" class="btn btn-dark">◄</button>
+            &nbsp;
+            <button type="button" (click)="next()" class="btn btn-primary">Suivant ➤</button>
+          </div>
+
         </div>
       </div>
-
-      <br>
-      <div class="text-center"> <button type="button" (click)="back()" class="btn btn-dark">◄</button>
-        &nbsp;
-        <button type="button" (click)="next()" class="btn btn-primary">Suivant ➤</button>
-      </div>
-
     </div>
+
 
 
 
@@ -256,7 +339,8 @@
           <div class="card text-white bg-secondary mb-3 text-center" style="max-width: 10rem; max-height: 6rem;">
             <div class="card-body">
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="dtype" id="didom" value="type_domestic">
+                <input class="form-check-input" type="radio" name="dtype" id="didom" value="type_domestic"
+                  checked="checked">
                 <label class="form-check-label" for="didom">
                   <img src="/assets/img/di-dom.png" width="50" height="50" alt="">
 
@@ -346,7 +430,6 @@
 
       <div class="row">
 
-
         <div class="col">
           <div class="card text-white bg-secondary mb-3 text-center" style="max-width: 10rem; max-height: 6rem;">
             <div class="card-body">
@@ -379,9 +462,81 @@
         </div>
       </div>
 
+      <div class="row">
+
+        <div class="col">
+          <div class="card text-white bg-secondary mb-3 text-center" style="max-width: 10rem; max-height: 6rem;">
+            <div class="card-body">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="dtype" id="dwat" value="type_water">
+                <label class="form-check-label" for="dwat">
+                  <img src="/assets/img/type_water.png" width="50" height="50" alt="">
+
+                </label>
+              </div>
+              <h5>Eau et Purif.</h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card text-white bg-secondary mb-3 text-center" style="max-width: 10rem; max-height: 6rem;">
+            <div class="card-body">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="dtype" id="ddgr" value="type_degradation">
+                <label class="form-check-label" for="ddgr">
+                  <img src="/assets/img/type_degradation.png" width="50" height="50" alt="">
+                </label>
+              </div>
+              <h5>Dégradation</h5>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col">
+          <div class="card text-white bg-secondary mb-3 text-center" style="max-width: 10rem; max-height: 6rem;">
+            <div class="card-body">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="dtype" id="dnli" value="type_nightlight">
+                <label class="form-check-label" for="dnli">
+                  <img src="/assets/img/type_nightlight.png" width="50" height="50" alt="">
+
+                </label>
+              </div>
+              <h5>Eclarage Nuit</h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card text-white bg-secondary mb-3 text-center" style="max-width: 10rem; max-height: 6rem;">
+            <div class="card-body">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="dtype" id="dtli" value="type_trafficlight">
+                <label class="form-check-label" for="dtli">
+                  <img src="/assets/img/type_trafficlight.png" width="50" height="50" alt="">
+                </label>
+              </div>
+              <h5>Feu Circ.</h5>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+
       <br>
 
-
+      <div class="text-center"> <button type="button" (click)="back()" class="btn btn-dark">◄</button>
+        &nbsp;
+        <button type="button" (click)="next()" class="btn btn-primary">Suivant ➤</button>
+      </div>
 
 
     </div>
@@ -417,8 +572,8 @@
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1">➤</span>
             </div>
-            <textarea class="form-control" placeholder="Insérez le sujet ici" aria-label="With textarea"
-              id="textsub"></textarea>
+            <textarea class="form-control" placeholder="Insérez le sujet ici" aria-label="With textarea" id="textsub"
+              rows="5"></textarea>
           </div>
           <p class="card-text">Donnez une petite description rapide mais informative adaptée au problème.</p>
         </div>
@@ -435,7 +590,7 @@
               <span class="input-group-text" id="basic-addon1">➤</span>
             </div>
             <textarea class="form-control" placeholder="Insérez la description ici" aria-label="With textarea"
-              id="textdesc"></textarea>
+              id="textdesc" rows="5"></textarea>
           </div>
           <p class="card-text">Décrivez le problème soigneusement et profondément avec le plus de détails possible.
           </p>
@@ -468,7 +623,8 @@
         <div class="card-body">
           <h5 class="card-title"> <img src="/assets/img/person-fill.png" width="30" height="30"
               style="filter: invert(1); float: left;" alt=""> &nbsp; &nbsp;Profile</h5> &nbsp;
-          <p class="card-text">Au cas où vous voudriez que l'administrateur reste en contact avec vous à propos de ce
+          <p class="card-text">Au cas où vous voudriez que l'administrateur reste en contact avec vous à propos de
+            ce
             rapport (créer un profil).</p>
           <h5 class="card-title"> &nbsp; &nbsp;Votre Nom</h5>
           <div class="input-group mb-3">
@@ -490,7 +646,7 @@
 
           <h5 class="card-title"> &nbsp; &nbsp;Votre Photo Profile</h5>
           <div class="text-center" id="photoprofile"></div>
-  <br>
+          <br>
           <div class="text-center">
             <button class="text-center" id="" type="button" (click)="profileph()" class="btn btn-success">
               Télécharger Photo</button> &nbsp;
@@ -532,6 +688,55 @@
 
 
       <br>
+
+      <div id="waiting" style="display: none;">
+        <div class="card bg-primary text-center" style="width: 20rem;">
+          <h4 class="card-title text-center">Envoi en cours ...</h4>
+          <h5 class="card-text text-center">Veuillez Patienter</h5>
+          <style>
+            .loader {
+              border: 16px solid darkslategrey;
+              position: sticky;
+              left: 39%;
+              border-radius: 50%;
+              border-top: 16px solid green;
+              width: 80px;
+              height: 80px;
+              -webkit-animation: spin 2s linear infinite;
+              /* Safari */
+              animation: spin 2s linear infinite;
+            }
+
+            /* Safari */
+            @-webkit-keyframes spin {
+              0% {
+                -webkit-transform: rotate(0deg);
+              }
+
+              100% {
+                -webkit-transform: rotate(360deg);
+              }
+            }
+
+            @keyframes spin {
+              0% {
+                transform: rotate(0deg);
+              }
+
+              100% {
+                transform: rotate(360deg);
+              }
+            }
+          </style>
+
+          <div class="loader inline-block"></div>
+        </div>
+
+        <br>
+
+        <br>
+      </div>
+
       <div class="text-center"> <button type="button" (click)="back()" class="btn btn-dark">◄</button>
         &nbsp;
         <button type="button" (click)="send()" class="btn btn-primary">Envoyer ✉</button>
@@ -539,6 +744,8 @@
 
 
     </div>
+
+
 
 
     <br><br><br><br>
@@ -552,7 +759,7 @@
 
 </div>
 <nav class="navbar fixed-bottom navbar-light bg-dark">
-  <img routerLink="/fr-profile" src="/assets/img/fr-profile.png" width="38" height="50" class="center" alt="">
+  <img routerLink="/fr-contact" src="/assets/img/fr-profile.png" width="38" height="50" class="center" alt="">
   <img routerLink="/fr-news" src="/assets/img/fr-news.png" width="38" height="50" class="center" alt="">
   <img routerLink="/fr-report" src="/assets/img/fr-detect.png" width="38" height="50" class="center" alt="">
   <img routerLink="/fr-events" src="/assets/img/fr-table.png" width="38" height="50" class="center" alt="">

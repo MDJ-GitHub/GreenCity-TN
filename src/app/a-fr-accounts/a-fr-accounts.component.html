@@ -1,33 +1,41 @@
 <nav class="navbar fixed-top navbar-dark bg-primary justify-content-between py-0">
 
-    <div>
+    <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+      <button class="btn btn-outline-secondary " id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">
+        <img src="/assets/img/settings.png" width="30" height="25" alt="">
+      </button>
+      <div ngbDropdownMenu aria-labelledby="dropdownManual">
+        <button routerLink="/fr-news" ngbDropdownItem><img src="/assets/img/fr.png" width="25" height="25"
+            class="rounded ms-auto" alt="">&nbsp;Français</button>
+        <button routerLink="/ar-news" ngbDropdownItem><img src="/assets/img/tn.png" width="25" height="25"
+            class="rounded ms-auto" alt="">&nbsp;عربي</button>
+        <button routerLink="/en-news" ngbDropdownItem><img src="/assets/img/en.png" width="25" height="25"
+            class="rounded ms-auto" alt="">&nbsp;English</button>
+      </div>
+      <img src="/assets/img/logo.png" width="55" height="40" class="" alt="">
+    </div>
+      <div>
         &nbsp;
-        <img src="/assets/img/logo.png" width="55" height="40" class="" alt="">
-
-    </div>
-
-    <div>
-        <h5 id="step" class="text-center">List des Comptes</h5>
-    </div>
-
-    <div>
 
 
-    </div>
+      </div>
 
-    <div class="text-end">
-        <img src="/assets/img/person-fill.png" width="25" height="25" style=" float: left;" alt=""> &nbsp;Admin
-        User&nbsp;
+      <div>
+        <h5 id="step" class="text-center">Liste des Profils</h5>
+      </div>
+
+      <div>
+
+
+      </div>
+
+      <div id="cred" class="text-end">
+        <img src="/assets/img/person-fill.png" width="25" height="25" style=" float: left;" alt=""> &nbsp;Admin User&nbsp;
 
         <img src="/assets/img/location.png" width="20" height="25" class="d-inline-block align-top" alt=""> Borj Cedria
+      </div>
 
-        &nbsp;
-        <img src="/assets/img/fr.png" width="30" height="25" class="rounded ms-auto" routerLink="/" alt="">
-        &nbsp;
-        <img src="/assets/img/settings.png" width="30" height="25" routerLink="/" alt="">
-        &nbsp;
-    </div>
-</nav>
+  </nav>
 
 <style>
     body {
@@ -103,19 +111,89 @@
       <a  routerLink="/a-fr-events"><img src="/assets/img/calendar-fill.png" width="30" height="30" style="filter:invert(1); float: left;" alt="">&nbsp; Événements</a>
 </div>
 
-<div class="content">
+<div id="profs" class="content">
     <br><br>
 
-    <div class="card text-white bg-secondary mb-3">
+    
+  <div id="nodata" style="display: none;">
+    <div class="card bg-light text-center" style="width: 22rem;">
+      <h4 class="card-title text-center">Aucun compte trouvé ...</h4>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>  
+  </div>
+
+    <div id="waiting">
+        <div class="card bg-light text-center" style="width: 20rem;">
+          <h4 class="card-title text-center">Récupérer les comptes ...</h4>
+          <h5 class="card-text text-center">Veuillez Patienter</h5>
+          <style>
+            .loader {
+              border: 16px solid darkslategrey;
+              position:sticky ;
+              left: 54%;
+              border-radius: 50%;
+              border-top: 16px solid green;
+              width: 80px;
+              height: 80px;
+              -webkit-animation: spin 2s linear infinite; /* Safari */
+              animation: spin 2s linear infinite;
+            }
+            
+            /* Safari */
+            @-webkit-keyframes spin {
+              0% { -webkit-transform: rotate(0deg); }
+              100% { -webkit-transform: rotate(360deg); }
+            }
+            
+            @keyframes spin {
+              0% { transform: rotate(0deg); }
+              100% { transform: rotate(360deg); }
+            }
+            </style>
+        
+            <div class="loader inline-block"></div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        
+        <br>
+      </div>
+
+    <div class="card text-white bg-secondary mb-3" style="display: none;">
         <div class="card-body">
             <h5 class="card-title">
-                <img src="/assets/img/person-fill.png" width="30" height="30" style="float: left;" alt="">
+                <img src="/assets/img/person-fill.png" width="50" height="50" style="float: left; border-radius: 50%;" alt="">
                 &nbsp;&nbsp;User &nbsp;
-                <img src="/assets/img/star-fill.png" width="20" height="20" style="filter:invert(1); float: center;"
+                <img src="/assets/img/phone.png" width="15" height="20" style="filter:invert(1); float: center;"
+                alt=""> &nbsp;12345678 &nbsp;
+                <img src="/assets/img/document-richtext.png" width="16" height="20"
+                style="filter:invert(1); float: center;" alt=""> &nbsp;2&nbsp;  
+                <img src="/assets/img/star.png" width="20" height="20" style="filter:invert(1); float: center;"
                     alt=""> &nbsp;1 &nbsp;
-                <img src="/assets/img/alert-triangle-fill.png" width="20" height="20"
-                    style="filter:invert(1); float: center;" alt=""> &nbsp;2&nbsp;  
-                    <img src="/assets/img/calendar.png" width="20" height="20" style=" filter:invert(1);  float: center;" alt=""> 2022/02/01
+                <img src="/assets/img/calendar.png" width="20" height="20" style=" filter:invert(1);  float: center;" alt="">  &nbsp; 2022/02/01  &nbsp;
                 <img src="/assets/img/remove.png" width="20" height="20" style="float: right;" alt="">
                 <img src="/assets/img/empty.png" width="10" height="10" style="float: right;" alt="">
                 <img src="/assets/img/modify.png" width="20" height="20" style="float: right;" alt="">
@@ -123,47 +201,6 @@
         </div>
     </div>
 
-    <div class="card text-white bg-secondary mb-3">
-        <div class="card-body">
-            <h5 class="card-title">
-                <img src="/assets/img/person-fill.png" width="30" height="30" style="float: left;" alt="">
-                &nbsp;&nbsp;User B&nbsp;
-
-                <img src="/assets/img/star-fill.png" width="20" height="20" style="filter:invert(1); float: center;"
-                    alt=""> &nbsp;2 &nbsp;
-                <img src="/assets/img/alert-triangle-fill.png" width="20" height="20"
-                    style="filter:invert(1); float: center;" alt=""> &nbsp;4&nbsp;  
-                    <img src="/assets/img/calendar.png" width="20" height="20" style=" filter:invert(1);  float: center;" alt=""> 2022/02/01
-
-                <img src="/assets/img/remove.png" width="20" height="20" style="float: right;" alt="">
-                <img src="/assets/img/empty.png" width="10" height="10" style="float: right;" alt="">
-                <img src="/assets/img/modify.png" width="20" height="20" style="float: right;" alt="">
-            </h5>
-
-
-        </div>
-    </div>
-
-    <div class="card text-white bg-secondary mb-3">
-        <div class="card-body">
-            <h5 class="card-title">
-                <img src="/assets/img/person-fill.png" width="30" height="30" style="float: left;" alt="">
-                &nbsp;&nbsp;User C &nbsp;
-
-                <img src="/assets/img/star-fill.png" width="20" height="20" style="filter:invert(1); float: center;"
-                    alt=""> &nbsp;0 &nbsp;
-                <img src="/assets/img/alert-triangle-fill.png" width="20" height="20"
-                    style="filter:invert(1); float: center;" alt=""> &nbsp;3&nbsp;  
-                    <img src="/assets/img/calendar.png" width="20" height="20" style=" filter:invert(1);  float: center;" alt=""> 2022/02/01
-
-                <img src="/assets/img/remove.png" width="20" height="20" style="float: right;" alt="">
-                <img src="/assets/img/empty.png" width="10" height="10" style="float: right;" alt="">
-                <img src="/assets/img/modify.png" width="20" height="20" style="float: right;" alt="">
-            </h5>
-
-
-        </div>
-    </div>
 
 
 </div>

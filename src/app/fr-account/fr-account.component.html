@@ -1,0 +1,211 @@
+<br><br>
+
+<nav class="navbar fixed-top navbar-dark bg-success justify-content-between py-0">
+  <div class="text-center">
+    &nbsp;
+    <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+      <button class="btn btn-outline-secondary " id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">
+        <img src="/assets/img/settings.png" width="30" height="25" alt="">
+      </button>
+      <div ngbDropdownMenu aria-labelledby="dropdownManual">
+        <button routerLink="/fr-account" ngbDropdownItem><img src="/assets/img/person-fill.png" width="25" height="25"
+            class=" ms-auto" alt="">&nbsp;Profile</button>
+        <button (click)="navselectall()" ngbDropdownItem><img src="/assets/img/documents.png" width="25" height="25"
+            class=" ms-auto" alt="">&nbsp;Tous</button>
+        <button (click)="viewselectman()" ngbDropdownItem><img src="/assets/img/map.png" width="25" height="25"
+            class=" ms-auto" alt="">&nbsp;Localisation Manuel</button>
+        <button (click)="navselectauto()" ngbDropdownItem><img src="/assets/img/geo.png" width="25" height="25"
+            class=" ms-auto" alt="">&nbsp;Localisation Actuelle</button>
+        <button routerLink="/fr-news" ngbDropdownItem><img src="/assets/img/fr.png" width="25" height="25"
+            class="rounded ms-auto" alt="">&nbsp;Français</button>
+        <button routerLink="/ar-news" ngbDropdownItem><img src="/assets/img/tn.png" width="25" height="25"
+            class="rounded ms-auto" alt="">&nbsp;عربي</button>
+        <button routerLink="/en-news" ngbDropdownItem><img src="/assets/img/en.png" width="25" height="25"
+            class="rounded ms-auto" alt="">&nbsp;English</button>
+      </div>
+
+    </div>
+    &nbsp;
+    <img src="/assets/img/logo.png" width="60" height="45" class="" alt="">
+  </div>
+
+  <div>
+    <h5 class="text-center"> Profil</h5>
+    <h6 id="currentposition" class="text-center"> <img src="/assets/img/location.png" width="15" height="20"
+        class="d-inline-block align-top" alt="">position actuel</h6>
+  </div>
+
+  <div></div>
+
+  <div id="locman" class="text-center" style="display:none;">
+    &nbsp; &nbsp; <img src="/assets/img/map.png" width="38" height="38" class="rounded ms-auto" alt=""> &nbsp; &nbsp;
+    <select id="navman" class="text-center" aria-label="Sélectionnez localisation manuel">
+      <option selected value="Ariana">Ariana</option>
+      <option value="Béja">Béja</option>
+      <option value="Ben Arous">Ben Arous</option>
+      <option value="Gabès">Gabès</option>
+      <option value="Gafsa">Gafsa</option>
+      <option value="Jendouba">Jendouba</option>
+      <option value="Kairouan">Kairouan</option>
+      <option value="Kasserine">Kasserine</option>
+      <option value="Kebili">Kebili</option>
+      <option value="Kef">Kef</option>
+      <option value="Mahdia">Mahdia</option>
+      <option value="Manouba">Manouba</option>
+      <option value="Médenine">Médenine</option>
+      <option value="Monastir">Monastir</option>
+      <option value="Nabeul">Nabeul</option>
+      <option value="Sfax">Sfax</option>
+      <option value="Sidi Bouzid">Sidi Bouzid</option>
+      <option value="Siliana">Siliana</option>
+      <option value="Sousse">Sousse</option>
+      <option value="Tataouine">Tataouine</option>
+      <option value="Tozeur">Tozeur</option>
+      <option value="Tunis">Tunis</option>
+      <option value="Zaghouan">Zaghouan</option>
+    </select>
+    &nbsp; &nbsp;
+    <button (click)="navselectman()" class="inline-block btn btn-primary">
+      Selectionner</button>
+    <div></div>
+  </div>
+</nav>
+
+
+<div style="background-image: url('/assets/img/background.jpeg');     background-repeat: no-repeat;
+  
+background-size: 100% 100%; background-attachment: fixed;" class="">
+  <div style="background-image: url('/assets/img/background.jpeg');     background-repeat: no-repeat;
+  
+  background-size: 100% 100%; background-attachment: fixed;" class="">
+    &nbsp;
+
+    <div id="modprofile" class="card text-white bg-secondary mb-3" style="max-width: 19rem; display: none;">
+      <div class="card-body">
+        <h5 class="card-title text-center">Modifier profil</h5> &nbsp;
+        <h5 class="card-title"> &nbsp; &nbsp;Votre Nom</h5>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">➤</span>
+          </div>
+          <input id="mname" type="text" class="form-control" placeholder="Nom" aria-label="Username"
+            aria-describedby="basic-addon1">
+        </div>
+
+        <h5 class="card-title"> &nbsp; &nbsp;Votre Téléphone</h5>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">➤</span>
+          </div>
+          <input id="mphone" type="text" class="form-control" placeholder="12345678" aria-label="Phone"
+            aria-describedby="basic-addon1">
+        </div>
+
+        <h5 class="card-title"> &nbsp; &nbsp;Votre Photo Profil</h5>
+        <div class="text-center" id="photoprofile"></div>
+        <br>
+        <div class="text-center">
+          <button class="text-center" id="" type="button" (click)="profileph()" class="btn btn-success">
+            Télécharger Photo</button> &nbsp;
+
+        </div>
+
+        <hr>
+
+        <div class="text-center">
+          <button class="text-center" id="" type="button" (click)="modifierx()" class="btn btn-primary">
+            Modifier</button> &nbsp;
+
+        </div>
+      </div>
+    </div>
+
+
+    <div id="profile" class="card text-white bg-secondary mb-3 text-center" style="max-width: 19rem; display: none;">
+      <div class="card-body">
+        <h5 id="photo"><img src="/assets/img/person-fill.png" width="150" height="150" style="border-radius: 50%;">
+        </h5> <br>
+        <h4 id="name"><img src="/assets/img/person.png" width="25" height="25"> Username</h4>
+        <h5 id="phone"><img src="/assets/img/phone.png" width="20" height="25">&nbsp; 12345678</h5>
+        <h5 id="nbrpro"><img src="/assets/img/document-richtext.png" width="25" height="25">&nbsp; 0</h5>
+        <h5 id="score"><img src="/assets/img/star.png" width="25" height="25">&nbsp; 0</h5>
+
+        <br>
+        <div class="text-center">
+          <button class="text-center" id="" type="button" (click)="modifier()" class="btn btn-warning">
+            Modifier</button> &nbsp;
+          <button class="text-center" id="" type="button" (click)="deconnecter()" class="btn btn-danger">
+            Déconnecter</button> &nbsp;
+
+
+        </div>
+      </div>
+    </div>
+
+    <div id="deleterofile" class="card text-white bg-secondary mb-3" style="max-width: 19rem; display: none;">
+      <div class="card-body">
+        <h5 class="card-title text-center">Votre profil actuel n'existe pas</h5> &nbsp;
+        <p class="card-text">Principalement parce que votre profil a été supprimé par l'administrateur ou qu'une erreur
+          s'est produite.</p>
+      </div>
+    </div>
+
+
+    <div id="newprofile" class="card text-white bg-secondary mb-3" style="max-width: 19rem; display: none;">
+      <div class="card-body">
+        <h5 class="card-title text-center">Tu n'as pas de profil</h5> &nbsp;
+        <p class="card-text">Vous pouvez créer ou charger un profil ici, avec un profil que les administrateurs peuvent
+          garder en
+          contact avec vous et vous pouvez acquérir des points spéciaux pour de futures récompenses.</p>
+        <h5 class="card-title"> &nbsp; &nbsp;Votre Nom</h5>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">➤</span>
+          </div>
+          <input id="iname" type="text" class="form-control" placeholder="Nom" aria-label="Username"
+            aria-describedby="basic-addon1">
+        </div>
+
+        <h5 class="card-title"> &nbsp; &nbsp;Votre Téléphone</h5>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">➤</span>
+          </div>
+          <input id="iphone" type="text" class="form-control" placeholder="12345678" aria-label="Phone"
+            aria-describedby="basic-addon1">
+        </div>
+
+        <h5 class="card-title"> &nbsp; &nbsp;Votre Photo Profil</h5>
+        <div class="text-center" id="photoprofile"></div>
+        <br>
+        <div class="text-center">
+          <button class="text-center" id="" type="button" (click)="profileph()" class="btn btn-success">
+            Télécharger Photo</button> &nbsp;
+
+        </div>
+
+        <hr>
+
+        <div class="text-center">
+          <button class="text-center" id="" type="button" (click)="createProfile()" class="btn btn-primary">
+            Créer/Charger un profil</button> &nbsp;
+
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+  <br><br><br><br>
+</div>
+
+
+
+<nav class="navbar fixed-bottom navbar-light bg-dark">
+  <img routerLink="/fr-contact" src="/assets/img/fr-profile.png" width="38" height="50" class="center" alt="">
+  <img routerLink="/fr-news" src="/assets/img/fr-news.png" width="38" height="50" class="center" alt="">
+  <img routerLink="/fr-report" src="/assets/img/fr-detect.png" width="38" height="50" class="center" alt="">
+  <img routerLink="/fr-events" src="/assets/img/fr-table.png" width="38" height="50" class="center" alt="">
+  <img routerLink="/fr-info" src="/assets/img/fr-others.png" width="38" height="50" class="center" alt="">
+</nav>

@@ -1,125 +1,233 @@
 <br><br>
 <nav class="navbar fixed-top navbar-dark bg-success justify-content-between py-0">
-
-    <div>
-      &nbsp;
-      <img src="/assets/img/logo.png" width="60" height="40" class="" alt="">
-  
-    </div>
-  
-    <div>
-      <h5 class="text-center"> Événements</h5>
-      <h6 id="currentposition" class="text-center"> <img src="/assets/img/location.png" width="15" height="20" class="d-inline-block align-top"
-        alt="">position actuel</h6>
-    </div>
-  
-    <div  class="text-center">
-      <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
-        <button class="btn btn-outline-secondary me-2" id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">
-          <img src="/assets/img/fr.png" width="30" height="25" class="rounded ms-auto"  alt="">
-        </button>
-        <div ngbDropdownMenu aria-labelledby="dropdownManual">
-          <button ngbDropdownItem><img src="/assets/img/fr.png" width="30" height="25" class="rounded ms-auto"  alt=""> Français</button>
-          <button ngbDropdownItem><img src="/assets/img/tn.png" width="30" height="25" class="rounded ms-auto"  alt=""> عربي</button>
-          <button ngbDropdownItem><img src="/assets/img/en.png" width="30" height="25" class="rounded ms-auto"  alt=""> English</button>
-        </div>
-      </div>
-      
-      <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
-        <button class="btn btn-outline-secondary me-2" id="dropdownManual2" ngbDropdownAnchor (focus)="myDrop.open()">
-          <img src="/assets/img/settings.png" width="30" height="25" alt="">
-        </button>
-        <div ngbDropdownMenu aria-labelledby="dropdownManual2">
-          <button ngbDropdownItem><img src="/assets/img/fr.png" width="30" height="25" class="rounded ms-auto"  alt=""> Français</button>
-          <button ngbDropdownItem><img src="/assets/img/tn.png" width="30" height="25" class="rounded ms-auto"  alt=""> عربي</button>
-          <button ngbDropdownItem><img src="/assets/img/en.png" width="30" height="25" class="rounded ms-auto"  alt=""> English</button>
-        </div>
-      </div>
-
-    
-    
-
-    
+  <div class="text-center">
     &nbsp;
-  
-
-</div>
-  
-  
-  
-  
-  
-  
-  </nav>
-  
-  
-  
-  <div id="news" style="background-image: url('/assets/img/wallpaperevents.jpg');     background-repeat: no-repeat;
-  
-        background-size: 100% 100%; background-attachment: fixed;" class="container">
-    &nbsp;
-  
-    <div class="card bg-light mb-3" style="width: 21rem;">
-      <img class="card-img-top" src="assets/img/7168985_Tt5j5S2Tz9u8eo8Vi7saCkMYbguMoBsggxAYantEv-U.jpg" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Rendons notre ville plus verte !</h5>
-        <p class="card-text">Un groupe de personnes organisera un événement consistant à planter divers types de plantes allant des arbres et des fleurs dans la partie principale de la ville de Borj Cedria.</p>
-        <a href="#" class="btn btn-link">Plus d'informations</a>
-        <br><img src="/assets/img/calendar.png" width="20" height="20" style=" float: center;" alt=""> 2022/02/01
+    <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+      <button class="btn btn-outline-secondary " id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">
+        <img src="/assets/img/settings.png" width="30" height="25" alt="">
+      </button>
+      <div ngbDropdownMenu aria-labelledby="dropdownManual">
+        <button routerLink="/fr-account" ngbDropdownItem><img src="/assets/img/person-fill.png" width="25" height="25"
+            class=" ms-auto" alt="">&nbsp;Profil</button>
+        <button (click)="navselectall()" ngbDropdownItem><img src="/assets/img/documents.png" width="25" height="25"
+            class=" ms-auto" alt="">&nbsp;Tous</button>
+        <button (click)="viewselectman()" ngbDropdownItem><img src="/assets/img/map.png" width="25" height="25"
+            class=" ms-auto" alt="">&nbsp;Localisation Manuel</button>
+        <button (click)="navselectauto()" ngbDropdownItem><img src="/assets/img/geo.png" width="25" height="25"
+            class=" ms-auto" alt="">&nbsp;Localisation Actuelle</button>
+        <button routerLink="/fr-news" ngbDropdownItem><img src="/assets/img/fr.png" width="25" height="25"
+            class="rounded ms-auto" alt="">&nbsp;Français</button>
+        <button routerLink="/ar-news" ngbDropdownItem><img src="/assets/img/tn.png" width="25" height="25"
+            class="rounded ms-auto" alt="">&nbsp;عربي</button>
+        <button routerLink="/en-news" ngbDropdownItem><img src="/assets/img/en.png" width="25" height="25"
+            class="rounded ms-auto" alt="">&nbsp;English</button>
       </div>
+
     </div>
-  
-    <div class="card bg-light mb-3" style="width: 21rem;">
-        <img class="card-img-top" src="assets/img/7168985_Tt5j5S2Tz9u8eo8Vi7saCkMYbguMoBsggxAYantEv-U.jpg" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Rendons notre ville plus verte !</h5>
-          <p class="card-text">Un groupe de personnes organisera un événement consistant à planter divers types de plantes allant des arbres et des fleurs dans la partie principale de la ville de Borj Cedria.</p>
-          <a href="#" class="btn btn-link">Plus d'informations</a>
-          <br><img src="/assets/img/calendar.png" width="20" height="20" style=" float: center;" alt=""> 2022/02/01
-        </div>
-      </div>
-  
-      <div class="card bg-light mb-3" style="width: 21rem;">
-        <img class="card-img-top" src="assets/img/7168985_Tt5j5S2Tz9u8eo8Vi7saCkMYbguMoBsggxAYantEv-U.jpg" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Rendons notre ville plus verte !</h5>
-          <p class="card-text">Un groupe de personnes organisera un événement consistant à planter divers types de plantes allant des arbres et des fleurs dans la partie principale de la ville de Borj Cedria.</p>
-          <a href="#" class="btn btn-link">Plus d'informations</a>
-          <br><img src="/assets/img/calendar.png" width="20" height="20" style=" float: center;" alt=""> 2022/02/01
-        </div>
-      </div>
-  
-
-  
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-  
-    <br>
-    <br>
-    <br>
+    &nbsp;
+    <img src="/assets/img/logo.png" width="60" height="45" class="" alt="">
   </div>
+
+  <div>
+    <h5 class="text-center"> Événements</h5>
+    <h6 id="currentposition" class="text-center"> <img src="/assets/img/location.png" width="15" height="20"
+        class="d-inline-block align-top" alt="">position actuel</h6>
+  </div>
+
+  <div></div>
+
+  <div id="locman" class="text-center" style="display:none;">
+    &nbsp; &nbsp; <img src="/assets/img/map.png" width="38" height="38" class="rounded ms-auto" alt=""> &nbsp; &nbsp;
+    <select id="navman" class="text-center" aria-label="Sélectionnez localisation manuel">
+      <option selected>Choisir Localisation</option>
+      <option value="Ariana">Ariana</option>
+      <option value="Béja">Béja</option>
+      <option value="Ben Arous">Ben Arous</option>
+      <option value="Gabès">Gabès</option>
+      <option value="Gafsa">Gafsa</option>
+      <option value="Jendouba">Jendouba</option>
+      <option value="Kairouan">Kairouan</option>
+      <option value="Kasserine">Kasserine</option>
+      <option value="Kebili">Kebili</option>
+      <option value="Mahdia">Mahdia</option>
+      <option value="Manouba">Manouba</option>
+      <option value="Medenine">Medenine</option>
+      <option value="Monastir">Monastir</option>
+      <option value="Nabeul">Nabeul</option>
+      <option value="Sfax">Sfax</option>
+      <option value="Sidi Bouzid">Sidi Bouzid</option>
+      <option value="Siliana">Siliana</option>
+      <option value="Sousse">Sousse</option>
+      <option value="Tataouine">Tataouine</option>
+      <option value="Tozeur">Tozeur</option>
+      <option value="Tunis">Tunis</option>
+      <option value="Zaghouan">Zaghouan</option>
+    </select>
+    &nbsp; &nbsp;
+    <button (click)="navselectman()" class="inline-block btn btn-primary">
+      Selectionner</button>
+    <div></div>
+  </div>
+</nav>
+
+
+
+
+<div style="background-image: url('/assets/img/background.jpeg');     background-repeat: no-repeat;
   
-  <nav class="navbar fixed-bottom navbar-light bg-dark">
-    <img routerLink="/fr-profile" src="/assets/img/fr-profile.png" width="38" height="50" class="center" alt="">
-    <img routerLink="/fr-news" src="/assets/img/fr-news.png" width="38" height="50" class="center" alt="">
-    <img routerLink="/fr-report" src="/assets/img/fr-detect.png" width="38" height="50" class="center" alt="">
-    <img routerLink="/fr-events" src="/assets/img/fr-table.png" width="38" height="50" class="center" alt="">
-    <img routerLink="/fr-info" src="/assets/img/fr-others.png" width="38" height="50" class="center" alt="">
-  </nav>
+background-size: 100% 100%; background-attachment: fixed;" class="">
+  <div id="events" style="background-image: url('/assets/img/background.jpeg');     background-repeat: no-repeat;
+  
+background-size: 100% 100%; background-attachment: fixed;" class="">
+    &nbsp;
+    <div id="waiting">
+      <div class="card bg-light text-center" style="width: 20rem;">
+        <h4 class="card-title text-center">Récupérer les dernières événements ...</h4>
+        <h5 class="card-text text-center">Veuillez Patienter</h5>
+        <style>
+          .loader {
+            border: 16px solid darkslategrey;
+            position: sticky;
+            left: 39%;
+            border-radius: 50%;
+            border-top: 16px solid green;
+            width: 80px;
+            height: 80px;
+            -webkit-animation: spin 2s linear infinite;
+            /* Safari */
+            animation: spin 2s linear infinite;
+          }
+
+          /* Safari */
+          @-webkit-keyframes spin {
+            0% {
+              -webkit-transform: rotate(0deg);
+            }
+
+            100% {
+              -webkit-transform: rotate(360deg);
+            }
+          }
+
+          @keyframes spin {
+            0% {
+              transform: rotate(0deg);
+            }
+
+            100% {
+              transform: rotate(360deg);
+            }
+          }
+        </style>
+
+        <div class="loader inline-block"></div>
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+
+      <br>
+    </div>
+
+    <div id="nodata" style="display: none;">
+      <div class="card bg-light text-center" style="width: 22rem;">
+        <h4 class="card-title text-center">Aucun événement n'a été organisé à cet endroit pour le moment. ...</h4>
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+    </div>
+
+    <div class="card bg-light" style="display: none;">
+      <table class="">
+        <thead>
+          <tr>
+            <td class="">&nbsp; <img src="/assets/img/calendar.png" width="18" height="18" style=" float: center;"
+                alt=""> annoncé à &nbsp;&nbsp;&nbsp;' + b[1].date + ' </td>
+
+          </tr>
+          <tr>
+            <td class="">&nbsp; <img src="/assets/img/flag-fill.png" width="18" height="18" style=" float: center;"
+                alt=""> se passera à ' + b[1].date_en + ' </td>
+          </tr>
+        </thead>
+      </table>
+      <h5 class="card-title text-center">' + b[1].title + '</h5>
+      <img (click)="collapse('ee')" class="card-img-top" src="assets/img/exp1.jpg" style="max-height: 265px;"
+        alt="Card image cap">
+      <div class="card">
+        <div id="ee" style="display:none" class="">
+          ' + b[1].description + '
+          <table>
+            <tr>
+              <td> <img src="assets/img/empty.jpg" width="180" height="150"> </td>
+              <td> <img src="assets/img/empty.jpg" width="180" height="150"> </td>
+            </tr>
+            <tr>
+              <td> <img src="assets/img/empty.jpg" width="180" height="150"> </td>
+              <td> <img src="assets/img/empty.jpg" width="180" height="150"> </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="card-text">' + b[1].subject + '</p>
+      </div>
+      <hr>
+      <table class="tg">
+        <thead>
+          <tr>
+            <td class="tg-0lax" rowspan="2"> &nbsp;<a
+                href="https://maps.google.com/?q=' + b[1].lat + ',' + b[1].lon + '" class="btn btn-outline-dark"><img
+                  src="/assets/img/geo.png" width="13" height="18" style=" float: center;"> Position</a></td>
+            &nbsp;<td class="tg-0lax"><img src="/assets/img/map.png" width="18" height="18" style=" float: center;"> ' +
+              b[1].location + '</td>
+          </tr>
+          <tr>
+            &nbsp;<td class="tg-0lax"><img src="/assets/img/plus.png" width="18" height="18"
+                style=" float: center;">&nbsp;' + b[1].addr + '</td>
+          </tr>
+        </thead>
+      </table>
+      <br>
+    </div>
+
+
+    
+
+
+
+
+  </div>
+  <br><br><br><br>
+</div>
+
+
+
+<nav class="navbar fixed-bottom navbar-light bg-dark">
+  <img routerLink="/fr-contact" src="/assets/img/fr-profile.png" width="38" height="50" class="center" alt="">
+  <img routerLink="/fr-news" src="/assets/img/fr-news.png" width="38" height="50" class="center" alt="">
+  <img routerLink="/fr-report" src="/assets/img/fr-detect.png" width="38" height="50" class="center" alt="">
+  <img routerLink="/fr-events" src="/assets/img/fr-table.png" width="38" height="50" class="center" alt="">
+  <img routerLink="/fr-info" src="/assets/img/fr-others.png" width="38" height="50" class="center" alt="">
+</nav>

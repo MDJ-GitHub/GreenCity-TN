@@ -1,0 +1,150 @@
+<br><br>
+<nav class="navbar fixed-top navbar-dark bg-success justify-content-between py-0">
+    <div class="text-center">
+        &nbsp;
+        <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+            <button class="btn btn-outline-secondary " id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">
+                <img src="/assets/img/settings.png" width="30" height="25" alt="">
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownManual">
+                <button routerLink="/fr-account" ngbDropdownItem><img src="/assets/img/person-fill.png" width="25"
+                        height="25" class=" ms-auto" alt="">&nbsp;Profil</button>
+                <button (click)="navselectall()" ngbDropdownItem><img src="/assets/img/documents.png" width="25"
+                        height="25" class=" ms-auto" alt="">&nbsp;Tous</button>
+                <button (click)="viewselectman()" ngbDropdownItem><img src="/assets/img/map.png" width="25" height="25"
+                        class=" ms-auto" alt="">&nbsp;Localisation Manuel</button>
+                <button (click)="navselectauto()" ngbDropdownItem><img src="/assets/img/geo.png" width="25" height="25"
+                        class=" ms-auto" alt="">&nbsp;Localisation Actuelle</button>
+                <button routerLink="/fr-news" ngbDropdownItem><img src="/assets/img/fr.png" width="25" height="25"
+                        class="rounded ms-auto" alt="">&nbsp;Français</button>
+                <button routerLink="/ar-news" ngbDropdownItem><img src="/assets/img/tn.png" width="25" height="25"
+                        class="rounded ms-auto" alt="">&nbsp;عربي</button>
+                <button routerLink="/en-news" ngbDropdownItem><img src="/assets/img/en.png" width="25" height="25"
+                        class="rounded ms-auto" alt="">&nbsp;English</button>
+            </div>
+
+        </div>
+        &nbsp;
+        <img src="/assets/img/logo.png" width="60" height="45" class="" alt="">
+    </div>
+
+    <div>
+        <h5 class="text-center"> Actualités</h5>
+        <h6 id="currentposition" class="text-center"> <img src="/assets/img/location.png" width="15" height="20"
+                class="d-inline-block align-top" alt="">position actuel</h6>
+    </div>
+
+    <div></div>
+
+    <div id="locman" class="text-center" style="display:none;">
+        &nbsp; &nbsp; <img src="/assets/img/map.png" width="38" height="38" class="rounded ms-auto" alt=""> &nbsp;
+        &nbsp;
+        <select id="navman" class="text-center" aria-label="Sélectionnez localisation manuel">
+            <option selected value="Ariana">Ariana</option>
+            <option value="Béja">Béja</option>
+            <option value="Ben Arous">Ben Arous</option>
+            <option value="Gabès">Gabès</option>
+            <option value="Gafsa">Gafsa</option>
+            <option value="Jendouba">Jendouba</option>
+            <option value="Kairouan">Kairouan</option>
+            <option value="Kasserine">Kasserine</option>
+            <option value="Kebili">Kebili</option>
+            <option value="Kef">Kef</option>
+            <option value="Mahdia">Mahdia</option>
+            <option value="Manouba">Manouba</option>
+            <option value="Médenine">Médenine</option>
+            <option value="Monastir">Monastir</option>
+            <option value="Nabeul">Nabeul</option>
+            <option value="Sfax">Sfax</option>
+            <option value="Sidi Bouzid">Sidi Bouzid</option>
+            <option value="Siliana">Siliana</option>
+            <option value="Sousse">Sousse</option>
+            <option value="Tataouine">Tataouine</option>
+            <option value="Tozeur">Tozeur</option>
+            <option value="Tunis">Tunis</option>
+            <option value="Zaghouan">Zaghouan</option>
+        </select>
+        &nbsp; &nbsp;
+        <button (click)="navselectman()" class="inline-block btn btn-primary">
+            Selectionner</button>
+        <div></div>
+    </div>
+</nav>
+<div style="background-image: url('/assets/img/background.jpeg');     background-repeat: no-repeat;
+  
+background-size: 100% 100%; background-attachment: fixed;" class="">
+    <div style="background-image: url('/assets/img/background.jpeg');     background-repeat: no-repeat;
+  
+background-size: 100% 100%; background-attachment: fixed;" class="">
+        <br>
+        <div class="card text-white bg-secondary mb-3" style="max-width: 21rem;">
+
+            <div class="card-body">
+                <h5 class="card-title"> <img src="/assets/img/people-fill.png" width="40" height="30"
+                        style="filter: invert(1); float: left;" alt=""> &nbsp; &nbsp;Plateformes sociales</h5> &nbsp;
+                        <br>
+                <a href="https://www.facebook.com/GreenCityTunisie"><img src="/assets/img/facebook.png" width="50"
+                        height="50"></a>
+            </div>
+        </div>
+
+        <div class="card text-white bg-secondary mb-3" style="max-width: 21rem;">
+
+            <div class="card-body">
+                <h5 class="card-title"> <img src="/assets/img/list.png" width="30" height="30"
+                        style="filter: invert(1); float: left;" alt=""> &nbsp; &nbsp;Message</h5> &nbsp;
+                <p class="card-text">Vous pouvez envoyer des messages directs aux administrateurs, insérer votre nom,
+                    votre sujet, votre email et le message lui-même.</p>
+
+
+                <h5 class="card-title"> &nbsp; &nbsp;Nom</h5>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">➤</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Insérez le nom ici" aria-label="Username"
+                        aria-describedby="basic-addon1" id="name">
+                </div>
+
+
+                <h5 class="card-title"> &nbsp; &nbsp;Sujet</h5>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">➤</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Insérez le sujet ici" aria-label="Username"
+                        aria-describedby="basic-addon1" id="sub">
+                </div>
+
+                <h5 class="card-title"> &nbsp; &nbsp;Email</h5>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">➤</span>
+                    </div>
+                    <input type="email" class="form-control" placeholder="Insérez l'email ici" aria-label="Username"
+                        aria-describedby="basic-addon1" id="email">
+                </div>
+
+                <h5 class="card-title"> &nbsp; &nbsp;Message</h5>
+                <textarea class="form-control" placeholder="Insérez la message ici" aria-label="With textarea"
+                    id="message" rows="8"></textarea>
+                <br>
+                <div class="text-center">
+                    <button class="text-center" id="" type="button" (click)="send()" class="btn btn-success">
+                        Envoyer</button> &nbsp;
+
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+    </div>
+
+    <nav class="navbar fixed-bottom navbar-light bg-dark">
+        <img routerLink="/fr-contact" src="/assets/img/fr-profile.png" width="38" height="50" class="center" alt="">
+        <img routerLink="/fr-news" src="/assets/img/fr-news.png" width="38" height="50" class="center" alt="">
+        <img routerLink="/fr-report" src="/assets/img/fr-detect.png" width="38" height="50" class="center" alt="">
+        <img routerLink="/fr-events" src="/assets/img/fr-table.png" width="38" height="50" class="center" alt="">
+        <img routerLink="/fr-info" src="/assets/img/fr-others.png" width="38" height="50" class="center" alt="">
+    </nav>

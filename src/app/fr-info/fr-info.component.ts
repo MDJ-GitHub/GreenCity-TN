@@ -2,11 +2,11 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
-  selector: 'app-fr-events',
-  templateUrl: './fr-events.component.html',
-  styleUrls: ['./fr-events.component.css']
+  selector: 'app-fr-info',
+  templateUrl: './fr-info.component.html',
+  styleUrls: ['./fr-info.component.css']
 })
-export class FrEventsComponent implements OnInit {
+export class FrInfoComponent implements OnInit {
 
   constructor(private elementRef: ElementRef, private http: HttpClient) { }
 
@@ -29,14 +29,13 @@ export class FrEventsComponent implements OnInit {
     if (localStorage.getItem("locmode") != "all") {
 
 
-      this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/events/" + loc + "/.json", httpOptions).subscribe(responseData => {
+      this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/info/" + loc + "/.json", httpOptions).subscribe(responseData => {
         if (responseData != null) {
 
 
           Object.entries(responseData).map(b => {
-
               // @ts-ignore
-              document.getElementById("events").insertAdjacentHTML('afterend', '       <div class="card bg-light" style="display: block;">      <table class="">        <thead>          <tr>            <td class="">&nbsp; <img src="/assets/img/calendar.png" width="18" height="18" style=" float: center;"                alt=""> annoncé - à ' + b[1].date + ' </td>          </tr>          <tr>            <td class="">&nbsp; <img src="/assets/img/flag-fill.png" width="18" height="18" style=" float: center;"                alt=""> se passera à ' + b[1].date_en + ' </td>          </tr>        </thead>      </table>      <h5 class="card-title text-center">' + b[1].title + '</h5>      <img id="' + b[0] + 'btn"      (click)="collapse(' + "'" + b[0] + "'" + ')" class="card-img-top" src="' + b[1].picture1 + '"      <div class="card">        <div id="'+b[0]+'" style="display:none" class="">          ' + b[1].description + '          <table>            <tr>              <td> <img src="' + b[1].picture2 + '" width="180" height="150"> </td>              <td> <img src="' + b[1].picture3 + '" width="180" height="150"> </td>            </tr>            <tr>              <td> <img src="' + b[1].picture4 + '" width="180" height="150"> </td>              <td> <img src="' + b[1].picture5 + '" width="180" height="150"> </td>            </tr>          </table>        </div>          <div class="card-body">        <p class="card-text">' + b[1].subject + '</p>      </div>      <hr>     &nbsp; <img src="/assets/img/map.png" width="18" height="18" style=" float: center;"> ' + b[1].location + ' <br> &nbsp; <img src="/assets/img/plus.png" width="18" height="18" style=" float: center;">&nbsp;' + b[1].addr + '    <br>   <br>  </div>');
+              document.getElementById("info").insertAdjacentHTML('afterend', '       <div class="card bg-light" style="display: block;">  <h5 class="card-title text-center">' + b[1].title + '</h5>     <p class="card-text">' + b[1].subject + '</p>    <img id="' + b[0] + 'btn"      (click)="collapse(' + "'" + b[0] + "'" + ')" class="card-img-top" src="' + b[1].picture + '"      <div class="card">        <div id="'+b[0]+'" style="display:none" class="">          ' + b[1].text + '     </div>          <div class="card-body">        </div>      <hr>     &nbsp; <img src="/assets/img/map.png" width="18" height="18" style=" float: center;"> ' + b[1].location + '  <br>   <br>  </div>');
               this.elementRef.nativeElement.querySelector('#' + b[0] + 'btn').addEventListener('click', this.collapse.bind(this));
 
 
@@ -56,7 +55,7 @@ export class FrEventsComponent implements OnInit {
 
     } else {
 
-      this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/events/.json", httpOptions).subscribe(responseData => {
+      this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/info/.json", httpOptions).subscribe(responseData => {
         if (responseData != null) {
 
           var pp = "assets/img/person-fill.png"
@@ -69,8 +68,8 @@ export class FrEventsComponent implements OnInit {
 
 
                   // @ts-ignore
-                  document.getElementById("events").insertAdjacentHTML('afterend', '       <div class="card bg-light" style="display: block;">      <table class="">        <thead>          <tr>            <td class="">&nbsp; <img src="/assets/img/calendar.png" width="18" height="18" style=" float: center;"                alt=""> annoncé - à ' + b[1].date + ' </td>          </tr>          <tr>            <td class="">&nbsp; <img src="/assets/img/flag-fill.png" width="18" height="18" style=" float: center;"                alt=""> se passera à ' + b[1].date_en + ' </td>          </tr>        </thead>      </table>      <h5 class="card-title text-center">' + b[1].title + '</h5>      <img id="' + b[0] + 'btn"      (click)="collapse(' + "'" + b[0] + "'" + ')" class="card-img-top" src="' + b[1].picture1 + '"      <div class="card">        <div id="'+b[0]+'" style="display:none" class="">          ' + b[1].description + '          <table>            <tr>              <td> <img src="' + b[1].picture2 + '" width="180" height="150"> </td>              <td> <img src="' + b[1].picture3 + '" width="180" height="150"> </td>            </tr>            <tr>              <td> <img src="' + b[1].picture4 + '" width="180" height="150"> </td>              <td> <img src="' + b[1].picture5 + '" width="180" height="150"> </td>            </tr>          </table>        </div>          <div class="card-body">        <p class="card-text">' + b[1].subject + '</p>      </div>      <hr>     &nbsp; <img src="/assets/img/map.png" width="18" height="18" style=" float: center;"> ' + b[1].location + ' <br> &nbsp; <img src="/assets/img/plus.png" width="18" height="18" style=" float: center;">&nbsp;' + b[1].addr + '    <br>   <br>  </div>');
-              this.elementRef.nativeElement.querySelector('#' + b[0] + 'btn').addEventListener('click', this.collapse.bind(this));
+                  document.getElementById("info").insertAdjacentHTML('afterend', '       <div class="card bg-light" style="display: block;">  <h5 class="card-title text-center">' + b[1].title + '</h5>     <p class="card-text">' + b[1].subject + '</p>    <img id="' + b[0] + 'btn"      (click)="collapse(' + "'" + b[0] + "'" + ')" class="card-img-top" src="' + b[1].picture + '"      <div class="card">        <div id="'+b[0]+'" style="display:none" class="">          ' + b[1].text + '     </div>          <div class="card-body">        </div>      <hr>     &nbsp; <img src="/assets/img/map.png" width="18" height="18" style=" float: center;"> ' + b[1].location + '  <br>   <br>  </div>');
+                  this.elementRef.nativeElement.querySelector('#' + b[0] + 'btn').addEventListener('click', this.collapse.bind(this));
 
     
             });
@@ -122,6 +121,7 @@ export class FrEventsComponent implements OnInit {
         navigator.geolocation.getCurrentPosition((position) => {
           lng = position.coords.longitude;
           lat = position.coords.latitude;
+  
           var cc = "Tunis";
           var clat = 33.8439408;
           var clng = 9.400138;
@@ -157,16 +157,16 @@ export class FrEventsComponent implements OnInit {
   }
 
   viewselectman() {
-    // @ts-ignore
-    document.getElementById("locman").style.display = "inline-flex"
+      // @ts-ignore
+      document.getElementById("locman").style.display = "inline-flex"
 
   }
 
   navselectman() {
     localStorage.setItem("locmode", "man");
-    // @ts-ignore
-    var t = document.getElementById("navman").value;
-    localStorage.setItem("currentpos", t)
+        // @ts-ignore
+        var t = document.getElementById("navman").value ;
+    localStorage.setItem("currentpos",t)
     location.reload();
   }
 

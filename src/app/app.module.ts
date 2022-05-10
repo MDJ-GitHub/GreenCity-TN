@@ -23,6 +23,9 @@ import { ArNewsComponent } from './ar-news/ar-news.component';
 import { ArReportComponent } from './ar-report/ar-report.component';
 import { FrNewsAllComponent } from './fr-news-all/fr-news-all.component';
 import { HomeComponent } from './home/home.component';
+import { FrAccountComponent } from './fr-account/fr-account.component';
+import { FrContactComponent } from './fr-contact/fr-contact.component';
+import { FrInfoComponent } from './fr-info/fr-info.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,10 @@ import { HomeComponent } from './home/home.component';
     ArNewsComponent,
     ArReportComponent,
     FrNewsAllComponent,
-    HomeComponent
+    HomeComponent,
+    FrAccountComponent,
+    FrContactComponent,
+    FrInfoComponent
   ],
   imports: [
     BrowserModule,

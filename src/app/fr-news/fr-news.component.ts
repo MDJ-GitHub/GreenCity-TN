@@ -1,5 +1,5 @@
-import { Component, OnInit, ElementRef  } from '@angular/core';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { Component, OnInit, ElementRef } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 
@@ -10,443 +10,228 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 })
 
 export class FrNewsComponent implements OnInit {
-  newsload  = '';
+  newsload = '';
   public isCollapsed = true;
-  constructor(private elementRef:ElementRef,private http: HttpClient) { }
+  constructor(private elementRef: ElementRef, private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.getInfo()
+    window.scrollTo(0, 0);
     this.getlocation()
-
+    this.getInfo()
   }
 
-getInfo() {
-  const httpOptions = {
-    headers: new HttpHeaders()
-  }
-  httpOptions.headers.append('Access-Control-Allow-Origin', '*');
-  httpOptions.headers.append('Content-Type', 'application/json');
-  httpOptions.headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+  getInfo() {
+    const httpOptions = {
+      headers: new HttpHeaders()
+    }
+    httpOptions.headers.append('Access-Control-Allow-Origin', '*');
+    httpOptions.headers.append('Content-Type', 'application/json');
+    httpOptions.headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 
-  var loc = localStorage.getItem("currentpos") ;
+    var loc = localStorage.getItem("currentpos");
 
-    this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/problems/"+loc+"/.json",httpOptions).subscribe(responseData => {
-if (typeof responseData =="object") {
-
-  var pp = "assets/img/person-fill.png"
-  var c = {} ;
-
-      Object.entries(responseData).map(a => {
-        Object.entries(a[1]).map(b => {
+    if (localStorage.getItem("locmode") != "all") {
 
 
- // @ts-ignore
-          if (b[1].name != "Anonyme") {
-             // @ts-ignore
-            var prof = b[1].name + '-' + b[1].phone
-            this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/accounts/"+prof+".json",httpOptions).subscribe(responseDataa => {
+      this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/problems/approved/" + loc + ".json", httpOptions).subscribe(responseData => {
+        if (responseData != null) {
+
+
+          var pp = "assets/img/person-fill.png"
+          var c = {};
+
+          Object.entries(responseData).map(b => {
+
+
+
+              // @ts-ignore
+              if (b[1].name != "Anonyme") {
+                // @ts-ignore
+                var prof = b[1].name + '-' + b[1].phone
+                this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/accounts/" + prof + ".json", httpOptions).subscribe(responseDataa => {
 
 
                   // @ts-ignore
                   pp = responseDataa.photo
 
                   // @ts-ignore
-             document.getElementById("news").insertAdjacentHTML('afterend', '      <div class="card bg-light">      <table class="">        <thead>          <tr>            <td class="" style="width: 60px;" rowspan="2"> <img class="text-end" src="'+pp+'"     style="border-radius: 50%"        width="50" height="50"> </td>            <td class="">'+b[1].name+'</td>          </tr>          <tr>            <td class=""><img src="/assets/img/calendar.png" width="18" height="18" style=" float: center;"                alt="">&nbsp; '+b[1].date+' </td>          </tr>        </thead>      </table>      <h5 class="card-title text-center">'+b[1].title+'</h5>      <img id="'+b[0]+'btn" (click)="collapse('+"'"+ b[0]+"'"+')" class="card-img-top" src="'+b[1].picture1+'" style="max-height: 265px;"        alt="Card image cap">      <div class="card">        <div id="'+b[0]+'" style="display:none" class="">          '+b[1].description+'           <table>            <tr>              <td> <img src="'+b[1].picture2+'" width="180" height="150"> </td>              <td> <img src="'+b[1].picture3+'" width="180" height="150"> </td>            </tr>            <tr>              <td> <img src="'+b[1].picture4+'" width="180" height="150"> </td>              <td> <img src="'+b[1].picture5+'" width="180" height="150"> </td>            </tr>          </table>        </div>      </div>      <div class="card-body">        <p class="card-text">'+b[1].subject+'</p>      </div>    </div>');
-             this.elementRef.nativeElement.querySelector('#'+ b[0]+'btn').addEventListener('click', this.collapse.bind(this));
-                
+                  document.getElementById("news").insertAdjacentHTML('afterend', '      <div class="card bg-light">      <table class="">        <thead>          <tr>            <td class="" style="width: 60px;" rowspan="2"> <img class="text-end" src="' + pp + '"     style="border-radius: 50%"        width="50" height="50"> </td>            <td class="">' + b[1].name + '</td>          </tr>          <tr>            <td class=""><img src="/assets/img/calendar.png" width="18" height="18" style=" float: center;"                alt="">&nbsp; ' + b[1].date + ' </td>          </tr>        </thead>      </table>      <h5 class="card-title text-center">' + b[1].title + '</h5>      <img id="' + b[0] + 'btn" (click)="collapse(' + "'" + b[0] + "'" + ')" class="card-img-top" src="' + b[1].picture1 + '" style="max-height: 265px;"        alt="Card image cap">      <div class="card">        <div id="' + b[0] + '" style="display:none" class="">          ' + b[1].description + '           <table>            <tr>              <td> <img src="' + b[1].picture2 + '" width="180" height="150"> </td>              <td> <img src="' + b[1].picture3 + '" width="180" height="150"> </td>            </tr>            <tr>              <td> <img src="' + b[1].picture4 + '" width="180" height="150"> </td>              <td> <img src="' + b[1].picture5 + '" width="180" height="150"> </td>            </tr>          </table>        </div>      </div>      <div class="card-body">        <p class="card-text">' + b[1].subject + '</p>      </div>   <hr>      <table class="tg"><thead>  <tr>    <td class="tg-0lax" rowspan="2">&nbsp; &nbsp; <img src="/assets/img/' + b[1].type + '.png" width="45" height="45" style=" float: center;"></td>    <td class="tg-0lax" rowspan="2"><a href="https://maps.google.com/?q=' + b[1].lat + ',' + b[1].lon + '" class="btn btn-outline-dark"><img src="/assets/img/geo.png" width="13" height="18" style=" float: center;"> Position</a></td>    <td class="tg-0lax"><img src="/assets/img/map.png" width="18" height="18" style=" float: center;"> ' + b[1].location + '</td>  </tr>  <tr>    <td class="tg-0lax"><img src="/assets/img/plus.png" width="18" height="18" style=" float: center;">&nbsp;' + b[1].mun +'</td>  </tr></thead></table>    <br>      </div>');
+                  this.elementRef.nativeElement.querySelector('#' + b[0] + 'btn').addEventListener('click', this.collapse.bind(this));
+
+                  // @ts-ignore
+                  document.getElementById("waiting").style.display = "none"
+
+
+                })
+              } else {
+
+
+                // @ts-ignore
+                document.getElementById("news").insertAdjacentHTML('afterend', '      <div class="card bg-light">      <table class="">        <thead>          <tr>            <td class="" style="width: 60px;" rowspan="2"> <img class="text-end" src="' + pp + '"     style="border-radius: 50%"        width="50" height="50"> </td>            <td class="">' + b[1].name + '</td>          </tr>          <tr>            <td class=""><img src="/assets/img/calendar.png" width="18" height="18" style=" float: center;"                alt="">&nbsp; ' + b[1].date + ' </td>          </tr>        </thead>      </table>      <h5 class="card-title text-center">' + b[1].title + '</h5>      <img id="' + b[0] + 'btn" (click)="collapse(' + "'" + b[0] + "'" + ')" class="card-img-top" src="' + b[1].picture1 + '" style="max-height: 265px;"        alt="Card image cap">      <div class="card">        <div id="' + b[0] + '" style="display:none" class="">          ' + b[1].description + '           <table>            <tr>              <td> <img src="' + b[1].picture2 + '" width="180" height="150"> </td>              <td> <img src="' + b[1].picture3 + '" width="180" height="150"> </td>            </tr>            <tr>              <td> <img src="' + b[1].picture4 + '" width="180" height="150"> </td>              <td> <img src="' + b[1].picture5 + '" width="180" height="150"> </td>            </tr>          </table>        </div>      </div>      <div class="card-body">        <p class="card-text">' + b[1].subject + '</p>      </div>    <hr>      <table class="tg"><thead>  <tr>    <td class="tg-0lax" rowspan="2">&nbsp; &nbsp; <img src="/assets/img/' + b[1].type + '.png" width="45" height="45" style=" float: center;"></td>    <td class="tg-0lax" rowspan="2"><a href="https://maps.google.com/?q=' + b[1].lat + ',' + b[1].lon + '" class="btn btn-outline-dark"><img src="/assets/img/geo.png" width="13" height="18" style=" float: center;"> Position</a></td>    <td class="tg-0lax"><img src="/assets/img/map.png" width="18" height="18" style=" float: center;"> ' + b[1].location + '</td>  </tr>  <tr>    <td class="tg-0lax"><img src="/assets/img/plus.png" width="18" height="18" style=" float: center;">&nbsp;' + b[1].mun +'</td>  </tr></thead></table>    <br>      </div>');
+                this.elementRef.nativeElement.querySelector('#' + b[0] + 'btn').addEventListener('click', this.collapse.bind(this));
+
+                // @ts-ignore
+                document.getElementById("waiting").style.display = "none"
+
+              }
+
 
 
 
 
           })
         } else {
-      
-      
- // @ts-ignore
-             document.getElementById("news").insertAdjacentHTML('afterend', '      <div class="card bg-light">      <table class="">        <thead>          <tr>            <td class="" style="width: 60px;" rowspan="2"> <img class="text-end" src="'+pp+'"     style="border-radius: 50%"        width="50" height="50"> </td>            <td class="">'+b[1].name+'</td>          </tr>          <tr>            <td class=""><img src="/assets/img/calendar.png" width="18" height="18" style=" float: center;"                alt="">&nbsp; '+b[1].date+' </td>          </tr>        </thead>      </table>      <h5 class="card-title text-center">'+b[1].title+'</h5>      <img id="'+b[0]+'btn" (click)="collapse('+"'"+ b[0]+"'"+')" class="card-img-top" src="'+b[1].picture1+'" style="max-height: 265px;"        alt="Card image cap">      <div class="card">        <div id="'+b[0]+'" style="display:none" class="">          '+b[1].description+'           <table>            <tr>              <td> <img src="'+b[1].picture2+'" width="180" height="150"> </td>              <td> <img src="'+b[1].picture3+'" width="180" height="150"> </td>            </tr>            <tr>              <td> <img src="'+b[1].picture4+'" width="180" height="150"> </td>              <td> <img src="'+b[1].picture5+'" width="180" height="150"> </td>            </tr>          </table>        </div>      </div>      <div class="card-body">        <p class="card-text">'+b[1].subject+'</p>      </div>    </div>');
-             this.elementRef.nativeElement.querySelector('#'+ b[0]+'btn').addEventListener('click', this.collapse.bind(this));
-
+          // @ts-ignore
+          document.getElementById("waiting").style.display = "none"
+          // @ts-ignore
+          document.getElementById("nodata").style.display = "block"
         }
-             
+      });
 
-        });
+    } else {
 
-  
+      this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/problems/approved/.json", httpOptions).subscribe(responseData => {
+        if (responseData != null) {
 
-        })
-      }
-});
-}
-// @ts-ignore
-collapse(str) {
+          var pp = "assets/img/person-fill.png"
+          var c = {};
 
-  if (typeof str == "object") {
-  var x = str.srcElement.id
-  } else {x = str
+          Object.entries(responseData).map(a => {
+              Object.entries(a[1]).map(b => {
+
+
+
+                // @ts-ignore
+                if (b[1].name != "Anonyme") {
+                  // @ts-ignore
+                  var prof = b[1].name + '-' + b[1].phone
+                  this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/accounts/" + prof + ".json", httpOptions).subscribe(responseDataa => {
+
+
+                    // @ts-ignore
+                    pp = responseDataa.photo
+
+                    // @ts-ignore
+                    document.getElementById("news").insertAdjacentHTML('afterend', '      <div class="card bg-light">      <table class="">        <thead>          <tr>            <td class="" style="width: 60px;" rowspan="2"> <img class="text-end" src="' + pp + '"     style="border-radius: 50%"        width="50" height="50"> </td>            <td class="">' + b[1].name + '</td>          </tr>          <tr>            <td class=""><img src="/assets/img/calendar.png" width="18" height="18" style=" float: center;"                alt="">&nbsp; ' + b[1].date + ' </td>          </tr>        </thead>      </table>      <h5 class="card-title text-center">' + b[1].title + '</h5>      <img id="' + b[0] + 'btn" (click)="collapse(' + "'" + b[0] + "'" + ')" class="card-img-top" src="' + b[1].picture1 + '" style="max-height: 265px;"        alt="Card image cap">      <div class="card">        <div id="' + b[0] + '" style="display:none" class="">          ' + b[1].description + '           <table>            <tr>              <td> <img src="' + b[1].picture2 + '" width="180" height="150"> </td>              <td> <img src="' + b[1].picture3 + '" width="180" height="150"> </td>            </tr>            <tr>              <td> <img src="' + b[1].picture4 + '" width="180" height="150"> </td>              <td> <img src="' + b[1].picture5 + '" width="180" height="150"> </td>            </tr>          </table>        </div>      </div>      <div class="card-body">        <p class="card-text">' + b[1].subject + '</p>      </div>    <hr>      <table class="tg">        <thead>          <tr>            <table class="tg"><thead>  <tr>    <td class="tg-0lax" rowspan="2">&nbsp; &nbsp; <img src="/assets/img/' + b[1].type + '.png" width="45" height="45" style=" float: center;"></td>    <td class="tg-0lax" rowspan="2"><a href="https://maps.google.com/?q=' + b[1].lat + ',' + b[1].lon + '" class="btn btn-outline-dark"><img src="/assets/img/geo.png" width="13" height="18" style=" float: center;"> Position</a></td>    <td class="tg-0lax"><img src="/assets/img/map.png" width="18" height="18" style=" float: center;"> ' + b[1].location + '</td>  </tr>  <tr>    <td class="tg-0lax"><img src="/assets/img/plus.png" width="18" height="18" style=" float: center;">&nbsp;' + b[1].mun +'</td>  </tr></thead></table>    <br>     </div>');
+                    this.elementRef.nativeElement.querySelector('#' + b[0] + 'btn').addEventListener('click', this.collapse.bind(this));
+
+
+                    // @ts-ignore
+                    document.getElementById("waiting").style.display = "none"
+
+
+                  })
+                } else {
+
+
+                  // @ts-ignore
+                  document.getElementById("news").insertAdjacentHTML('afterend', '      <div class="card bg-light">      <table class="">        <thead>          <tr>            <td class="" style="width: 60px;" rowspan="2"> <img class="text-end" src="' + pp + '"     style="border-radius: 50%"        width="50" height="50"> </td>            <td class="">' + b[1].name + '</td>          </tr>          <tr>            <td class=""><img src="/assets/img/calendar.png" width="18" height="18" style=" float: center;"                alt="">&nbsp; ' + b[1].date + ' </td>          </tr>        </thead>      </table>      <h5 class="card-title text-center">' + b[1].title + '</h5>      <img id="' + b[0] + 'btn" (click)="collapse(' + "'" + b[0] + "'" + ')" class="card-img-top" src="' + b[1].picture1 + '" style="max-height: 265px;"        alt="Card image cap">      <div class="card">        <div id="' + b[0] + '" style="display:none" class="">          ' + b[1].description + '           <table>            <tr>              <td> <img src="' + b[1].picture2 + '" width="180" height="150"> </td>              <td> <img src="' + b[1].picture3 + '" width="180" height="150"> </td>            </tr>            <tr>              <td> <img src="' + b[1].picture4 + '" width="180" height="150"> </td>              <td> <img src="' + b[1].picture5 + '" width="180" height="150"> </td>            </tr>          </table>        </div>      </div>      <div class="card-body">        <p class="card-text">' + b[1].subject + '</p>      </div>     <hr>      <table class="tg"><thead>  <tr>    <td class="tg-0lax" rowspan="2">&nbsp; &nbsp; <img src="/assets/img/' + b[1].type + '.png" width="45" height="45" style=" float: center;"></td>    <td class="tg-0lax" rowspan="2"><a href="https://maps.google.com/?q=' + b[1].lat + ',' + b[1].lon + '" class="btn btn-outline-dark"><img src="/assets/img/geo.png" width="13" height="18" style=" float: center;"> Position</a></td>    <td class="tg-0lax"><img src="/assets/img/map.png" width="18 " height="18" style=" float: center;"> ' + b[1].location + '</td>  </tr>  <tr>    <td class="tg-0lax"><img src="/assets/img/plus.png" width="18" height="18" style=" float: center;">&nbsp;' + b[1].mun +'</td>  </tr></thead></table>   <br>      </div>');
+                  this.elementRef.nativeElement.querySelector('#' + b[0] + 'btn').addEventListener('click', this.collapse.bind(this));
+
+                  // @ts-ignore
+                  document.getElementById("waiting").style.display = "none"
+
+                }
+
+
+              });
+            });
+
+        } else {
+          // @ts-ignore
+          document.getElementById("waiting").style.display = "none"
+          // @ts-ignore
+          document.getElementById("nodata").style.display = "block"
+        }
+      });
+
+
     }
-
-    x = x.replace('btn','');
+  }
   // @ts-ignore
-   if (document.getElementById(x).style.display == "none") {
- // @ts-ignore
- document.getElementById(x).style.display = "block"
-   } else {
-     // @ts-ignore
-      document.getElementById(x).style.display = "none"
-        }
- 
+  collapse(str) {
 
-}
-  
- getlocation() {
-    
-  var locs = [
-    {
-      city: "Tunis",
-      lat: 36.8008,
-      lng: 10.18
-    },
-{
-      city: "Sfax",
-      lat: 34.74,
-      lng: 10.76
-    },
-    {
-      city: "Sousse",
-      lat: 35.8333,
-      lng: 10.6333
-    },
-    {
-      city: "Kairouan",
-      lat: 35.6833,
-      lng: 10.1
-    },
-    {
-      city: "Metouia",
-      lat: 33.96,
-      lng: 10
-    },
-    {
-      city: "Kebili",
-      lat: 33.705,
-      lng: 8.965
-    },
-    {
-      city: "Bizerte",
-      lat: 37.2744,
-      lng: 9.8739
-    },
-    {
-      city: "Sidi Bouzid",
-      lat: 35.0381,
-      lng: 9.4858
-    },
-    {
-      city: "Gabes",
-      lat: 33.8814,
-      lng: 10.0983
-    },
-    {
-      city: "Ariana",
-      lat: 36.8625,
-      lng: 10.1956
-    },
-    {
-      city: "Jendouba",
-      lat: 36.5011,
-      lng: 8.7803
-    },
-    {
-      city: "Gafsa",
-      lat: 34.4167,
-      lng: 8.7833
-    },
-    {
-      city: "Msaken",
-      lat: 35.7333,
-      lng: 10.5833
-    },
-    {
-      city: "Medenine",
-      lat: 33.3547,
-      lng: 10.5053
-    },
-    {
-      city: "Beja",
-      lat: 36.7256,
-      lng: 9.1817
-    },
-    {
-      city: "Kasserine",
-      lat: 35.1667,
-      lng: 8.8333
-    },
-    {
-      city: "Monastir",
-      lat: 35.778,
-      lng: 10.8262
-    },
-    {
-      city: "Hammamet",
-      lat: 36.4167,
-      lng: 10.6
-    },
-    {
-      city: "Tataouine",
-      lat: 32.9333,
-      lng: 10.45
-    },
-    {
-      city: "La Marsa",
-      lat: 36.8764,
-      lng: 10.3253
-    },
-    {
-      city: "Ben Arous",
-      lat: 36.7531,
-      lng: 10.2189
-    },
-    {
-      city: "Sakiet ez Zit",
-      lat: 34.8,
-      lng: 10.77
-    },
-    {
-      city: "Zarzis",
-      lat: 33.5,
-      lng: 11.1167
-    },
-    {
-      city: "Ben Gardane",
-      lat: 33.1389,
-      lng: 11.2167
-    },
-    {
-      city: "Mahdia",
-      lat: 35.5047,
-      lng: 11.0622
-    },
-    {
-      city: "Houmt Souk",
-      lat: 33.8667,
-      lng: 10.85
-    },
-    {
-      city: "Fouchana",
-      lat: 36.6987,
-      lng: 10.1693
-    },
-    {
-      city: "Le Kram",
-      lat: 36.8333,
-      lng: 10.3167
-    },
-    {
-      city: "Le Bardo",
-      lat: 36.8092,
-      lng: 10.1406
-    },
-    {
-      city: "El Kef",
-      lat: 36.1667,
-      lng: 8.7
-    },
-    {
-      city: "El Hamma",
-      lat: 33.8864,
-      lng: 9.7951
-    },
-    {
-      city: "Nabeul",
-      lat: 36.4514,
-      lng: 10.7361
-    },
-    {
-      city: "Djemmal",
-      lat: 35.64,
-      lng: 10.76
-    },
-    {
-      city: "Korba",
-      lat: 36.5667,
-      lng: 10.8667
-    },
-    {
-      city: "Menzel Temime",
-      lat: 36.7833,
-      lng: 10.9833
-    },
-    {
-      city: "Ghardimaou",
-      lat: 36.4503,
-      lng: 8.4397
-    },
-    {
-      city: "Menzel Bourguiba",
-      lat: 37.15,
-      lng: 9.7833
-    },
-    {
-      city: "Radès",
-      lat: 36.7667,
-      lng: 10.2833
-    },
-    {
-      city: "Manouba",
-      lat: 36.8,
-      lng: 10.1
-    },
-    {
-      city: "Kelibia",
-      lat: 36.8475,
-      lng: 11.0939
-    },
-    {
-      city: "Rass el Djebel",
-      lat: 37.215,
-      lng: 10.12
-    },
-    {
-      city: "Tebourba",
-      lat: 36.8295,
-      lng: 9.8411
-    },
-    {
-      city: "El Jem",
-      lat: 35.3,
-      lng: 10.7167
-    },
-    {
-      city: "Douz",
-      lat: 33.4572,
-      lng: 9.0258
-    },
-    {
-      city: "Hammam Sousse",
-      lat: 35.8589,
-      lng: 10.5939
-    },
-    {
-      city: "Hammam-Lif",
-      lat: 36.7308,
-      lng: 10.3275
-    },
-    {
-      city: "Sbiba",
-      lat: 35.5433,
-      lng: 9.0736
-    },
-    {
-      city: "Sejenane",
-      lat: 37.0564,
-      lng: 9.2382
-    },
-    {
-      city: "Tozeur",
-      lat: 33.9197,
-      lng: 8.1336
-    },
-    {
-      city: "Dar Chabanne",
-      lat: 36.47,
-      lng: 10.75
-    },
-    {
-      city: "Aine Draham",
-      lat: 36.7833,
-      lng: 8.7
-    },
-    {
-      city: "Bou Salem",
-      lat: 36.6111,
-      lng: 8.9698
-    },
-    {
-      city: "Ez Zahra",
-      lat: 36.7439,
-      lng: 10.3083
-    },
-    {
-      city: "Skhira",
-      lat: 34.3006,
-      lng: 10.0708
-    },
-    {
-      city: "Akouda",
-      lat: 35.8712,
-      lng: 10.5712
-    },
-    {
-      city: "Mateur",
-      lat: 37.04,
-      lng: 9.665
-    },
-    {
-      city: "Rhennouch",
-      lat: 33.9397,
-      lng: 10.065
-    },
-    {
-      city: "Dahmani",
-      lat: 35.9424,
-      lng: 8.8284
-    },
-    {
-      city: "El Alia",
-      lat: 37.1667,
-      lng: 10.0333
-    },
-    {
-      city: "Siliana",
-      lat: 36.0819,
-      lng: 9.3747
-    },
-    {
-      city: "Zaghouan",
-      lat: 36.4028,
-      lng: 10.1433
+    if (typeof str == "object") {
+      var x = str.srcElement.id
+    } else {
+      x = str
     }
-   ]
 
-   var lat = 0 ;
-   var lng = 0 ;
-   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition((position) => {
-       lng = position.coords.longitude;
-       lat = position.coords.latitude;
+    x = x.replace('btn', '');
+    // @ts-ignore
+    if (document.getElementById(x).style.display == "none") {
+      // @ts-ignore
+      document.getElementById(x).style.display = "block"
+    } else {
+      // @ts-ignore
+      document.getElementById(x).style.display = "none"
+    }
 
-      
-       var cc = "Tunis" ;
-       var clat = 36.8008
-       var clng = 10.18 ;
-   
-       locs.forEach(function (arrayItem) {
-   
-         if ( Math.abs((lat - arrayItem.lat) + (lng - arrayItem.lng)) < Math.abs((lat - clat) + (lng - clng))) {
-   
-           cc = arrayItem.city ;
-           clat = arrayItem.lat ;
-           clng = arrayItem.lng  ;
-           
-         }
-   
-     });
 
-     (document.getElementById('currentposition') as HTMLFormElement).innerHTML = 
-     '<img src="/assets/img/location.png" width="15" height="20" class="d-inline-block align-top"alt=""> ' + cc ;
-     localStorage.setItem("currentpos",cc) ;
-
-    });
-  } else {
-    console.log("No support for geolocation")
   }
 
+  getlocation() {
 
+    if (localStorage.getItem("locmode") == "auto") {
+      var locs = [{ city: "Tunis", lat: 33.8439408, lng: 9.400138 }, { city: "Sfax", lat: 34.739739, lng: 10.7598516 }, { city: "Sousse", lat: 35.828829, lng: 10.640525 }, { city: "Kairouan", lat: 35.6775263, lng: 10.1006205},  { city: "Kebili", lat: 33.7058066, lng: 8.9705891 }, { city: "Bizerte", lat: 37.2732415, lng: 9.8713665 }, { city: "Sidi Bouzid", lat: 34.881181, lng: 9.52635984718234 }, { city: "Gabes", lat: 33.8833922, lng: 10.0971389 }, { city: "Ariana", lat: 36.859939, lng: 10.190973 }, { city: "Jendouba", lat: 36.5013895, lng: 8.7811635 }, { city: "Gafsa", lat: 34.425149, lng: 8.786218 },  { city: "Beja", lat: 36.7270373, lng: 9.1814915 }, { city: "Kasserine", lat: 35.1691517, lng: 8.8364635 }, { city: "Monastir", lat: 35.7398399, lng: 10.7986953383714 }, { city: "Tataouine", lat: 32.929216, lng: 10.451229 },  { city: "Ben Arous", lat: 36.7488603, lng: 10.22460082 }, { city: "Mahdia", lat: 35.48810105, lng: 10.9626808407717 }, { city: "El Kef", lat: 36.1675068, lng: 8.7043493 }, { city: "Nabeul", lat: 36.4823676, lng: 10.6707196978804 }, { city: "Manouba", lat: 36.8115973, lng: 10.0857631871932 }, { city: "Tozeur", lat: 33.913485, lng: 8.11182407105263 }, { city: "Zaghouan", lat: 36.41171955, lng: 10.2019797844446 }, { city: "Medenine", lat:  33.339592, lng: 10.491185 }, { city: "Siliana", lat:  36.085041, lng: 9.369468 }]
+      var lat = 0;
+      var lng = 0;
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+          lng = position.coords.longitude;
+          lat = position.coords.latitude;
+          var cc = "Tunis";
+          var clat = 33.8439408;
+          var clng = 9.400138;
+          locs.forEach(function (arrayItem) {
+            if (Math.abs((lat - arrayItem.lat) + (lng - arrayItem.lng)) < Math.abs((lat - clat) + (lng - clng))) {
+              cc = arrayItem.city;
+              clat = arrayItem.lat;
+              clng = arrayItem.lng;
+            }
+          });
+          (document.getElementById('currentposition') as HTMLFormElement).innerHTML =
+            '<img src="/assets/img/location.png" width="15" height="20" class="d-inline-block align-top"alt=""> ' + cc;
+          localStorage.setItem("currentpos", cc);
+        });
+      } else {
+        console.log("No support for geolocation")
+      }
+    }
+    if (localStorage.getItem("locmode") == "all") {
+      (document.getElementById('currentposition') as HTMLFormElement).innerHTML =
+        '<img src="/assets/img/location.png" width="15" height="20" class="d-inline-block align-top"alt=""> ' + "Tous";
+    }
+    if (localStorage.getItem("locmode") == "man") {
+      var cc = localStorage.getItem("currentpos");
+      (document.getElementById('currentposition') as HTMLFormElement).innerHTML =
+        '<img src="/assets/img/location.png" width="15" height="20" class="d-inline-block align-top"alt=""> ' + cc;
+    }
+  }
 
+  navselectall() {
+    localStorage.setItem("locmode", "all");
+    location.reload();
+  }
 
+  viewselectman() {
+    // @ts-ignore
+    document.getElementById("locman").style.display = "inline-flex"
 
- 
-   
-}
+  }
+
+  navselectman() {
+    localStorage.setItem("locmode", "man");
+    // @ts-ignore
+    var t = document.getElementById("navman").value;
+    localStorage.setItem("currentpos", t)
+    location.reload();
+  }
+
+  navselectauto() {
+    localStorage.setItem("locmode", "auto");
+    location.reload();
+  }
+
 
 }

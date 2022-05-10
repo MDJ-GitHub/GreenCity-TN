@@ -1,9 +1,9 @@
 {
-  "name": "greencity",
-  "short_name": "greencity",
+  "name": "GreenCity",
+  "short_name": "GreenCity",
   "theme_color": "#21c21b",
   "background_color": "#14a61e",
-  "display": "fullscreen",
+  "display": "standalone",
   "scope": "./",
   "start_url": "./",
   "icons": [

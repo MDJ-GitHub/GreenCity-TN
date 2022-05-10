@@ -1,30 +1,40 @@
-<nav class="navbar fixed-top navbar-dark bg-primary justify-content-between py-0">
+  <nav class="navbar fixed-top navbar-dark bg-primary justify-content-between py-0">
 
-  <div>
-    &nbsp;
-    <img src="/assets/img/logo.png" width="55" height="40" class="" alt="">
+    <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+      <button class="btn btn-outline-secondary " id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">
+        <img src="/assets/img/settings.png" width="30" height="25" alt="">
+      </button>
+      <div ngbDropdownMenu aria-labelledby="dropdownManual">
+        <button routerLink="/fr-news" ngbDropdownItem><img src="/assets/img/fr.png" width="25" height="25"
+            class="rounded ms-auto" alt="">&nbsp;Français</button>
+        <button routerLink="/ar-news" ngbDropdownItem><img src="/assets/img/tn.png" width="25" height="25"
+            class="rounded ms-auto" alt="">&nbsp;عربي</button>
+        <button routerLink="/en-news" ngbDropdownItem><img src="/assets/img/en.png" width="25" height="25"
+            class="rounded ms-auto" alt="">&nbsp;English</button>
+      </div>
+      <img src="/assets/img/logo.png" width="55" height="40" class="" alt="">
+    </div>
+      <div>
+        &nbsp;
 
-  </div>
 
-  <div>
-    <h5 id="step" class="text-center">List des Reports</h5>
-  </div>
+      </div>
 
-  <div>
+      <div>
+        <h5 id="step" class="text-center">Liste des nouvelles Soumissions</h5>
+      </div>
+
+      <div>
 
 
-  </div>
+      </div>
 
-  <div class="text-end">
-    <img src="/assets/img/person-fill.png" width="25" height="25" style=" float: left;" alt=""> &nbsp;Admin User&nbsp;
+      <div id="cred" class="text-end">
+        <img src="/assets/img/person-fill.png" width="25" height="25" style=" float: left;" alt=""> &nbsp;Admin User&nbsp;
 
-    <img src="/assets/img/location.png" width="20" height="25" class="d-inline-block align-top" alt=""> Borj Cedria
-
-    &nbsp;
-    <img src="/assets/img/settings.png" width="30" height="25" routerLink="/" alt="">
-    &nbsp;
-  </div>
-</nav>
+        <img src="/assets/img/location.png" width="20" height="25" class="d-inline-block align-top" alt=""> Borj Cedria
+      </div>
+  </nav>
 
 <style>
   body {
@@ -88,21 +98,76 @@
     }
   }
 </style>
-<br>
-<br>
 <div class="sidebar">
-
-  <a  routerLink="/a-fr-accounts"><img src="/assets/img/laccounts.png" width="30" height="30" style="float: left;" alt="">&nbsp;&nbsp;Comptes</a>
-  <a  routerLink="/a-fr-reports" class="active" ><img src="/assets/img/lreports.png" width="30" height="30"
+  <br>
+  <a routerLink="/a-fr-accounts"><img src="/assets/img/laccounts.png" width="30" height="30" style="float: left;"
+      alt="">&nbsp;&nbsp;Comptes</a>
+  <a routerLink="/a-fr-reports" class="active"><img src="/assets/img/lreports.png" width="30" height="30"
       style="filter:invert(1); float: left;" alt="">&nbsp;&nbsp;Reports</a>
-  <a  routerLink="/a-fr-info"><img src="/assets/img/linfo.png" width="30" height="30" style="float: left;" alt="">&nbsp;
+  <a routerLink="/a-fr-info"><img src="/assets/img/linfo.png" width="30" height="30" style="float: left;" alt="">&nbsp;
     Problems</a>
-    <a  routerLink="/a-fr-events"><img src="/assets/img/calendar-fill.png" width="30" height="30" style="filter:invert(1); float: left;" alt="">&nbsp; Événements</a>
+  <a routerLink="/a-fr-events"><img src="/assets/img/calendar-fill.png" width="30" height="30"
+      style="filter:invert(1); float: left;" alt="">&nbsp; Événements</a>
 </div>
-
+<br><br>
 <div id="news" class="content">
 
-  <div class="card text-white bg-secondary mb-3">
+
+  <div id="waiting">
+    <div class="card bg-light text-center" style="width: 20rem;">
+      <h4 class="card-title text-center">Récupérer les dernières nouvelles ...</h4>
+      <h5 class="card-text text-center">Veuillez Patienter</h5>
+      <style>
+        .loader {
+          border: 16px solid darkslategrey;
+          position: sticky;
+          left: 54%;
+
+          border-radius: 50%;
+          border-top: 16px solid green;
+          width: 80px;
+          height: 80px;
+          -webkit-animation: spin 2s linear infinite;
+          /* Safari */
+          animation: spin 2s linear infinite;
+        }
+
+        /* Safari */
+        @-webkit-keyframes spin {
+          0% {
+            -webkit-transform: rotate(0deg);
+          }
+
+          100% {
+            -webkit-transform: rotate(360deg);
+          }
+        }
+
+        @keyframes spin {
+          0% {
+            transform: rotate(0deg);
+          }
+
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+      </style>
+
+      <div class="loader inline-block"></div>
+    </div>
+
+
+    <br>
+  </div>
+
+  <div id="nodata" style="display: none;">
+    <div class="card bg-light text-center" style="width: 23rem;">
+      <h4 class="card-title text-center">Aucun problème n'a été signalé à cet endroit pour le moment ...</h4>
+    </div>
+  </div>
+
+  <div class="card text-white bg-secondary mb-3" style="display:none">
     <div class="card-body">
       <h5 class="card-title">
         <img src="/assets/img/di-med.png" width="40" height="40" style="float: left;" alt="">
@@ -128,59 +193,61 @@
     </div>
   </div>
 
-  <div class="card text-white bg-secondary mb-3">
+  <div class="card text-white bg-secondary mb-3" style="display:none">
     <div class="card-body">
       <h5 class="card-title">
         <label for="idtitlex">Title</label>
         <input type="text" class="form-control" id="idtitlex" placeholder="title">
         <label for="idtitlex">Subject</label>
-        <textarea  type="textarea" class="form-control" id="idsubjectx" placeholder="subject" rows="3"></textarea>
+        <textarea type="textarea" class="form-control" id="idsubjectx" placeholder="subject" rows="3"></textarea>
         <label for="idtitlex">Desciption</label>
-        <textarea  type="textarea" class="form-control" id="iddescriptionx" placeholder="description" rows="5"></textarea>
+        <textarea type="textarea" class="form-control" id="iddescriptionx" placeholder="description"
+          rows="5"></textarea>
         <label for="idtypex">Type</label>
-      <select id="idtypex" class="form-control">
-        <option selected  value="type_domestic">Domestique</option>
-        <option value="type_domestic">Domestique</option>
-        <option value="type_medical">Médical</option>
-        <option value="type_chemical">Chémique</option>
-        <option value="type_toxic">Toxique</option>
-        <option value="type_brokenroad">Route Cassée</option>
-        <option value="type_obstacleroad">R.Obstacle</option>
-        <option value="type_train">Train Panne</option>
-      </select>
-      <br>
-      Nouvelles Images
-      <br>   <br>
-      <button type="file" (click)="picupload()" accept="image/*" class="btn btn-success">
-        <img src="/assets/img/arrow-bar-up.png" width="30" height="25" style="filter: invert(1); float: left;"
-          alt="">&nbsp; Télecharger</button>
-          <br>   <br>
-      <div class=" row">
+        <select id="idtypex" class="form-control">
+          <option selected value="type_domestic">Domestique</option>
+          <option value="type_domestic">Domestique</option>
+          <option value="type_medical">Médical</option>
+          <option value="type_chemical">Chémique</option>
+          <option value="type_toxic">Toxique</option>
+          <option value="type_brokenroad">Route Cassée</option>
+          <option value="type_obstacleroad">R.Obstacle</option>
+          <option value="type_train">Train Panne</option>
+        </select>
+        <br>
+        Nouvelles Images
+        <br> <br>
+        <button type="file" (click)="picupload('w')" accept="image/*" class="btn btn-success">
+          <img src="/assets/img/arrow-bar-up.png" width="30" height="25" style="filter: invert(1); float: left;"
+            alt="">&nbsp; Télecharger</button>
+        <br> <br>
+        <div class=" row">
           <div class="col" style="background-color: aliceblue;" id="pic1">&nbsp;</div>&nbsp;
           <div class="col" style="background-color: aliceblue;" id="pic2">&nbsp;</div>&nbsp;
           <div class="col" style="background-color: aliceblue;" id="pic3">&nbsp;</div>&nbsp;
           <div class="col" style="background-color: aliceblue;" id="pic4">&nbsp;</div>&nbsp;
           <div class="col" style="background-color: aliceblue;" id="pic5">&nbsp;</div>
-      </div>
-      <br>
+        </div>
+        <br>
 
-      Images Actuelles
-      <br>
-      <br>
-      <img src="assets/img/exp1.jpg" width="150" height="125"> &nbsp;
-      <img src="assets/img/exp2.jpg" width="150" height="125"> &nbsp;
-      <img src="assets/img/empty.jpg" width="150" height="125"> &nbsp;
-      <img src="assets/img/empty.jpg" width="150" height="125"> &nbsp;
-      <img src="assets/img/empty.jpg" width="150" height="125">
+        Images Actuelles
+        <br>
+        <br>
+        <img src="assets/img/exp1.jpg" width="150" height="125"> &nbsp;
+        <img src="assets/img/exp2.jpg" width="150" height="125"> &nbsp;
+        <img src="assets/img/empty.jpg" width="150" height="125"> &nbsp;
+        <img src="assets/img/empty.jpg" width="150" height="125"> &nbsp;
+        <img src="assets/img/empty.jpg" width="150" height="125">
       </h5> &nbsp;
-<br>
+      <br>
       <button type="file" (click)="modify('d')" accept="image/*" class="btn text-end btn-warning">
         <img src="/assets/img/arrow-bar-up.png" width="30" height="25" style="filter: invert(1); float: left;"
           alt="">&nbsp; Modifier</button>
 
     </div>
+
   </div>
- 
+
 
 
 </div>
