@@ -1,36 +1,34 @@
-<nav class="navbar fixed-top navbar-dark bg-success justify-content-between py-0">
+<br><br>
+<nav
+  class="navbar fixed-top navbar-dark shadow-lg p-3 mb-5 bg-white border-success rounded justify-content-between py-0">
   <div class="text-center">
-    &nbsp;
     <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
-      <button class="btn btn-outline-secondary " id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">
+
+      <button class="btn btn-white " id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">
         <img src="/assets/img/settings.png" width="30" height="25" alt="">
       </button>
       <div ngbDropdownMenu aria-labelledby="dropdownManual">
         <button routerLink="/fr-account" ngbDropdownItem><img src="/assets/img/person-fill.png" width="25" height="25"
             class=" ms-auto" alt="">&nbsp;Profil</button>
-        <button (click)="navselectall()" ngbDropdownItem><img src="/assets/img/documents.png" width="25" height="25"
+        <button (click)="navselectall()" ngbDropdownItem><img src="/assets/img/grid-fill.png" width="25" height="25"
             class=" ms-auto" alt="">&nbsp;Tous</button>
         <button (click)="viewselectman()" ngbDropdownItem><img src="/assets/img/map.png" width="25" height="25"
             class=" ms-auto" alt="">&nbsp;Localisation Manuel</button>
         <button (click)="navselectauto()" ngbDropdownItem><img src="/assets/img/geo.png" width="25" height="25"
             class=" ms-auto" alt="">&nbsp;Localisation Actuelle</button>
-        <button routerLink="/fr-news" ngbDropdownItem><img src="/assets/img/fr.png" width="25" height="25"
-            class="rounded ms-auto" alt="">&nbsp;Français</button>
-        <button routerLink="/ar-news" ngbDropdownItem><img src="/assets/img/tn.png" width="25" height="25"
-            class="rounded ms-auto" alt="">&nbsp;عربي</button>
-        <button routerLink="/en-news" ngbDropdownItem><img src="/assets/img/en.png" width="25" height="25"
-            class="rounded ms-auto" alt="">&nbsp;English</button>
+            <button (click)="aboutme()"  ngbDropdownItem><img src="/assets/img/question-fill.png" width="25" height="25"
+              class="rounded ms-auto" alt="">&nbsp;À propos de Moi</button>
       </div>
 
     </div>
     &nbsp;
-    <img src="/assets/img/logo.png" width="60" height="45" class="" alt="">
+    <img src="/assets/img/logo.png" width="60" height="50" class="" alt="">
   </div>
 
   <div>
-    <h5 class="text-center"> Signaler</h5>
-    <h6 id="currentposition" class="text-center"> <img src="/assets/img/location.png" width="15" height="20"
-        class="d-inline-block align-top" alt="">position actuel</h6>
+    <h5 class="text-center" style="color:#75c612"> Signaler</h5>
+    <h6 id="currentposition" class="text-center" style="color:#75c612"> <img src="/assets/img/location.png" width="15"
+        height="20" class="d-inline-block align-top" alt=""> Activer l'accès GPS</h6>
   </div>
 
   <div></div>
@@ -69,15 +67,19 @@
   </div>
 </nav>
 
-<div>
+<div
+  style="background-image: url('/assets/img/background.jpeg');     background-repeat: no-repeat;   background-size: 100% 100%;">
   <div
-    style="background-image: url('/assets/img/reportbackground.png');     background-repeat: no-repeat;   background-size: 100% 100%;">
-    <br><br><br>
-
-    <div class="text-center">
-      <div class="inline-block">
-        <button type="button" (click)="back()" class="btn btn-secondary">🢀</button>
+    style="background-image: url('/assets/img/background.jpeg');     background-repeat: no-repeat;   background-size: 100% 100%;">
+    <br>
+    <div class="text-center " style="   position: sticky;
+    top: 0;">
+      <div id="" class="inline-block">
+        <img src="/assets/img/arrow-left-short.png" width="42" height="31" class="center shadow rounded"
+          (click)="back()" style="filter:invert(1); background-color:#9c9c9c">
       </div>
+      &nbsp;
+      &nbsp;
       &nbsp;
       <div id="b1" class="inline-block">
         <img id="b1" src="/assets/img/slotf.png" width="30" height="30" class="center">
@@ -99,62 +101,103 @@
         <img src="/assets/img/slot.png" width="30" height="30" class="center" alt="">
       </div>
       &nbsp;
-      <div class="inline-block">
-        <button type="button" (click)="next()" class="btn btn-primary">🢂</button>
+      &nbsp;
+      &nbsp;
+      <div id="" class="inline-block">
+        <img src="/assets/img/arrow-right-short.png" width="42" height="31" class="center shadow rounded"
+          (click)="next()" style="filter:invert(1); background-color:#67498b">
       </div>
+
 
     </div>
 
-    <br>
-    <div id="card1" class="card  text-white bg-primary mb-2" style="max-width: 22rem; max-height: 9rem;">
-      <h5 class="card-header">1 - Captures
-      </h5>
+
+    <div id="card1" class="card shadow-lg rounded border-success  bg-light mb-2"
+      style="max-width: 22rem; max-height: 9rem;">
       <div class="card-body">
-        <p class="card-text">Prendre et gérer au maximum 5 photos du problème découvert. <img
-            src="/assets/img/pictureicon.png" width="50" height="50" style="float: right;" alt=""></p>
-        <br>
+        <table>
+          <tr>
+            <td>
+              <img src="/assets/img/image-fill.png" style="filter: hue-rotate(90deg);" width="50" height="50"
+                class=" ms-auto" alt="">
+            </td>
+            <td> &nbsp;</td>
+            <td>
+              <p class="card-text">1 - Captures | Prendre au maximum 5 photos du problème découvert. </p>
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
 
-    <div id="card2" class="card text-white bg-primary mb-3" style="display:none; max-width: 22rem; max-height: 9rem;">
-      <h5 class="card-header">2 - localisation
-      </h5>
+    <div id="card2" class="card shadow-lg border-success  rounded bg-light mb-2"
+      style="max-width: 22rem; max-height: 9rem; display:none">
       <div class="card-body">
-        <p class="card-text">Sélectionnez la localisation du problème, actuel ou un autre. <img
-            src="/assets/img/map.png" width="50" height="50" style="float: right;" alt=""></p>
-        <br>
+        <table>
+          <tr>
+            <td>
+              <img src="/assets/img/location.png" width="50" height="50" class=" ms-auto" alt="">
+            </td>
+            <td> &nbsp;</td>
+            <td>
+              <p class="card-text">2 - Localisation | Configurez la localisation du problème. </p>
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
 
-    <div id="card3" class="card text-white bg-primary mb-3" style="display:none; max-width: 22rem; max-height: 9rem;">
-      <h5 class="card-header">3 - Type
-      </h5>
+    <div id="card3" class="card shadow-lg border-success  rounded bg-light mb-2"
+      style="max-width: 22rem; max-height: 9rem; display:none">
       <div class="card-body">
-        <p class="card-text">Sélectionnez le bon type de problème. <img src="/assets/img/alerticon.png" width="50"
-            height="50" style="float: right;" alt=""></p>
-        <br>
+        <table>
+          <tr>
+            <td>
+              <img src="/assets/img/alert-triangle-fill.png" width="50" height="50" class=" ms-auto" alt="">
+            </td>
+            <td> &nbsp;</td>
+            <td>
+              <p class="card-text">3 - Type | Sélectionnez le bon type de problème. </p>
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
 
-    <div id="card4" class="card text-white bg-primary mb-3" style="display:none; max-width: 22rem; max-height: 9rem;">
-      <h5 class="card-header">4 - Descriptions
-      </h5>
+    <div id="card4" class="card shadow-lg border-success   rounded bg-light mb-2"
+      style="max-width: 22rem; max-height: 9rem; display:none">
       <div class="card-body">
-        <p class="card-text">Fournissez les informations nécessaires qui décrivent le mieux le problème. <img
-            src="/assets/img/infoicon.png" width="50" height="50" style="float: right;" alt=""></p>
-        <br>
+        <table>
+          <tr>
+            <td>
+              <img src="/assets/img/info-fill.png" width="50" height="50" class=" ms-auto" alt="">
+            </td>
+            <td> &nbsp;</td>
+            <td>
+              <p class="card-text">4 - Descriptions | Fournissez les détails qui décrivent la problème. </p>
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
 
-    <div id="card5" class="card text-white bg-primary mb-3" style="display:none; max-width: 22rem; max-height: 9rem;">
-      <h5 class="card-header">5 - Vérification
-      </h5>
+    <div id="card5" class="card shadow-lg border-success  rounded bg-light mb-2"
+      style="max-width: 22rem; max-height: 9rem; display:none">
       <div class="card-body">
-        <p class="card-text">Envoyez le rapport du problème avec la vérification de votre nom. <img
-            src="/assets/img/sendicon.png" width="50" height="50" style="float: right;" alt=""></p>
-        <br>
+        <table>
+          <tr>
+            <td>
+              <img src="/assets/img/reply-fill.png" width="50" height="50" class=" ms-auto" alt="">
+            </td>
+            <td> &nbsp;</td>
+            <td>
+              <p class="card-text">5 - Vérification | Envoyez la problème anonyme ou profilé. </p>
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
+
 
   </div>
   <div
@@ -172,82 +215,53 @@
           <webcam [width]="370  " [height]="666"></webcam>
         </div>
 
-        <button id="capsc" type="button" (click)="capture()" class="btn btn-success">
+        <button id="capsc" type="button" (click)="capture()" class="shadow btn btn-success btn-sm">
           <img src="/assets/img/camera.png" width="30" height="25" style="filter: invert(1); float: left;" alt="">&nbsp;
           Capturer</button> &nbsp;
         <img id="outputx  " />
-        <button type="file" (click)="picupload()" accept="image/*" class="btn btn-success">
+        <button type="file" (click)="picupload()" accept="image/*" class="shadow btn btn-success btn-sm">
           <img src="/assets/img/arrow-bar-up.png" width="30" height="25" style="filter: invert(1); float: left;"
-            alt="">&nbsp; Télecharger</button>
+            alt="">&nbsp; Télecharger</button> &nbsp;
+        <button type="button" (click)="next()" class="btn shadow" style="background-color:#75c612; color:white;">Suivant
+          ➤</button>
       </div>
-      <br>
-
-      <div class="card text-white bg-secondary mb-3" style="max-width: 19rem;">
-
-        <div class="card-body">
 
 
 
-          <h5 class="card-title"> <img src="/assets/img/image-fill.png" width="30" height="30"
-              style="filter: invert(1); float: left;" alt=""> &nbsp; &nbsp;Photos à envoyer :</h5> &nbsp;
+      <div class="card container bg-light shadow rounded" style="max-width: 28rem;">
+
+        <div class="row">
 
 
-          <div class="card border-dark mb-3" style="width: 15rem; height: 15rem;">
-            <div class="card-body text-dark">
-              <div id="pic1"></div>
-            </div>
-          </div>
 
-          <div class="card border-dark mb-3" style="width: 15rem; height: 15rem;">
-            <div class="card-body text-dark">
-              <div id="pic2"></div>
-            </div>
-          </div>
+          <div class="col shadow bg-light" id="pic1" style="width: 2.5rem; height: 3.7rem;"></div>
+          <div class="col shadow bg-light" id="pic2" style="width: 2.5rem; height: 3.7rem;"></div>
+          <div class="col shadow bg-light" id="pic3" style="width: 2.5rem; height: 3.7rem;"></div>
+          <div class="col shadow bg-light" id="pic4" style="width: 2.5rem; height: 3.7rem;"></div>
+          <div class="col shadow bg-light" id="pic5" style="width: 2.5rem; height: 3.7rem;"></div>
 
-          <div class="card border-dark mb-3" style="width: 15rem; height: 15rem;">
-            <div class="card-body text-dark">
-              <div id="pic3"></div>
-            </div>
-          </div>
 
-          <div class="card border-dark mb-3" style="width: 15rem; height: 15rem;">
-            <div class="card-body text-dark">
-              <div id="pic4"></div>
-            </div>
-          </div>
-
-          <div class="card border-dark mb-3" style="width: 15rem; height: 15rem;">
-            <div class="card-body text-dark">
-              <div id="pic5"></div>
-            </div>
-          </div>
-
-          <div class="text-center"> <button class="text-center btn btn-danger" (click)="picdiscard()">
-              Jetter Capture</button></div>
 
 
 
 
         </div>
+        <div class="text-center"> <button class="text-center shadow btn btn-danger" (click)="picdiscard()">
+            Jetter Capture</button></div>
 
-      </div>
 
-      <br>
-      <div class="text-center"> <button type="button" (click)="back()" class="btn btn-dark" disabled>◄</button>
-        &nbsp;
-        <button type="button" (click)="next()" class="btn btn-primary">Suivant ➤</button>
       </div>
 
 
     </div>
     <div id="input2" style="display: none;">
 
-      <div class="card text-white bg-secondary mb-3" style="max-width: 19rem;">
+      <div class="card bg-light shadow rounded mb-3" style="max-width: 20rem;">
 
         <div class="card-body">
 
-          <h5 class="card-title"> <img src="/assets/img/flag.png" width="25" height="30"
-              style="filter: invert(1); float: left;" alt=""> &nbsp; Gouver./ Municp. &nbsp;</h5>
+          <h5 class="card-title"> <img src="/assets/img/flag-fill.png" width="25" height="30" style="float: left;"
+              alt=""> &nbsp; Gouver./ Municp. &nbsp;</h5>
           <p class="card-text">Le gps renverra la latitude et la longitude et le gouvernorat
             de la localisation actuelle (configurable),
             saisir la municipalité de la localisation.</p>
@@ -300,7 +314,7 @@
               <option value="Ezzouhour">Ezzouhour</option>
               <option value="Ettahrir">Ettahrir</option>
               <option value="El Omrane Superieur">El Omrane Superieur</option>
-              <option value="El Menzah" s>El Menzah</option>
+              <option value="El Menzah">El Menzah</option>
               <option value="Jebel Jelloud">Jebel Jelloud</option>
               <option value="El Kabaria">El Kabaria</option>
               <option value="El Hrairia">El Hrairia</option>
@@ -309,9 +323,9 @@
           </div>
 
           <hr>
-          <h5 class="card-title"> <img src="/assets/img/geo.png" width="25" height="30"
-            style="filter: invert(1); float: left;" alt=""> &nbsp; &nbsp;Coordinations</h5>
-            <br>
+          <h5 class="card-title"> <img src="/assets/img/geo.png" width="25" height="30" style="float: left;" alt="">
+            &nbsp; &nbsp;Coordinations</h5>
+          <br>
 
           <div class="form-inline">
             Latitude<input type="text" class="form-control form-control-sm" id="lat" value="0">
@@ -320,13 +334,16 @@
           </div>
 
           <br>
-          <div class="text-center"> <button type="button" (click)="back()" class="btn btn-dark">◄</button>
-            &nbsp;
-            <button type="button" (click)="next()" class="btn btn-primary">Suivant ➤</button>
-          </div>
+
 
         </div>
       </div>
+      <div class="text-center"> <button type="button" (click)="back()" class="btn shadow btn-dark">◄</button>
+        &nbsp;
+        <button type="button" (click)="next()" class="btn shadow" style="background-color:#75c612; color:white;">Suivant
+          ➤</button>
+      </div>
+
     </div>
 
 
@@ -336,60 +353,46 @@
 
       <div class="row">
         <div class="col">
-          <div class="card text-white bg-secondary mb-3 text-center" style="max-width: 10rem; max-height: 6rem;">
+          <div class="card shadow-lg  bg-light mb-3 text-center"
+            (click)="selecttype('type_dangerwaste','Déchets Dangereux')" id="type_dangerwaste"
+            style="max-width: 10rem; max-height: 6rem;">
             <div class="card-body">
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="dtype" id="didom" value="type_domestic"
-                  checked="checked">
-                <label class="form-check-label" for="didom">
-                  <img src="/assets/img/di-dom.png" width="50" height="50" alt="">
-
-                </label>
-              </div>
-              <h5>Domestique</h5>
+              <img src="/assets/img/type_dangerwaste.png" width="50" height="50" alt="">
+              <h5 style="color:black; font-size:small;">Déchets Dangereux</h5>
             </div>
-
           </div>
         </div>
+
         <div class="col">
-          <div class="card text-white bg-secondary mb-3 text-center" style="max-width: 10rem; max-height: 6rem;">
+          <div class="card shadow-lg bg-light  mb-3  text-center"
+            (click)="selecttype('type_constwaste','Déchets Bâtiments')" id="type_constwaste"
+            style="max-width: 10rem; max-height: 6rem;">
             <div class="card-body">
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="dtype" id="dimed" value="type_medical">
-                <label class="form-check-label" for="dimed">
-                  <img src="/assets/img/di-med.png" width="50" height="50" alt="">
-                </label>
-              </div>
-              <h5>Médical</h5>
+              <img src="/assets/img/type_constwaste.png" width="50" height="50" alt="">
+              <h5 style="color:black; font-size:small;">Déchets Bâtiments</h5>
             </div>
           </div>
         </div>
       </div>
+
       <div class="row">
         <div class="col">
-          <div class="card text-white bg-secondary mb-3 text-center" style="max-width: 10rem; max-height: 6rem;">
+          <div class="card shadow-lg bg-light mb-3 text-center"
+            (click)="selecttype('type_security','Sécurité et Nuisances')" id="type_security"
+            style="max-width: 10rem; max-height: 6rem;">
             <div class="card-body">
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="dtype" id="diche" value="type_chemical">
-                <label class="form-check-label" for="diche">
-                  <img src="/assets/img/di-che.png" width="50" height="50" alt="">
-                </label>
-              </div>
-              <h5>Chémique</h5>
+              <img src="/assets/img/type_security.png" width="50" height="50" alt="">
+              <h5 style="color:black; font-size:small;">Sécurité et    &nbsp; Nuisances</h5>
             </div>
           </div>
         </div>
 
         <div class="col">
-          <div class="card text-white bg-secondary mb-3 text-center" style="max-width: 10rem; max-height: 6rem;">
+          <div class="card shadow-lg  bg-light mb-3 text-center" (click)="selecttype('type_brokenroad','Route Cassée')"
+            id="type_brokenroad" style="max-width: 10rem; max-height: 6rem;">
             <div class="card-body">
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="dtype" id="ditox" value="type_toxic">
-                <label class="form-check-label" for="ditox">
-                  <img src="/assets/img/di-tox.png" width="50" height="50" alt="">
-                </label>
-              </div>
-              <h5>Toxique</h5>
+              <img src="/assets/img/type_brokenroad.png" width="50" height="50" alt="">
+              <h5 style="color:black; font-size:small;">Route Cassée</h5>
             </div>
           </div>
         </div>
@@ -398,28 +401,22 @@
 
       <div class="row">
         <div class="col">
-          <div class="card text-white bg-secondary mb-3 text-center" style="max-width: 10rem; max-height: 6rem;">
+          <div class="card shadow-lg  bg-light mb-3 text-center"
+            (click)="selecttype('type_trafficlight','Feu de Signalisation en Panne')" id="type_trafficlight"
+            style="max-width: 10rem; max-height: 6rem;">
             <div class="card-body">
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="dtype" id="direc" value="type_recyclable">
-                <label class="form-check-label" for="direc">
-                  <img src="/assets/img/di-rec.png" width="50" height="50" alt="">
-                </label>
-              </div>
-              <h5>Recyclable</h5>
+              <img src="/assets/img/type_trafficlight.png" width="50" height="50" alt="">
+              <h5 style="color:black; font-size:small;">Feu de Signalisation en Panne</h5>
             </div>
           </div>
         </div>
+
         <div class="col">
-          <div class="card text-white bg-secondary mb-3 text-center" style="max-width: 10rem; max-height: 6rem;">
+          <div class="card shadow-lg  bg-light mb-3 text-center" (click)="selecttype('type_declare','Déclaration')"
+            id="type_declare" style="max-width: 10rem; max-height: 6rem;">
             <div class="card-body">
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="dtype" id="dirc" value="type_brokenroad">
-                <label class="form-check-label" for="dirc">
-                  <img src="/assets/img/di-rc.png" width="50" height="50" alt="">
-                </label>
-              </div>
-              <h5>Route Cassée</h5>
+              <img src="/assets/img/type_declare.png" width="50" height="50" alt="">
+              <h5 style="color:black; font-size:small;">Déclaration</h5>
             </div>
           </div>
         </div>
@@ -431,111 +428,89 @@
       <div class="row">
 
         <div class="col">
-          <div class="card text-white bg-secondary mb-3 text-center" style="max-width: 10rem; max-height: 6rem;">
+          <div class="card shadow-lg  bg-light mb-3 text-center"
+            (click)="selecttype('type_trainlight','Signalisations Ferroviaires')" id="type_trainlight"
+            style="max-width: 10rem; max-height: 6rem;">
             <div class="card-body">
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="dtype" id="dior" value="type_obstacleroad">
-                <label class="form-check-label" for="dior">
-                  <img src="/assets/img/di-or.png" width="50" height="50" alt="">
-
-                </label>
-              </div>
-              <h5>R.Obstacle</h5>
+              <img src="/assets/img/type_trainlight.png" width="50" height="50" alt="">
+              <h5 style="color:black; font-size:small;">Signalisations Ferroviaires</h5>
             </div>
           </div>
         </div>
 
         <div class="col">
-          <div class="card text-white bg-secondary mb-3 text-center" style="max-width: 10rem; max-height: 6rem;">
+          <div class="card shadow-lg  bg-light mb-3 text-center"
+            (click)="selecttype('type_nightlight','Éclairage Publique')" id="type_nightlight"
+            style="max-width: 10rem; max-height: 6rem;">
             <div class="card-body">
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="dtype" id="ditp" value="type_train">
-                <label class="form-check-label" for="ditp">
-                  <img src="/assets/img/di-tp.png" width="50" height="50" alt="">
-                </label>
-              </div>
-              <h5>Train Panne</h5>
+              <img src="/assets/img/type_nightlight.png" width="50" height="50" alt="">
+              <h5 style="color:black; font-size:small;">Éclairage Publique</h5>
             </div>
           </div>
-
-
         </div>
+
       </div>
 
       <div class="row">
 
         <div class="col">
-          <div class="card text-white bg-secondary mb-3 text-center" style="max-width: 10rem; max-height: 6rem;">
+          <div class="card shadow-lg bg-light mb-3 text-center"
+            (click)="selecttype('type_water','Eau et Assainissement')" id="type_water"
+            style="max-width: 10rem; max-height: 6rem;">
             <div class="card-body">
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="dtype" id="dwat" value="type_water">
-                <label class="form-check-label" for="dwat">
-                  <img src="/assets/img/type_water.png" width="50" height="50" alt="">
-
-                </label>
-              </div>
-              <h5>Eau et Purif.</h5>
+              <img src="/assets/img/type_water.png" width="50" height="50" alt="">
+              <h5 style="color:black; font-size:small;">Eau et Assainissement</h5>
             </div>
           </div>
         </div>
 
         <div class="col">
-          <div class="card text-white bg-secondary mb-3 text-center" style="max-width: 10rem; max-height: 6rem;">
+          <div class="card shadow-lg bg-light mb-3 text-center" (click)="selecttype('type_clean','Propreté')"
+            id="type_clean" style="max-width: 10rem; max-height: 6rem;">
             <div class="card-body">
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="dtype" id="ddgr" value="type_degradation">
-                <label class="form-check-label" for="ddgr">
-                  <img src="/assets/img/type_degradation.png" width="50" height="50" alt="">
-                </label>
-              </div>
-              <h5>Dégradation</h5>
+              <img src="/assets/img/type_clean.png" width="50" height="50" alt="">
+              <h5 style="color:black; font-size:small;">Propreté</h5>
             </div>
           </div>
-
-
         </div>
+
+
       </div>
 
       <div class="row">
 
         <div class="col">
-          <div class="card text-white bg-secondary mb-3 text-center" style="max-width: 10rem; max-height: 6rem;">
+          <div class="card shadow-lg bg-light mb-3 text-center"
+            (click)="selecttype('type_trafficjam','Embouteillages Routiers')" id="type_trafficjam"
+            style="max-width: 10rem; max-height: 6rem;">
             <div class="card-body">
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="dtype" id="dnli" value="type_nightlight">
-                <label class="form-check-label" for="dnli">
-                  <img src="/assets/img/type_nightlight.png" width="50" height="50" alt="">
-
-                </label>
-              </div>
-              <h5>Eclarage Nuit</h5>
+              <img src="/assets/img/type_trafficjam.png" width="50" height="50" alt="">
+              <h5 style="color:black; font-size:small;">Embouteillages Routiers</h5>
             </div>
           </div>
         </div>
 
         <div class="col">
-          <div class="card text-white bg-secondary mb-3 text-center" style="max-width: 10rem; max-height: 6rem;">
+          <div class="card shadow-lg bg-light mb-3 text-center" (click)="selecttype('type_fire','Incendie')"
+            id="type_fire" style="max-width: 10rem; max-height: 6rem;">
             <div class="card-body">
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="dtype" id="dtli" value="type_trafficlight">
-                <label class="form-check-label" for="dtli">
-                  <img src="/assets/img/type_trafficlight.png" width="50" height="50" alt="">
-                </label>
-              </div>
-              <h5>Feu Circ.</h5>
+              <img src="/assets/img/type_fire.png" width="50" height="50" alt="">
+              <h5 style="color:black ; font-size:small;">Incendie</h5>
             </div>
           </div>
-
-
         </div>
+
+
+
       </div>
 
 
       <br>
 
-      <div class="text-center"> <button type="button" (click)="back()" class="btn btn-dark">◄</button>
+      <div class="text-center"> <button type="button" (click)="back()" class="btn shadow btn-dark">◄</button>
         &nbsp;
-        <button type="button" (click)="next()" class="btn btn-primary">Suivant ➤</button>
+        <button type="button" (click)="next()" class="btn shadow" style="background-color:#75c612; color:white;">Suivant
+          ➤</button>
       </div>
 
 
@@ -545,71 +520,53 @@
     <div id="input4" style="display: none;">
 
 
-      <div class="card text-white bg-secondary mb-3" style="max-width: 19rem;">
+      <div class="card bg-light shadow rounded mb-3" style="max-width: 20rem;">
 
         <div class="card-body">
 
-          <h5 class="card-title"> <img src="/assets/img/fonts.png" width="25" height="30"
-              style="filter: invert(1); float: left;" alt=""> &nbsp; &nbsp;Titre</h5> &nbsp;
+
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="basic-addon1">➤</span>
+              <span class="input-group-text" id="basic-addon1"><img src="/assets/img/fonts.png" width="20"
+                  height="25"></span>
             </div>
-            <input type="text" class="form-control" placeholder="Insérez le titre ici" aria-label="Username"
+            <input type="text" class="form-control" placeholder="Insérez le Titre ici" aria-label="Username"
               aria-describedby="basic-addon1" id="texttitle">
           </div>
           <p class="card-text">Donnez un titre approprié au problème.</p>
         </div>
       </div>
 
-      <div class="card text-white bg-secondary mb-3" style="max-width: 19rem;">
+      <div class="card bg-light shadow rounded mb-3" style="max-width: 20rem;">
 
         <div class="card-body">
 
-          <h5 class="card-title"> <img src="/assets/img/title.png" width="25" height="30" style="float: left;" alt="">
-            &nbsp;&nbsp;Sujet</h5> &nbsp;
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="basic-addon1">➤</span>
+              <span class="input-group-text" id="basic-addon1"><img src="/assets/img/title.png"
+                  style="filter: invert(1);" width="20" height="25"></span>
             </div>
-            <textarea class="form-control" placeholder="Insérez le sujet ici" aria-label="With textarea" id="textsub"
+            <textarea class="form-control" placeholder="Insérez le Sujet ici" aria-label="With textarea" id="textsub"
               rows="5"></textarea>
           </div>
-          <p class="card-text">Donnez une petite description rapide mais informative adaptée au problème.</p>
+          <p class="card-text">Donnez une sujet informative.</p>
         </div>
       </div>
 
-      <div class="card text-white bg-secondary mb-3" style="max-width: 19rem;">
-
-        <div class="card-body">
-
-          <h5 class="card-title"> <img src="/assets/img/description.png" width="25" height="30" style="float: left;"
-              alt=""> &nbsp; &nbsp;Description</h5> &nbsp;
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="basic-addon1">➤</span>
-            </div>
-            <textarea class="form-control" placeholder="Insérez la description ici" aria-label="With textarea"
-              id="textdesc" rows="5"></textarea>
-          </div>
-          <p class="card-text">Décrivez le problème soigneusement et profondément avec le plus de détails possible.
-          </p>
-        </div>
-      </div>
-      <br>
-      <div class="text-center"> <button type="button" (click)="back()" class="btn btn-dark">◄</button>
+      <div class="text-center"> <button type="button" (click)="back()" class="btn shadow btn-dark">◄</button>
         &nbsp;
-        <button type="button" (click)="next()" class="btn btn-primary">Suivant ➤</button>
+        <button type="button" (click)="next()" class="btn shadow" style="background-color:#75c612; color:white;">Suivant
+          ➤</button>
       </div>
     </div>
 
     <div id="input5" style="display: none;">
 
 
-      <div class="card text-white bg-secondary mb-3" style="max-width: 19rem;">
+      <div class="card bg-light shadow rounded mb-3" style="max-width: 20rem;">
         <div class="card-body">
-          <h5 class="card-title"> <img src="/assets/img/eye-slash-fill.png" width="30" height="30"
-              style="filter: invert(1); float: left;" alt=""> &nbsp; &nbsp;Anonyme</h5> &nbsp;
+          <h5 class="card-title"> <img src="/assets/img/eye-slash-fill.png" width="30" height="30" style=" float: left;"
+              alt=""> &nbsp; &nbsp;Anonyme</h5> &nbsp;
           <p class="card-text">Au cas où vous voudriez un anonymat complet (sans profil).</p>
           <input class="form-check-input" type="radio" name="sending" id="sendi1" value="sendi1" checked>
           &nbsp;
@@ -619,17 +576,18 @@
         </div>
       </div>
 
-      <div id="newprofile" class="card text-white bg-secondary mb-3" style="max-width: 19rem; display: block;">
+      <div id="newprofile" class="card bg-light shadow rounded mb-3" style="max-width: 20rem;">
         <div class="card-body">
-          <h5 class="card-title"> <img src="/assets/img/person-fill.png" width="30" height="30"
-              style="filter: invert(1); float: left;" alt=""> &nbsp; &nbsp;Profile</h5> &nbsp;
+          <h5 class="card-title"> <img src="/assets/img/person-fill.png" width="30" height="30" style=" float: left;"
+              alt=""> &nbsp; &nbsp;Profile</h5> &nbsp;
           <p class="card-text">Au cas où vous voudriez que l'administrateur reste en contact avec vous à propos de
             ce
             rapport (créer un profil).</p>
           <h5 class="card-title"> &nbsp; &nbsp;Votre Nom</h5>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="basic-addon1">➤</span>
+              <span class="input-group-text" id="basic-addon1"><img src="/assets/img/person-fill.png" width="20"
+                  height="25"></span>
             </div>
             <input type="text" class="form-control" placeholder="Nom" aria-label="Username"
               aria-describedby="basic-addon1" id="name">
@@ -638,7 +596,8 @@
           <h5 class="card-title"> &nbsp; &nbsp;Votre Téléphone</h5>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="basic-addon1">➤</span>
+              <span class="input-group-text" id="basic-addon1"><img src="/assets/img/phone.png" width="20"
+                  height="25"></span>
             </div>
             <input type="text" class="form-control" placeholder="12345678" aria-label="Phone"
               aria-describedby="basic-addon1" id="phone">
@@ -665,10 +624,10 @@
       </div>
 
 
-      <div id="sameprofile" class="card text-white bg-secondary mb-3" style="max-width: 19rem; display: none;">
+      <div id="sameprofile" class="card bg-light shadow rounded mb-3" style="max-width: 20rem; display:none">
         <div class="card-body">
-          <h5 class="card-title"> <img src="/assets/img/person-fill.png" width="30" height="30"
-              style="filter: invert(1); float: left;" alt=""> &nbsp; &nbsp;Profile</h5> &nbsp;
+          <h5 class="card-title"> <img src="/assets/img/person-fill.png" width="30" height="30" style=" float: left;"
+              alt=""> &nbsp; &nbsp;Profile</h5> &nbsp;
           <p class="card-text">Au cas où vous voudriez utiliser votre profil actuel.</p>
           <h5 class="card-title"> &nbsp; &nbsp;Votre Nom :</h5>
           <h2 id="nomx">Nom</h2>
@@ -690,7 +649,7 @@
       <br>
 
       <div id="waiting" style="display: none;">
-        <div class="card bg-primary text-center" style="width: 20rem;">
+        <div class="card text-center text-white" style="width: 20rem; background-color: #75c612;">
           <h4 class="card-title text-center">Envoi en cours ...</h4>
           <h5 class="card-text text-center">Veuillez Patienter</h5>
           <style>
@@ -739,7 +698,8 @@
 
       <div class="text-center"> <button type="button" (click)="back()" class="btn btn-dark">◄</button>
         &nbsp;
-        <button type="button" (click)="send()" class="btn btn-primary">Envoyer ✉</button>
+        <button type="button" (click)="send()" class="btn shadow" style="background-color:#75c612; color:white;">Envoyer
+          ➤</button>
       </div>
 
 
@@ -758,10 +718,10 @@
 
 
 </div>
-<nav class="navbar fixed-bottom navbar-light bg-dark">
-  <img routerLink="/fr-contact" src="/assets/img/fr-profile.png" width="38" height="50" class="center" alt="">
-  <img routerLink="/fr-news" src="/assets/img/fr-news.png" width="38" height="50" class="center" alt="">
-  <img routerLink="/fr-report" src="/assets/img/fr-detect.png" width="38" height="50" class="center" alt="">
-  <img routerLink="/fr-events" src="/assets/img/fr-table.png" width="38" height="50" class="center" alt="">
-  <img routerLink="/fr-info" src="/assets/img/fr-others.png" width="38" height="50" class="center" alt="">
+<nav class="navbar fixed-bottom  shadow-lg bg-white rounded " style="height: 1.6cm;">
+  <img routerLink="/fr-contact" src="/assets/img/fr-profile.png" width="38" height="48" class="center" alt="">
+  <img routerLink="/fr-news" src="/assets/img/fr-news.png" width="38" height="48" class="center" alt="">
+  <img routerLink="/fr-report" src="/assets/img/fr-detect.png" width="38" height="48" class="center" alt="">
+  <img routerLink="/fr-events" src="/assets/img/fr-table.png" width="38" height="48" class="center" alt="">
+  <img routerLink="/fr-info" src="/assets/img/fr-others.png" width="38" height="48" class="center" alt="">
 </nav>

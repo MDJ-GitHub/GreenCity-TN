@@ -1,37 +1,33 @@
 <br><br>
-<nav class="navbar fixed-top navbar-dark bg-success justify-content-between py-0">
+<nav class="navbar fixed-top navbar-dark shadow-lg p-3 mb-5 bg-white border-success rounded justify-content-between py-0">
   <div class="text-center">
-    &nbsp;
     <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
-      <button class="btn btn-outline-secondary " id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">
+
+      <button class="btn btn-white " id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">
         <img src="/assets/img/settings.png" width="30" height="25" alt="">
       </button>
       <div ngbDropdownMenu aria-labelledby="dropdownManual">
         <button routerLink="/fr-account" ngbDropdownItem><img src="/assets/img/person-fill.png" width="25" height="25"
           class=" ms-auto" alt="">&nbsp;Profil</button>
-        <button (click)="navselectall()" ngbDropdownItem><img src="/assets/img/documents.png" width="25" height="25"
+        <button (click)="navselectall()" ngbDropdownItem><img src="/assets/img/grid-fill.png" width="25" height="25"
             class=" ms-auto" alt="">&nbsp;Tous</button>
         <button (click)="viewselectman()" ngbDropdownItem><img src="/assets/img/map.png" width="25" height="25"
             class=" ms-auto" alt="">&nbsp;Localisation Manuel</button>
         <button (click)="navselectauto()" ngbDropdownItem><img src="/assets/img/geo.png" width="25" height="25"
             class=" ms-auto" alt="">&nbsp;Localisation Actuelle</button>
-        <button routerLink="/fr-news" ngbDropdownItem><img src="/assets/img/fr.png" width="25" height="25"
-            class="rounded ms-auto" alt="">&nbsp;Français</button>
-        <button routerLink="/ar-news" ngbDropdownItem><img src="/assets/img/tn.png" width="25" height="25"
-            class="rounded ms-auto" alt="">&nbsp;عربي</button>
-        <button routerLink="/en-news" ngbDropdownItem><img src="/assets/img/en.png" width="25" height="25"
-            class="rounded ms-auto" alt="">&nbsp;English</button>
+            <button (click)="aboutme()"  ngbDropdownItem><img src="/assets/img/question-fill.png" width="25" height="25"
+              class="rounded ms-auto" alt="">&nbsp;À propos de Moi</button>
       </div>
 
     </div>
     &nbsp;
-    <img src="/assets/img/logo.png" width="60" height="45" class="" alt="">
+    <img src="/assets/img/logo.png" width="60" height="50" class="" alt="">
   </div>
 
   <div>
-    <h5 class="text-center"> Information</h5>
-    <h6 id="currentposition" class="text-center"> <img src="/assets/img/location.png" width="15" height="20"
-        class="d-inline-block align-top" alt="">position actuel</h6>
+    <h5 class="text-center" style="color:#75c612"> Infos</h5>
+    <h6 id="currentposition" class="text-center" style="color:#75c612"> <img src="/assets/img/location.png" width="15" height="20"
+        class="d-inline-block align-top" alt=""> Activer l'accès GPS</h6>
   </div>
 
   <div></div>
@@ -82,7 +78,7 @@ background-size: 100% 100%; background-attachment: fixed;" class="">
 background-size: 100% 100%; background-attachment: fixed;" class="">
     &nbsp;
     <div id="waiting">
-    <div class="card bg-light text-center" style="width: 20rem;">
+    <div class="card bg-light text-center shadow rounded" style="width: 20rem;">
       <h4 class="card-title text-center">Récupérer les dernières informations ...</h4>
       <h5 class="card-text text-center">Veuillez Patienter</h5>
       <style>
@@ -127,7 +123,7 @@ background-size: 100% 100%; background-attachment: fixed;" class="">
   </div>
 
   <div id="nodata" style="display: none;">
-    <div class="card bg-light text-center" style="width: 22rem;">
+    <div class="card bg-light text-center shadow rounded" style="width: 22rem;">
       <h4 class="card-title text-center">Aucun information n'a été fournie à cet endroit pour le moment. ...</h4>
     </div>
     <br>
@@ -214,10 +210,10 @@ background-size: 100% 100%; background-attachment: fixed;" class="">
 
 
 
-<nav class="navbar fixed-bottom navbar-light bg-dark">
-  <img routerLink="/fr-contact" src="/assets/img/fr-profile.png" width="38" height="50" class="center" alt="">
-  <img routerLink="/fr-news" src="/assets/img/fr-news.png" width="38" height="50" class="center" alt="">
-  <img routerLink="/fr-report" src="/assets/img/fr-detect.png" width="38" height="50" class="center" alt="">
-  <img routerLink="/fr-events" src="/assets/img/fr-table.png" width="38" height="50" class="center" alt="">
-  <img routerLink="/fr-info" src="/assets/img/fr-others.png" width="38" height="50" class="center" alt="">
+<nav class="navbar fixed-bottom  shadow-lg bg-white rounded " style="height: 1.6cm;">
+  <img routerLink="/fr-contact" src="/assets/img/fr-profile.png" width="38" height="48" class="center" alt="">
+  <img routerLink="/fr-news" src="/assets/img/fr-news.png" width="38" height="48"  class="center" alt="">
+  <img routerLink="/fr-report" src="/assets/img/fr-detect.png" width="38" height="48"  class="center" alt="">
+  <img routerLink="/fr-events" src="/assets/img/fr-table.png" width="38" height="48" class="center" alt="">
+  <img routerLink="/fr-info" src="/assets/img/fr-others.png" width="38" height="48" class="center" alt="">
 </nav>

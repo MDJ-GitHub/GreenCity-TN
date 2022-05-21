@@ -1,38 +1,33 @@
 <br><br>
-
-<nav class="navbar fixed-top navbar-dark bg-success justify-content-between py-0">
+<nav class="navbar fixed-top navbar-dark shadow-lg p-3 mb-5 bg-white border-success rounded justify-content-between py-0">
   <div class="text-center">
-    &nbsp;
     <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
-      <button class="btn btn-outline-secondary " id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">
+
+      <button class="btn btn-white " id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">
         <img src="/assets/img/settings.png" width="30" height="25" alt="">
       </button>
       <div ngbDropdownMenu aria-labelledby="dropdownManual">
         <button routerLink="/fr-account" ngbDropdownItem><img src="/assets/img/person-fill.png" width="25" height="25"
-            class=" ms-auto" alt="">&nbsp;Profile</button>
-        <button (click)="navselectall()" ngbDropdownItem><img src="/assets/img/documents.png" width="25" height="25"
+          class=" ms-auto" alt="">&nbsp;Profil</button>
+        <button (click)="navselectall()" ngbDropdownItem><img src="/assets/img/grid-fill.png" width="25" height="25"
             class=" ms-auto" alt="">&nbsp;Tous</button>
         <button (click)="viewselectman()" ngbDropdownItem><img src="/assets/img/map.png" width="25" height="25"
             class=" ms-auto" alt="">&nbsp;Localisation Manuel</button>
         <button (click)="navselectauto()" ngbDropdownItem><img src="/assets/img/geo.png" width="25" height="25"
             class=" ms-auto" alt="">&nbsp;Localisation Actuelle</button>
-        <button routerLink="/fr-news" ngbDropdownItem><img src="/assets/img/fr.png" width="25" height="25"
-            class="rounded ms-auto" alt="">&nbsp;Français</button>
-        <button routerLink="/ar-news" ngbDropdownItem><img src="/assets/img/tn.png" width="25" height="25"
-            class="rounded ms-auto" alt="">&nbsp;عربي</button>
-        <button routerLink="/en-news" ngbDropdownItem><img src="/assets/img/en.png" width="25" height="25"
-            class="rounded ms-auto" alt="">&nbsp;English</button>
+            <button (click)="aboutme()"  ngbDropdownItem><img src="/assets/img/question-fill.png" width="25" height="25"
+              class="rounded ms-auto" alt="">&nbsp;À propos de Moi</button>
       </div>
 
     </div>
     &nbsp;
-    <img src="/assets/img/logo.png" width="60" height="45" class="" alt="">
+    <img src="/assets/img/logo.png" width="60" height="50" class="" alt="">
   </div>
 
   <div>
-    <h5 class="text-center"> Profil</h5>
-    <h6 id="currentposition" class="text-center"> <img src="/assets/img/location.png" width="15" height="20"
-        class="d-inline-block align-top" alt="">position actuel</h6>
+    <h5 class="text-center" style="color:#75c612"> Profil</h5>
+    <h6 id="currentposition" class="text-center" style="color:#75c612"> <img src="/assets/img/location.png" width="15" height="20"
+        class="d-inline-block align-top" alt="">  Activer l'accès GPS</h6>
   </div>
 
   <div></div>
@@ -79,8 +74,62 @@ background-size: 100% 100%; background-attachment: fixed;" class="">
   
   background-size: 100% 100%; background-attachment: fixed;" class="">
     &nbsp;
+    <div id="waiting">
+      <div class="card bg-light text-center shadow rounded" style="width: 20rem;">
+        <h4 class="card-title text-center">Récupération des données du compte ...</h4>
+        <h5 class="card-text text-center">Veuillez Patienter</h5>
+        <style>
+          .loader {
+            border: 16px solid darkslategrey;
+            position:sticky ;
+            left: 39%;
+            border-radius: 50%;
+            border-top: 16px solid green;
+            width: 80px;
+            height: 80px;
+            -webkit-animation: spin 2s linear infinite; /* Safari */
+            animation: spin 2s linear infinite;
+          }
+          
+          /* Safari */
+          @-webkit-keyframes spin {
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
+          }
+          
+          @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+          </style>
+      
+          <div class="loader inline-block"></div>
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      
+      <br>
+    </div>
+  
 
-    <div id="modprofile" class="card text-white bg-secondary mb-3" style="max-width: 19rem; display: none;">
+    <div id="modprofile" class="card bg-light shadow rounded mb-3" style="max-width: 19rem; display: none;">
       <div class="card-body">
         <h5 class="card-title text-center">Modifier profil</h5> &nbsp;
         <h5 class="card-title"> &nbsp; &nbsp;Votre Nom</h5>
@@ -121,7 +170,7 @@ background-size: 100% 100%; background-attachment: fixed;" class="">
     </div>
 
 
-    <div id="profile" class="card text-white bg-secondary mb-3 text-center" style="max-width: 19rem; display: none;">
+    <div id="profile" class="card bg-light shadow rounded mb-3 text-center" style="max-width: 19rem; display: none;">
       <div class="card-body">
         <h5 id="photo"><img src="/assets/img/person-fill.png" width="150" height="150" style="border-radius: 50%;">
         </h5> <br>
@@ -142,7 +191,7 @@ background-size: 100% 100%; background-attachment: fixed;" class="">
       </div>
     </div>
 
-    <div id="deleterofile" class="card text-white bg-secondary mb-3" style="max-width: 19rem; display: none;">
+    <div id="deleterofile" class="card bg-light shadow rounded mb-3" style="max-width: 19rem; display: none;">
       <div class="card-body">
         <h5 class="card-title text-center">Votre profil actuel n'existe pas</h5> &nbsp;
         <p class="card-text">Principalement parce que votre profil a été supprimé par l'administrateur ou qu'une erreur
@@ -151,16 +200,16 @@ background-size: 100% 100%; background-attachment: fixed;" class="">
     </div>
 
 
-    <div id="newprofile" class="card text-white bg-secondary mb-3" style="max-width: 19rem; display: none;">
+    <div id="newprofile" class="card bg-light shadow rounded mb-3" style="max-width: 19rem; display: none;">
       <div class="card-body">
-        <h5 class="card-title text-center">Tu n'as pas de profil</h5> &nbsp;
+        <h5 class="card-title text-center">Tu n'as pas de profil</h5>
         <p class="card-text">Vous pouvez créer ou charger un profil ici, avec un profil que les administrateurs peuvent
           garder en
           contact avec vous et vous pouvez acquérir des points spéciaux pour de futures récompenses.</p>
         <h5 class="card-title"> &nbsp; &nbsp;Votre Nom</h5>
         <div class="input-group mb-3">
           <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">➤</span>
+            <span class="input-group-text" id="basic-addon1"><img src="/assets/img/person-fill.png" width="20" height="25"></span>
           </div>
           <input id="iname" type="text" class="form-control" placeholder="Nom" aria-label="Username"
             aria-describedby="basic-addon1">
@@ -169,7 +218,7 @@ background-size: 100% 100%; background-attachment: fixed;" class="">
         <h5 class="card-title"> &nbsp; &nbsp;Votre Téléphone</h5>
         <div class="input-group mb-3">
           <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">➤</span>
+            <span class="input-group-text" id="basic-addon1"><img src="/assets/img/phone.png" width="20" height="25"></span>
           </div>
           <input id="iphone" type="text" class="form-control" placeholder="12345678" aria-label="Phone"
             aria-describedby="basic-addon1">
@@ -187,7 +236,7 @@ background-size: 100% 100%; background-attachment: fixed;" class="">
         <hr>
 
         <div class="text-center">
-          <button class="text-center" id="" type="button" (click)="createProfile()" class="btn btn-primary">
+          <button class="text-center" id="" type="button" (click)="createProfile()" class="btn" style="color:white; background-color: #75c612;" >
             Créer/Charger un profil</button> &nbsp;
 
         </div>
@@ -195,17 +244,17 @@ background-size: 100% 100%; background-attachment: fixed;" class="">
     </div>
 
 
-
+    <br>    <br>    <br>   
   </div>
-  <br><br><br><br>
+
 </div>
 
 
 
-<nav class="navbar fixed-bottom navbar-light bg-dark">
-  <img routerLink="/fr-contact" src="/assets/img/fr-profile.png" width="38" height="50" class="center" alt="">
-  <img routerLink="/fr-news" src="/assets/img/fr-news.png" width="38" height="50" class="center" alt="">
-  <img routerLink="/fr-report" src="/assets/img/fr-detect.png" width="38" height="50" class="center" alt="">
-  <img routerLink="/fr-events" src="/assets/img/fr-table.png" width="38" height="50" class="center" alt="">
-  <img routerLink="/fr-info" src="/assets/img/fr-others.png" width="38" height="50" class="center" alt="">
+<nav class="navbar fixed-bottom  shadow-lg bg-white rounded " style="height: 1.6cm;">
+  <img routerLink="/fr-contact" src="/assets/img/fr-profile.png" width="38" height="48" class="center" alt="">
+  <img routerLink="/fr-news" src="/assets/img/fr-news.png" width="38" height="48"  class="center" alt="">
+  <img routerLink="/fr-report" src="/assets/img/fr-detect.png" width="38" height="48"  class="center" alt="">
+  <img routerLink="/fr-events" src="/assets/img/fr-table.png" width="38" height="48" class="center" alt="">
+  <img routerLink="/fr-info" src="/assets/img/fr-others.png" width="38" height="48" class="center" alt="">
 </nav>

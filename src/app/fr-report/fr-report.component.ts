@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit,ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { WebcamImage } from 'ngx-webcam';
 import html2canvas from 'html2canvas';
@@ -23,6 +23,14 @@ export class FrReportComponent implements AfterViewInit {
   ngAfterViewInit(): void {
 
     this.getlocation();
+    navigator.geolocation.getCurrentPosition((position) => {
+    }
+    ,(error) => 
+    {
+      alert("Afin de signaler la position du problème, vous devez activer l'accès GPS.")
+    }
+    );
+
     localStorage.setItem("step", "1");
     localStorage.setItem("capture", "1");
     localStorage.setItem("picc1", "assets/img/empty.jpg");
@@ -31,6 +39,8 @@ export class FrReportComponent implements AfterViewInit {
     localStorage.setItem("picc4", "assets/img/empty.jpg");
     localStorage.setItem("picc5", "assets/img/empty.jpg");
     localStorage.setItem("profile-photoo", "");
+    localStorage.setItem("selecttypea", "");
+    localStorage.setItem("selecttypeb", "");
     window.scrollTo(0, 0);
     setTimeout(function () {
       const element = document.getElementById("capture") as HTMLFormElement;
@@ -115,9 +125,9 @@ export class FrReportComponent implements AfterViewInit {
         (document.getElementById("b2") as HTMLFormElement).innerHTML =
           '    <div id="b2" class="inline-block"> <img  src="/assets/img/slotf.png" width="30" height="30" class="center" alt=""> </div>';
         window.scrollTo(0, 0);
-        
+
         this.autoloc()
-        
+
         return;
       }
     }
@@ -138,6 +148,11 @@ export class FrReportComponent implements AfterViewInit {
       return;
     }
     if (localStorage.getItem("step") == "3") {
+
+      if (localStorage.getItem("selecttypea") == "") {
+        alert("Veuillez sélectionner le type de problème.")
+        return;
+      }
       (document.getElementById("card3") as HTMLFormElement).style.display = "none";
       (document.getElementById("card4") as HTMLFormElement).style.display = "block";
       (document.getElementById("input3") as HTMLFormElement).style.display = "none";
@@ -157,10 +172,83 @@ export class FrReportComponent implements AfterViewInit {
         alert("S'il vous plaît, remplissez toutes les entrées textuelles car elles sont nécessaires pour l'identification du problème.")
         return;
       }
-      if ((document.getElementById("textdesc") as HTMLFormElement)['value'] == "") {
-        alert("S'il vous plaît, remplissez toutes les entrées textuelles car elles sont nécessaires pour l'identification du problème.")
-        return;
+
+
+
+
+
+
+
+      const httpOptions = {
+        headers: new HttpHeaders()
       }
+      httpOptions.headers.append('Access-Control-Allow-Origin', '*');
+      httpOptions.headers.append('Content-Type', 'application/json');
+      httpOptions.headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+
+
+
+      if (localStorage.getItem("profile-name")) {
+
+        var name = localStorage.getItem("profile-name")
+        var phone = localStorage.getItem("profile-phone")
+        // @ts-ignore
+        var x = name
+
+        // @ts-ignore
+        while (x.includes(" ")) {
+          // @ts-ignore
+          x = x.replace(' ', '_');
+        }
+
+        this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/accounts/" + x + "-" + phone + ".json", httpOptions).subscribe(responseData => {
+          if (responseData != null) {
+
+            // @ts-ignore
+            var name = localStorage.getItem("profile-name");
+         
+            var phonee = localStorage.getItem("profile-phone");
+             // @ts-ignore
+            document.getElementById("telex").innerHTML = phonee
+
+            // @ts-ignore
+            var photo = localStorage.getItem("profile-photo");
+            // @ts-ignore
+            document.getElementById("nomx").innerHTML = name;
+         
+         
+
+            
+            (document.getElementById("newprofile") as HTMLFormElement).style.display = "none";
+            (document.getElementById("sameprofile") as HTMLFormElement).style.display = "block";
+            return;
+
+
+          } else {
+            alert("Le profil de votre compte est supprimé par les administrateurs ou corrompu, veuillez contacter les administrateurs pour plus d'informations.");
+            (document.getElementById("newprofile") as HTMLElement).style.display = "block";
+
+
+          }
+
+        });
+
+
+
+
+      }
+
+
+
+
+
+
+
+
+
+
+
+
       (document.getElementById("card4") as HTMLFormElement).style.display = "none";
       (document.getElementById("card5") as HTMLFormElement).style.display = "block";
       (document.getElementById("input4") as HTMLFormElement).style.display = "none";
@@ -169,10 +257,7 @@ export class FrReportComponent implements AfterViewInit {
         '    <div id="b5" class="inline-block"> <img  src="/assets/img/slotf.png" width="30" height="30" class="center" alt=""> </div>';
       localStorage.setItem("step", "5");
       window.scrollTo(0, 0);
-      if (localStorage.getItem("profile-name")) {
-        (document.getElementById("newprofile") as HTMLFormElement).style.display = "none";
-        (document.getElementById("sameprofile") as HTMLFormElement).style.display = "block";
-      }
+
 
       // @ts-ignore
       var name = localStorage.getItem("profile-name");
@@ -196,8 +281,8 @@ export class FrReportComponent implements AfterViewInit {
 
         function (canvas: any) {
           canvas.id = "p1"
-          canvas.style.width = "207px";
-          canvas.style.height = "210px";
+          canvas.style.width = "55px";
+          canvas.style.height = "55px";
           var x = canvas.toDataURL();
           localStorage.setItem("picc1", x);
 
@@ -217,8 +302,8 @@ export class FrReportComponent implements AfterViewInit {
       html2canvas(div as HTMLFormElement).then(
         function (canvas: any) {
           canvas.id = "p2"
-          canvas.style.width = "207px";
-          canvas.style.height = "210px";
+          canvas.style.width = "55px";
+          canvas.style.height = "55px";
           var x = canvas.toDataURL();
           localStorage.setItem("picc2", x);
           (document.getElementById('pic2') as HTMLFormElement).appendChild(canvas);
@@ -233,8 +318,8 @@ export class FrReportComponent implements AfterViewInit {
       html2canvas(div as HTMLFormElement).then(
         function (canvas: any) {
           canvas.id = "p3"
-          canvas.style.width = "207px";
-          canvas.style.height = "210px";
+          canvas.style.width = "55px";
+          canvas.style.height = "55px";
           var x = canvas.toDataURL();
           localStorage.setItem("picc3", x);
           (document.getElementById('pic3') as HTMLFormElement).appendChild(canvas);
@@ -250,8 +335,8 @@ export class FrReportComponent implements AfterViewInit {
       html2canvas(div as HTMLFormElement).then(
         function (canvas: any) {
           canvas.id = "p4"
-          canvas.style.width = "207px";
-          canvas.style.height = "210px";
+          canvas.style.width = "55px";
+          canvas.style.height = "55px";
           var x = canvas.toDataURL();
           localStorage.setItem("picc4", x);
           (document.getElementById('pic4') as HTMLFormElement).appendChild(canvas);
@@ -267,8 +352,8 @@ export class FrReportComponent implements AfterViewInit {
       html2canvas(div as HTMLFormElement).then(
         function (canvas: any) {
           canvas.id = "p5"
-          canvas.style.width = "207px";
-          canvas.style.height = "210px";
+          canvas.style.width = "55px";
+          canvas.style.height = "55px";
           var x = canvas.toDataURL();
           localStorage.setItem("picc5", x);
           (document.getElementById('pic5') as HTMLFormElement).appendChild(canvas);
@@ -301,8 +386,8 @@ export class FrReportComponent implements AfterViewInit {
           reader.onload = function () {
             let x = document.createElement('img')
             x.id = "p5";
-            x.style.width = "207px";
-            x.style.height = "210px";
+            x.style.width = "55px";
+            x.style.height = "55px";
 
             (document.getElementById('pic5') as HTMLFormElement).appendChild(x);
             var output = document.getElementById('p5');
@@ -328,8 +413,8 @@ export class FrReportComponent implements AfterViewInit {
           reader.onload = function () {
             let x = document.createElement('img')
             x.id = "p4";
-            x.style.width = "207px";
-            x.style.height = "210px";
+            x.style.width = "55px";
+            x.style.height = "55px";
             (document.getElementById('pic4') as HTMLFormElement).appendChild(x);
             var output = document.getElementById('p4');
 
@@ -359,8 +444,8 @@ export class FrReportComponent implements AfterViewInit {
           reader.onload = function () {
             let x = document.createElement('img')
             x.id = "p3";
-            x.style.width = "207px";
-            x.style.height = "210px";
+            x.style.width = "55px";
+            x.style.height = "55px";
             (document.getElementById('pic3') as HTMLFormElement).appendChild(x);
             var output = document.getElementById('p3');
 
@@ -388,8 +473,8 @@ export class FrReportComponent implements AfterViewInit {
           reader.onload = function () {
             let x = document.createElement('img')
             x.id = "p2";
-            x.style.width = "207px";
-            x.style.height = "210px";
+            x.style.width = "55px";
+            x.style.height = "55px";
             (document.getElementById('pic2') as HTMLFormElement).appendChild(x);
             var output = document.getElementById('p2');
 
@@ -416,8 +501,8 @@ export class FrReportComponent implements AfterViewInit {
           reader.onload = function () {
             let x = document.createElement('img')
             x.id = "p1";
-            x.style.width = "207px";
-            x.style.height = "210px";
+            x.style.width = "55px";
+            x.style.height = "55px";
             (document.getElementById('pic1') as HTMLFormElement).appendChild(x);
             var output = document.getElementById('p1');
 
@@ -476,7 +561,7 @@ export class FrReportComponent implements AfterViewInit {
         document.getElementById("lat").value = lat;
         // @ts-ignore
         document.getElementById("lon").value = lng;
-       
+
 
 
 
@@ -484,10 +569,10 @@ export class FrReportComponent implements AfterViewInit {
 
       });
 
-        // @ts-ignore
+      // @ts-ignore
       document.getElementById("manl").value = localStorage.getItem("currentpos")
       this.selectm()
-      
+
     } else {
       console.log("No support for geolocation")
     }
@@ -498,6 +583,15 @@ export class FrReportComponent implements AfterViewInit {
   }
 
   send() {
+
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
+    var h = String(today.getHours()).padStart(2, '0');
+    var m = String(today.getMinutes()).padStart(2, '0');
+    var s = String(today.getSeconds()).padStart(2, '0');
+    var time = h + ":" + m + ":" + s + " " + dd + '/' + mm + '/' + yyyy;
 
 
     const httpOptions = {
@@ -545,7 +639,6 @@ export class FrReportComponent implements AfterViewInit {
 
       if (photo == "") {
         photo = "/assets/img/person-fill.png"
-        return;
       }
 
 
@@ -556,16 +649,25 @@ export class FrReportComponent implements AfterViewInit {
       localStorage.setItem("profile-nbrpro", "1")
       localStorage.setItem("profile-score", "0")
 
+
       const pobject = {
         name: name,
         phone: phone,
         photo: photo,
         nbrpro: "1",
         score: "0",
+        date: time,
       }
 
+      var x = name
 
-      this.http.put("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/accounts/" + name + "-" + phone + ".json", pobject, httpOptions).subscribe(responseData => {
+      // @ts-ignore
+      while (x.includes(" ")) {
+        // @ts-ignore
+        x = x.replace(' ', '_');
+      }
+
+      this.http.put("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/accounts/" + x + "-" + phone + ".json", pobject, httpOptions).subscribe(responseData => {
         console.log(responseData);
       });
 
@@ -575,10 +677,49 @@ export class FrReportComponent implements AfterViewInit {
 
       // @ts-ignore
       name = localStorage.getItem("profile-name");
+
+
+
       // @ts-ignore
       phone = localStorage.getItem("profile-phone");
       // @ts-ignore
       photo = localStorage.getItem("profile-photo");
+
+      var x = name
+
+      // @ts-ignore
+      while (x.includes(" ")) {
+        // @ts-ignore
+        x = x.replace(' ', '_');
+      }
+
+      this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/accounts/" + x + "-" + phone + ".json", httpOptions).subscribe(responseDataa => {
+        if (responseDataa != null) {
+
+          // @ts-ignore
+          var l = responseDataa.nbrpro
+          l++
+
+          // @ts-ignore
+          var ll = responseDataa.score
+
+          const ob = {
+            name: name,
+            phone: phone,
+            photo: photo,
+            nbrpro: l,
+            score: ll,
+          }
+
+          var x = name.replace(' ', '_');
+          this.http.put("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/accounts/" + x + "-" + phone + ".json", ob, httpOptions).subscribe(responseData => {
+            console.log(responseData);
+          });
+
+
+        }
+
+      })
       // @ts-ignore
     } else if (document.querySelector('input[name="sending"]:checked').value == "sendi1") {
       name = "Anonyme"
@@ -587,24 +728,15 @@ export class FrReportComponent implements AfterViewInit {
 
 
 
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0');
-    var yyyy = today.getFullYear();
-    var h = String(today.getHours()).padStart(2, '0');
-    var m = String(today.getMinutes()).padStart(2, '0');
-    var s = String(today.getSeconds()).padStart(2, '0');
-    var time = h + ":" + m + ":" + s + " " + dd + '/' + mm + '/' + yyyy;
+
 
 
     // @ts-ignore
-    var typ = document.querySelector('input[name="dtype"]:checked').value;
     const object = {
       title: (document.getElementById("texttitle") as HTMLFormElement)['value'],
       subject: (document.getElementById("textsub") as HTMLFormElement)['value'],
-      description: (document.getElementById("textdesc") as HTMLFormElement)['value'],
       location: loc,
-      type: typ,
+      type: localStorage.getItem("selecttypea"),
       name: name,
       phone: phone,
       date: time,
@@ -806,7 +938,7 @@ export class FrReportComponent implements AfterViewInit {
 
 
   selectm() {
-        // @ts-ignore
+    // @ts-ignore
     document.getElementById("bs").style.display = "none"
     // @ts-ignore
     if (document.getElementById("manl").value == "Ariana") {
@@ -969,14 +1101,38 @@ export class FrReportComponent implements AfterViewInit {
   }
 
   selecta() {
-        // @ts-ignore
+    // @ts-ignore
     if (document.getElementById("mun").value == "Tunis") {
-                // @ts-ignore
-                document.getElementById("bs").style.display = "block"
+      // @ts-ignore
+      document.getElementById("bs").style.display = "block"
     }
   }
 
+  // @ts-ignore
+  selecttype(stra, strb) {
 
+    if (localStorage.getItem("selecttypea") != "") {
+      var ka = localStorage.getItem("selecttypea")
+      var kb = localStorage.getItem("selecttypeb")
+      // @ts-ignore
+      document.getElementById(ka).innerHTML = ' <div class="col" > <div  (click)="selecttype(' + "'" + ka + "'" + ',' + "'" + kb + "'" + ')" id="' + ka + '" class=" card shadow-lg mb-3 bg-light text-center"style="max-width: 10rem; max-height: 6rem; "> <div class="card-body"> <img src="/assets/img/' + ka + '.png" width="50" height="50" alt=""> <h5 style="color:black; font-size:small;">' + kb + '</h5>  </div> </div> </div>'
+    }
+    localStorage.setItem("selecttypea", stra)
+    localStorage.setItem("selecttypeb", strb)
+    var ka = localStorage.getItem("selecttypea")
+    var kb = localStorage.getItem("selecttypeb")
+
+    // @ts-ignore
+    document.getElementById(ka).innerHTML = ' <div class="col" >  <div (click)="selecttype(' + "'" + ka + "'" + ',' + "'" + kb + "'" + ')" id="' + ka + '" class=" card shadow-lg mb-3 text-center"style="max-width: 10rem; max-height: 6rem; background-color:#75c612">  <div class="card-body"> <img src="/assets/img/' + ka + '.png" width="50" height="50" alt=""> <h5 style="color:white; font-size:small;">' + kb + '</h5>  </div> </div>  </div>'
+
+
+
+  }
+
+  aboutme() {
+    alert("GreenCity est une application Web mobile hybride permettant de signaler les problèmes civils/environnementaux quotidiens ou de les consulter ainsi que d'autres informations. \n\n Développé par : Mohamed Dhia Jebali et Aymen Masmoudi \n Fabriqué à partir de SSS Innovation Startup \n\n Votre version actuelle : v"+ localStorage.getItem("oldversion"))
+    
+      }
 
 }
 

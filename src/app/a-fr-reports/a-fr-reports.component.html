@@ -1,40 +1,38 @@
-  <nav class="navbar fixed-top navbar-dark bg-primary justify-content-between py-0">
+<nav class="navbar shadow-lg fixed-top navbar-dark bg-outline-success justify-content-between py-0">
 
-    <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
-      <button class="btn btn-outline-secondary " id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">
-        <img src="/assets/img/settings.png" width="30" height="25" alt="">
-      </button>
-      <div ngbDropdownMenu aria-labelledby="dropdownManual">
-        <button routerLink="/fr-news" ngbDropdownItem><img src="/assets/img/fr.png" width="25" height="25"
-            class="rounded ms-auto" alt="">&nbsp;Français</button>
-        <button routerLink="/ar-news" ngbDropdownItem><img src="/assets/img/tn.png" width="25" height="25"
-            class="rounded ms-auto" alt="">&nbsp;عربي</button>
-        <button routerLink="/en-news" ngbDropdownItem><img src="/assets/img/en.png" width="25" height="25"
-            class="rounded ms-auto" alt="">&nbsp;English</button>
-      </div>
-      <img src="/assets/img/logo.png" width="55" height="40" class="" alt="">
+  <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+    <button class="btn  " id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">
+      <img src="/assets/img/settings.png" width="30" height="25" alt="">
+    </button>
+    <div ngbDropdownMenu aria-labelledby="dropdownManual">
+      <button (click)="deconnecter()" ngbDropdownItem><img src="/assets/img/eject-fill.png" width="25" height="25"
+          class="rounded ms-auto" alt="">&nbsp;Déconnecter</button>
+      <button (click)="aboutme()" ngbDropdownItem><img src="/assets/img/question-fill.png" width="25" height="25"
+          class="rounded ms-auto" alt="">&nbsp;À propos de Moi</button>
     </div>
-      <div>
-        &nbsp;
+    <img src="/assets/img/logo.png" width="55" height="40" class="" alt="">
+  </div>
+  <div>
+    &nbsp;
 
 
-      </div>
+  </div>
 
-      <div>
-        <h5 id="step" class="text-center">Liste des nouvelles Soumissions</h5>
-      </div>
+  <div>
+    <h5 id="step" class="text-center">Liste des nouvelles Soumissions</h5>
+  </div>
 
-      <div>
+  <div>
 
 
-      </div>
+  </div>
 
-      <div id="cred" class="text-end">
-        <img src="/assets/img/person-fill.png" width="25" height="25" style=" float: left;" alt=""> &nbsp;Admin User&nbsp;
+  <div id="cred" class="text-end">
+    <img src="/assets/img/person-fill.png" width="25" height="25" style=" float: left;" alt=""> &nbsp;Admin User&nbsp;
 
-        <img src="/assets/img/location.png" width="20" height="25" class="d-inline-block align-top" alt=""> Borj Cedria
-      </div>
-  </nav>
+    <img src="/assets/img/location.png" width="20" height="25" class="d-inline-block align-top" alt=""> Borj Cedria
+  </div>
+</nav>
 
 <style>
   body {
@@ -46,7 +44,7 @@
     margin: 0;
     padding: 0;
     width: 200px;
-    background-color: #adb5bd;
+    background-color: #c3cbd3;
     position: fixed;
     height: 100%;
     overflow: auto;
@@ -60,7 +58,7 @@
   }
 
   .sidebar a.active {
-    background-color: cornflowerblue;
+    background-color: #75c612;
     color: white;
   }
 
@@ -100,18 +98,31 @@
 </style>
 <div class="sidebar">
   <br>
+  <br>
+  <a id="aaa" style="display: none;"routerLink="/a-fr-adminaccounts"><img src="/assets/img/person-fill.png" width="30" height="30"
+      style="float: left; filter:invert(1); " alt="">&nbsp;
+    Admin Comptes</a>
   <a routerLink="/a-fr-accounts"><img src="/assets/img/laccounts.png" width="30" height="30" style="float: left;"
       alt="">&nbsp;&nbsp;Comptes</a>
   <a routerLink="/a-fr-reports" class="active"><img src="/assets/img/lreports.png" width="30" height="30"
-      style="filter:invert(1); float: left;" alt="">&nbsp;&nbsp;Reports</a>
-  <a routerLink="/a-fr-info"><img src="/assets/img/linfo.png" width="30" height="30" style="float: left;" alt="">&nbsp;
-    Problems</a>
+      style="filter:invert(1); float: left;" alt="">&nbsp;&nbsp;Rapports</a>
+  <a routerLink="/a-fr-approved"><img src="/assets/img/linfo.png" width="30" height="30" style="float: left;"
+      alt="">&nbsp;
+      Problèmes</a>
   <a routerLink="/a-fr-events"><img src="/assets/img/calendar-fill.png" width="30" height="30"
       style="filter:invert(1); float: left;" alt="">&nbsp; Événements</a>
+  <a routerLink="/a-fr-info"><img src="/assets/img/kanban-fill.png" width="30" height="30"
+      style="float: left; filter:invert(1); " alt="">&nbsp;
+    Infos</a>
+  <a routerLink="/a-fr-messages"><img src="/assets/img/envelope-fill.png" width="30" height="30"
+      style="float: left; filter:invert(1); " alt="">&nbsp;
+    Messages</a>
 </div>
-<br><br>
-<div id="news" class="content">
 
+
+<div class="content"
+  style="background-image: url('/assets/img/backgroundadmin.png');     background-repeat: no-repeat;  background-attachment: fixed; background-size: 100% 100%;">
+  <br><br>
 
   <div id="waiting">
     <div class="card bg-light text-center" style="width: 20rem;">
@@ -166,6 +177,8 @@
       <h4 class="card-title text-center">Aucun problème n'a été signalé à cet endroit pour le moment ...</h4>
     </div>
   </div>
+
+  <div id="news"></div>
 
   <div class="card text-white bg-secondary mb-3" style="display:none">
     <div class="card-body">

@@ -1,26 +1,24 @@
-<nav class="navbar fixed-top navbar-dark bg-primary justify-content-between py-0">
+<nav class="navbar shadow-lg fixed-top navbar-dark bg-outline-success justify-content-between py-0">
 
   <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
-    <button class="btn btn-outline-secondary " id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">
+    <button class="btn  " id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">
       <img src="/assets/img/settings.png" width="30" height="25" alt="">
     </button>
     <div ngbDropdownMenu aria-labelledby="dropdownManual">
-      <button routerLink="/fr-news" ngbDropdownItem><img src="/assets/img/fr.png" width="25" height="25"
-          class="rounded ms-auto" alt="">&nbsp;Français</button>
-      <button routerLink="/ar-news" ngbDropdownItem><img src="/assets/img/tn.png" width="25" height="25"
-          class="rounded ms-auto" alt="">&nbsp;عربي</button>
-      <button routerLink="/en-news" ngbDropdownItem><img src="/assets/img/en.png" width="25" height="25"
-          class="rounded ms-auto" alt="">&nbsp;English</button>
+      <button (click)="deconnecter()" ngbDropdownItem><img src="/assets/img/eject-fill.png" width="25" height="25"
+          class="rounded ms-auto" alt="">&nbsp;Déconnecter</button>
+      <button (click)="aboutme()" ngbDropdownItem><img src="/assets/img/question-fill.png" width="25" height="25"
+          class="rounded ms-auto" alt="">&nbsp;À propos de Moi</button>
     </div>
     <img src="/assets/img/logo.png" width="55" height="40" class="" alt="">
   </div>
-
-  &nbsp;
-
-
   <div>
+    &nbsp;
+
 
   </div>
+
+
 
   <div>
     <h5 id="step" class="text-center">List des Événements</h5>
@@ -50,7 +48,7 @@
     margin: 0;
     padding: 0;
     width: 200px;
-    background-color: #adb5bd;
+    background-color: #c3cbd3;
     position: fixed;
     height: 100%;
     overflow: auto;
@@ -64,7 +62,7 @@
   }
 
   .sidebar a.active {
-    background-color: cornflowerblue;
+    background-color: #75c612;
     color: white;
   }
 
@@ -131,14 +129,25 @@
 <div class="sidebar">
   <br>
   <br>
+  <a id="aaa" style="display: none;"routerLink="/a-fr-adminaccounts"><img src="/assets/img/person-fill.png" width="30" height="30"
+    style="float: left; filter:invert(1); " alt="">&nbsp;
+  Admin Comptes</a>
   <a routerLink="/a-fr-accounts"><img src="/assets/img/laccounts.png" width="30" height="30" style="float: left;"
       alt="">&nbsp;&nbsp;Comptes</a>
   <a routerLink="/a-fr-reports"><img src="/assets/img/lreports.png" width="30" height="30" style=" float: left;"
-      alt="">&nbsp;&nbsp;Reports</a>
-  <a routerLink="/a-fr-info"><img src="/assets/img/linfo.png" width="30" height="30" style="float: left;" alt="">&nbsp;
-    Problems</a>
+      alt="">&nbsp;&nbsp;Rapports</a>
+  <a routerLink="/a-fr-approved"><img src="/assets/img/linfo.png" width="30" height="30" style="float: left;"
+      alt="">&nbsp;
+      Problèmes</a>
   <a class="active" routerLink="/a-fr-events"><img src="/assets/img/calendar-fill.png" width="30" height="30"
       style="float: left;" alt="">&nbsp; Événements</a>
+  <a routerLink="/a-fr-info"><img src="/assets/img/kanban-fill.png" width="30" height="30"
+      style="float: left; filter:invert(1); " alt="">&nbsp;
+    Infos</a>
+  <a routerLink="/a-fr-messages"><img src="/assets/img/envelope-fill.png" width="30" height="30"
+      style="float: left; filter:invert(1); " alt="">&nbsp;
+    Messages</a>
+
 </div>
 
 
@@ -147,17 +156,18 @@
   <h1>Ajouter événement</h1>
   <div class="card-body">
     <h5 class="card-title">
-      <label for="idtitlex">Title</label>
-      <input type="text" class="form-control" id="idtitlex" placeholder="Title">
-      <label for="idtitlex">Subject</label>
-      <textarea type="textarea" class="form-control" id="idsubjectx" placeholder="Subject" rows="3"></textarea>
+      <label for="idtitlex">Titre</label>
+      <input type="text" class="form-control" id="idtitlex" placeholder="Titre">
+      <label for="idtitlex">Sujet</label>
+      <textarea type="textarea" class="form-control" id="idsubjectx" placeholder="Sujet" rows="3"></textarea>
       <label for="idtitlex">Desciption</label>
       <textarea type="textarea" class="form-control" id="iddescriptionx" placeholder="Description" rows="5"></textarea>
       <label for="iddate_evx">Date de l'évènement</label>
-      <textarea type="textarea" class="form-control" id="iddate_enx" placeholder="Date de l'évènement"
-        rows="3"></textarea>
+      <input type="textarea" class="form-control" id="iddate_enx" placeholder="00:00:00 01/01/2022">
+      <label for="iddate_evx">Municipalité</label>
+      <input type="textarea" class="form-control" id="idmunx" placeholder="Municipalité">
       <br>
-      Nouvelles Images
+      Images
       <br> <br>
       <button type="file" (click)="picupload()" accept="image/*" class="btn btn-success">
         <img src="/assets/img/arrow-bar-up.png" width="30" height="25" style="filter: invert(1); float: left;"
@@ -171,14 +181,74 @@
         <div class="col" style="background-color: aliceblue;" id="pic5">&nbsp;</div>
       </div>
       <br>
+      <button (click)="send()" accept="image/*" class="btn text-end btn-primary"> Ajouter</button>
     </h5>
   </div>
 </div>
 
-
-<div id="events" class="content">
+<div class="content"
+  style="background-image: url('/assets/img/backgroundadmin.png');     background-repeat: no-repeat;  background-attachment: fixed; background-size: 100% 100%;">
   <br><br>
 
+
+  <div id="waiting">
+    <div class="card bg-light text-center" style="width: 20rem;">
+      <h4 class="card-title text-center">Récupérer les évènements ...</h4>
+      <h5 class="card-text text-center">Veuillez Patienter</h5>
+      <style>
+        .loader {
+          border: 16px solid darkslategrey;
+          position: sticky;
+          left: 54%;
+
+          border-radius: 50%;
+          border-top: 16px solid green;
+          width: 80px;
+          height: 80px;
+          -webkit-animation: spin 2s linear infinite;
+          /* Safari */
+          animation: spin 2s linear infinite;
+        }
+
+        /* Safari */
+        @-webkit-keyframes spin {
+          0% {
+            -webkit-transform: rotate(0deg);
+          }
+
+          100% {
+            -webkit-transform: rotate(360deg);
+          }
+        }
+
+        @keyframes spin {
+          0% {
+            transform: rotate(0deg);
+          }
+
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+      </style>
+
+      <div class="loader inline-block"></div>
+    </div>
+
+
+    <br>
+  </div>
+
+  <div id="nodata" style="display: none;">
+    <div class="card bg-light text-center" style="width: 23rem;">
+      <h4 class="card-title text-center">Aucun problème n'a été signalé à cet endroit pour le moment. ...</h4>
+    </div>
+  </div>
+
+
+  <div id="events"></div>
+
+  <br>
   <div class="card text-white bg-secondary mb-3" style="display: none;">
     <div class="card-body">
       <h5 class="card-title">
@@ -207,17 +277,17 @@
   </div>
 
   <div id="send" style="display: none;" class="card text-white bg-secondary mb-3">
+    <br><br>
     <div class="card-body">
       <h5 class="card-title">
         <label for="idtitlex">Title</label>
-        <input type="text" class="form-control" id="titlex" placeholder="title">
+        <input type="text" class="form-control" id="titlex" placeholder="Titire">
         <label for="idtitlex">Subject</label>
-        <textarea type="textarea" class="form-control" id="subjectx" placeholder="subject" rows="3"></textarea>
+        <textarea type="textarea" class="form-control" id="subjectx" placeholder="Sujet" rows="3"></textarea>
         <label for="idtitlex">Desciption</label>
-        <textarea type="textarea" class="form-control" id="descriptionx" placeholder="description" rows="5"></textarea>
+        <textarea type="textarea" class="form-control" id="descriptionx" placeholder="Description" rows="5"></textarea>
         <label for="iddate_evx">Date de l'évènement</label>
-        <textarea type="textarea" class="form-control" id="date_enx" placeholder="Date de l'évènement"
-          rows="3"></textarea>
+        <input type="textarea" class="form-control" id="date_enx" placeholder="00:00:00 2000/01/01">
         <br>
         Choisir les Images
         <br> <br>
@@ -234,10 +304,12 @@
         </div>
         <br>
         <br>
-        <button type="file" (click)="send()" accept="image/*" class="btn text-end btn-warning">
+        <button (click)="send()" accept="image/*" class="btn text-end btn-primary">
           <img src="/assets/img/arrow-bar-up.png" width="30" height="25" style="filter: invert(1); float: left;"
             alt="">&nbsp; Submit</button>
 
       </h5>
-      
+
     </div>
+  </div>
+</div>

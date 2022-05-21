@@ -26,6 +26,10 @@ import { HomeComponent } from './home/home.component';
 import { FrAccountComponent } from './fr-account/fr-account.component';
 import { FrContactComponent } from './fr-contact/fr-contact.component';
 import { FrInfoComponent } from './fr-info/fr-info.component';
+import { AFrMessagesComponent } from './a-fr-messages/a-fr-messages.component';
+import { AFrApprovedComponent } from './a-fr-approved/a-fr-approved.component';
+import { AFrHomeComponent } from './a-fr-home/a-fr-home.component';
+import { AFrAdminaccountsComponent } from './a-fr-adminaccounts/a-fr-adminaccounts.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +50,11 @@ import { FrInfoComponent } from './fr-info/fr-info.component';
     HomeComponent,
     FrAccountComponent,
     FrContactComponent,
-    FrInfoComponent
+    FrInfoComponent,
+    AFrMessagesComponent,
+    AFrApprovedComponent,
+    AFrHomeComponent,
+    AFrAdminaccountsComponent
   ],
   imports: [
     BrowserModule,

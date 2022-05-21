@@ -1,37 +1,33 @@
 <br><br>
-<nav class="navbar fixed-top navbar-dark bg-success justify-content-between py-0">
-    <div class="text-center">
-        &nbsp;
-        <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
-            <button class="btn btn-outline-secondary " id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">
-                <img src="/assets/img/settings.png" width="30" height="25" alt="">
-            </button>
-            <div ngbDropdownMenu aria-labelledby="dropdownManual">
-                <button routerLink="/fr-account" ngbDropdownItem><img src="/assets/img/person-fill.png" width="25"
-                        height="25" class=" ms-auto" alt="">&nbsp;Profil</button>
-                <button (click)="navselectall()" ngbDropdownItem><img src="/assets/img/documents.png" width="25"
-                        height="25" class=" ms-auto" alt="">&nbsp;Tous</button>
-                <button (click)="viewselectman()" ngbDropdownItem><img src="/assets/img/map.png" width="25" height="25"
-                        class=" ms-auto" alt="">&nbsp;Localisation Manuel</button>
-                <button (click)="navselectauto()" ngbDropdownItem><img src="/assets/img/geo.png" width="25" height="25"
-                        class=" ms-auto" alt="">&nbsp;Localisation Actuelle</button>
-                <button routerLink="/fr-news" ngbDropdownItem><img src="/assets/img/fr.png" width="25" height="25"
-                        class="rounded ms-auto" alt="">&nbsp;Français</button>
-                <button routerLink="/ar-news" ngbDropdownItem><img src="/assets/img/tn.png" width="25" height="25"
-                        class="rounded ms-auto" alt="">&nbsp;عربي</button>
-                <button routerLink="/en-news" ngbDropdownItem><img src="/assets/img/en.png" width="25" height="25"
-                        class="rounded ms-auto" alt="">&nbsp;English</button>
-            </div>
+<nav class="navbar fixed-top navbar-dark shadow-lg p-3 mb-5 bg-white border-success rounded justify-content-between py-0">
+  <div class="text-center">
+    <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
 
-        </div>
-        &nbsp;
-        <img src="/assets/img/logo.png" width="60" height="45" class="" alt="">
+      <button class="btn btn-white " id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">
+        <img src="/assets/img/settings.png" width="30" height="25" alt="">
+      </button>
+      <div ngbDropdownMenu aria-labelledby="dropdownManual">
+        <button routerLink="/fr-account" ngbDropdownItem><img src="/assets/img/person-fill.png" width="25" height="25"
+          class=" ms-auto" alt="">&nbsp;Profil</button>
+        <button (click)="navselectall()" ngbDropdownItem><img src="/assets/img/grid-fill.png" width="25" height="25"
+            class=" ms-auto" alt="">&nbsp;Tous</button>
+        <button (click)="viewselectman()" ngbDropdownItem><img src="/assets/img/map.png" width="25" height="25"
+            class=" ms-auto" alt="">&nbsp;Localisation Manuel</button>
+        <button (click)="navselectauto()" ngbDropdownItem><img src="/assets/img/geo.png" width="25" height="25"
+            class=" ms-auto" alt="">&nbsp;Localisation Actuelle</button>
+            <button (click)="aboutme()"  ngbDropdownItem><img src="/assets/img/question-fill.png" width="25" height="25"
+                class="rounded ms-auto" alt="">&nbsp;À propos de Moi</button>
+      </div>
+
     </div>
+    &nbsp;
+    <img src="/assets/img/logo.png" width="60" height="50" class="" alt="">
+  </div>
 
     <div>
-        <h5 class="text-center"> Actualités</h5>
-        <h6 id="currentposition" class="text-center"> <img src="/assets/img/location.png" width="15" height="20"
-                class="d-inline-block align-top" alt="">position actuel</h6>
+        <h5 class="text-center" style="color:#75c612"> Actualités</h5>
+        <h6 id="currentposition" class="text-center" style="color:#75c612"> <img src="/assets/img/location.png" width="15" height="20"
+                class="d-inline-block align-top" alt=""> Activer l'accès GPS</h6>
     </div>
 
     <div></div>
@@ -77,22 +73,37 @@ background-size: 100% 100%; background-attachment: fixed;" class="">
   
 background-size: 100% 100%; background-attachment: fixed;" class="">
         <br>
-        <div class="card text-white bg-secondary mb-3" style="max-width: 21rem;">
+        <div class="card bg-light shadow rounded mb-3" style="max-width: 21.1rem;">
 
             <div class="card-body">
                 <h5 class="card-title"> <img src="/assets/img/people-fill.png" width="40" height="30"
-                        style="filter: invert(1); float: left;" alt=""> &nbsp; &nbsp;Plateformes sociales</h5> &nbsp;
+                        style="float: left;" alt=""> &nbsp; &nbsp;Plateformes sociales</h5> &nbsp;
                         <br>
                 <a href="https://www.facebook.com/GreenCityTunisie"><img src="/assets/img/facebook.png" width="50"
                         height="50"></a>
+                        &nbsp;
+                        <a href="https://twitter.com/GreencityTn"><img src="/assets/img/twitter.png" width="50"
+                            height="50" style="border-radius: 50%"></a>
+                            &nbsp;
+                        
+                            <a href="https://www.instagram.com/greencitytunisia/"><img src="/assets/img/instagram.jpg" width="50"
+                                height="50" style="border-radius: 50%"></a>
+                                &nbsp;
+                            
+                                <a href="https://discord.gg/NX4z9Dyd"><img src="/assets/img/discord.png" width="50"
+                                    height="50" style="border-radius: 50%"></a>
+                                    &nbsp;
+
+                            <a href="mailto: greencitytunisia@gmail.com"><img src="/assets/img/google.jpeg" width="50"
+                                height="50" style="border-radius: 50%"></a>
             </div>
         </div>
 
-        <div class="card text-white bg-secondary mb-3" style="max-width: 21rem;">
+        <div class="card  bg-light shadow rounded mb-3" style="max-width: 21rem;">
 
             <div class="card-body">
                 <h5 class="card-title"> <img src="/assets/img/list.png" width="30" height="30"
-                        style="filter: invert(1); float: left;" alt=""> &nbsp; &nbsp;Message</h5> &nbsp;
+                        style="float: left;" alt=""> &nbsp; &nbsp;Message</h5> &nbsp;
                 <p class="card-text">Vous pouvez envoyer des messages directs aux administrateurs, insérer votre nom,
                     votre sujet, votre email et le message lui-même.</p>
 
@@ -100,7 +111,7 @@ background-size: 100% 100%; background-attachment: fixed;" class="">
                 <h5 class="card-title"> &nbsp; &nbsp;Nom</h5>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1">➤</span>
+                        <span class="input-group-text" id="basic-addon1"><img src="/assets/img/person-fill.png" width="20" height="25"></span>
                     </div>
                     <input type="text" class="form-control" placeholder="Insérez le nom ici" aria-label="Username"
                         aria-describedby="basic-addon1" id="name">
@@ -110,7 +121,7 @@ background-size: 100% 100%; background-attachment: fixed;" class="">
                 <h5 class="card-title"> &nbsp; &nbsp;Sujet</h5>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1">➤</span>
+                        <span class="input-group-text" id="basic-addon1"><img src="/assets/img/bookmark-fill.png" width="20" height="25"></span>
                     </div>
                     <input type="text" class="form-control" placeholder="Insérez le sujet ici" aria-label="Username"
                         aria-describedby="basic-addon1" id="sub">
@@ -119,7 +130,7 @@ background-size: 100% 100%; background-attachment: fixed;" class="">
                 <h5 class="card-title"> &nbsp; &nbsp;Email</h5>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1">➤</span>
+                        <span class="input-group-text" id="basic-addon1"><img src="/assets/img/envelope-fill.png" width="20" height="25"></span>
                     </div>
                     <input type="email" class="form-control" placeholder="Insérez l'email ici" aria-label="Username"
                         aria-describedby="basic-addon1" id="email">
@@ -130,7 +141,7 @@ background-size: 100% 100%; background-attachment: fixed;" class="">
                     id="message" rows="8"></textarea>
                 <br>
                 <div class="text-center">
-                    <button class="text-center" id="" type="button" (click)="send()" class="btn btn-success">
+                    <button class="text-center shadow" id="" type="button" (click)="send()" class="btn" style="background-color:#75c612; color:white;">
                         Envoyer</button> &nbsp;
 
                 </div>
@@ -141,10 +152,10 @@ background-size: 100% 100%; background-attachment: fixed;" class="">
         <br>
     </div>
 
-    <nav class="navbar fixed-bottom navbar-light bg-dark">
-        <img routerLink="/fr-contact" src="/assets/img/fr-profile.png" width="38" height="50" class="center" alt="">
-        <img routerLink="/fr-news" src="/assets/img/fr-news.png" width="38" height="50" class="center" alt="">
-        <img routerLink="/fr-report" src="/assets/img/fr-detect.png" width="38" height="50" class="center" alt="">
-        <img routerLink="/fr-events" src="/assets/img/fr-table.png" width="38" height="50" class="center" alt="">
-        <img routerLink="/fr-info" src="/assets/img/fr-others.png" width="38" height="50" class="center" alt="">
-    </nav>
+    <nav class="navbar fixed-bottom  shadow-lg bg-white rounded " style="height: 1.6cm;">
+        <img routerLink="/fr-contact" src="/assets/img/fr-profile.png" width="38" height="48" class="center" alt="">
+        <img routerLink="/fr-news" src="/assets/img/fr-news.png" width="38" height="48"  class="center" alt="">
+        <img routerLink="/fr-report" src="/assets/img/fr-detect.png" width="38" height="48"  class="center" alt="">
+        <img routerLink="/fr-events" src="/assets/img/fr-table.png" width="38" height="48" class="center" alt="">
+        <img routerLink="/fr-info" src="/assets/img/fr-others.png" width="38" height="48" class="center" alt="">
+      </nav>

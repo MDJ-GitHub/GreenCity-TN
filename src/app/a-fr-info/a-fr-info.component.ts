@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { SHA256, enc, x64 } from "crypto-js";
 
 @Component({
   selector: 'app-a-fr-info',
@@ -13,17 +14,43 @@ export class AFrInfoComponent implements OnInit {
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
-    localStorage.setItem("adminn", "Mohamed Dhia Jebali")
-    localStorage.setItem("adminl", "Ben Arous")
+
+    const httpOptions = {
+      headers: new HttpHeaders()
+    }
+    httpOptions.headers.append('Access-Control-Allow-Origin', '*');
+    httpOptions.headers.append('Content-Type', 'application/json');
+    httpOptions.headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+    var username = localStorage.getItem("adminnom")
+    var password = localStorage.getItem("adminp")
     // @ts-ignore
-    document.getElementById("cred").innerHTML = '   <div id="cred" class="text-end">    <img src="/assets/img/person-fill.png" width="25" height="25" style=" float: left;" alt=""> &nbsp;' + localStorage.getItem("adminn") + '&nbsp;    <img src="/assets/img/location.png" width="20" height="25" class="d-inline-block align-top" alt=""> ' + localStorage.getItem("adminl") + ' &nbsp; </div>'
-    this.getInfo()
+    var cpassword = SHA256(password).toString(enc.Hex);
+    // @ts-ignore
+    var x = username.replace(' ', '_');
+    this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/adminaccounts/" + x + "-" + cpassword + ".json", httpOptions).subscribe(responseData => {
+      if (responseData != null) {
+        // @ts-ignore
+        if (responseData.big == "1") {
+          // @ts-ignore
+          document.getElementById("aaa").style.display = "block"
+        }
+
+      }
+    })
+
+    // @ts-ignore
+    document.getElementById("cred").innerHTML = '   <div id="cred" class="text-end">    <img src="/assets/img/person-fill.png" width="25" height="25" style=" float: left;" alt=""> &nbsp;' + localStorage.getItem("adminnom") + '&nbsp;    <img src="/assets/img/location.png" width="20" height="25" class="d-inline-block align-top" alt=""> ' + localStorage.getItem("adminloc") + ' &nbsp; </div>'
     localStorage.setItem("capture", "1");
+    this.getInfo();
     localStorage.setItem("picc1", "assets/img/empty.jpg");
     localStorage.setItem("picc2", "assets/img/empty.jpg");
     localStorage.setItem("picc3", "assets/img/empty.jpg");
     localStorage.setItem("picc4", "assets/img/empty.jpg");
     localStorage.setItem("picc5", "assets/img/empty.jpg");
+  }
+
+  refresh(): void {
+    window.location.reload();
   }
 
   getInfo() {
@@ -36,98 +63,84 @@ export class AFrInfoComponent implements OnInit {
 
     var loc = localStorage.getItem("adminloc");
 
-    this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/problems/approved/" + loc + "/.json", httpOptions).subscribe(responseData => {
-      if (responseData != null) {
 
-        var pp = "assets/img/person-fill.png"
-        var c = {};
+    if (loc != "Tous") {
 
-        Object.entries(responseData).map(b => {
+      this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/infos/" + loc + "/.json", httpOptions).subscribe(responseData => {
+        console.log(responseData);
 
+        if (responseData != null) {
 
-          // @ts-ignore
-          if (b[1].name != "Anonyme") {
+          Object.entries(responseData).map(a => {
+            console.log(a[1])
             // @ts-ignore
-            var prof = b[1].name + '-' + b[1].phone
-            this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/accounts/" + prof + ".json", httpOptions).subscribe(responseDataa => {
-
-
-              // @ts-ignore
-              pp = responseDataa.photo
-
-              // @ts-ignore
-              document.getElementById("anews").insertAdjacentHTML('afterbegin', '  <div id="' + b[0] + 'div" class="card text-white bg-secondary mb-3">    <div class="card-body">      <h5 class="card-title">        <img src="/assets/img/' + b[1].type + '.png" width="40" height="40" style="float: left;" alt="">        &nbsp;&nbsp;' + b[1].title + ' &nbsp;        <img src="' + pp + '" width="60" height="60" style=" float: center; border-radius: 50%" alt=""> ' + b[1].name + ' &nbsp; <img src="/assets/img/phone.png" width="20" height="20" style=" float: center;" alt=""> ' + b[1].phone + ' &nbsp;      <img src="/assets/img/calendar.png" width="20" height="20" style=" float: center;" alt=""> ' + b[1].date + '   &nbsp; <img src="/assets/img/map.png" width="20" height="20" style=" float: center;" alt=""> ' + b[1].location + ' &nbsp; <img src="/assets/img/plus.png" width="20" height="20" style=" float: center;" alt=""> ' + b[1].mun + '  &nbsp; <a href="https://maps.google.com/?q=' + b[1].lat + ',' + b[1].lon + '" class="btn btn-outline-light"><img src="/assets/img/geo.png" width="13" height="18" style=" float: center;"> Position</a>     <img  id="' + b[0] + 'remove" (click)="remove(' + "'" + b[0] + "'" + ')" src="/assets/img/remove.png" width="20" height="20" style="float: right;" alt="">        <img src="/assets/img/empty.png" width="10" height="10" style="float: right;" alt="">        <img id="' + b[0] + 'modify" (click)="modify(' + "'" + b[0] + "'" + ')" src="/assets/img/modify.png" width="20" height="20" style="float: right;" alt="">        <img src="/assets/img/empty.png" width="10" height="10" style="float: right;" alt="">           </h5> &nbsp;      <p class="card-text">' + b[1].subject + '</p>      <p class="card-text bg-dark">' + b[1].description + '</p>      <hr>      <img src="' + b[1].picture1 + '" width="150" height="125">      <img src="' + b[1].picture2 + '" width="150" height="125">      <img src="' + b[1].picture3 + '" width="150" height="125">      <img src="' + b[1].picture4 + '" width="150" height="125">      <img src="' + b[1].picture5 + '" width="150" height="125">    </div>  </div>');
-              this.elementRef.nativeElement.querySelector('#' + b[0] + 'modify').addEventListener('click', this.modify.bind(this));
-              this.elementRef.nativeElement.querySelector('#' + b[0] + 'remove').addEventListener('click', this.remove.bind(this));
-
-              // @ts-ignore
-              document.getElementById("waiting").style.display = "none"
-
-
-            })
-          } else {
-
-
-            // @ts-ignore
-            document.getElementById("anews").insertAdjacentHTML('afterbegin', '  <div id="' + b[0] + 'div" class="card text-white bg-secondary mb-3">    <div class="card-body">      <h5 class="card-title">        <img src="/assets/img/' + b[1].type + '.png" width="40" height="40" style="float: left;" alt="">        &nbsp;&nbsp;' + b[1].title + ' &nbsp;        <img src="' + pp + '" width="60" height="60" style=" float: center; border-radius: 50%" alt=""> ' + b[1].name + ' &nbsp; <img src="/assets/img/phone.png" width="20" height="20" style=" float: center;" alt=""> ' + b[1].phone + ' &nbsp;      <img src="/assets/img/calendar.png" width="20" height="20" style=" float: center;" alt=""> ' + b[1].date + '     &nbsp; <img src="/assets/img/map.png" width="20" height="20" style=" float: center;" alt=""> ' + b[1].location + ' &nbsp; <img src="/assets/img/plus.png" width="20" height="20" style=" float: center;" alt=""> ' + b[1].mun + ' &nbsp; <a href="https://maps.google.com/?q=' + b[1].lat + ',' + b[1].lon + '" class="btn btn-outline-light"><img src="/assets/img/geo.png" width="13" height="18" style=" float: center;"> Position</a>   <img  id="' + b[0] + 'remove" (click)="remove(' + "'" + b[0] + "'" + ')" src="/assets/img/remove.png" width="20" height="20" style="float: right;" alt="">        <img src="/assets/img/empty.png" width="10" height="10" style="float: right;" alt="">        <img id="' + b[0] + 'modify" (click)="modify(' + "'" + b[0] + "'" + ')" src="/assets/img/modify.png" width="20" height="20" style="float: right;" alt="">        <img src="/assets/img/empty.png" width="10" height="10" style="float: right;" alt="">           </h5> &nbsp;      <p class="card-text">' + b[1].subject + '</p>      <p class="card-text bg-dark">' + b[1].description + '</p>      <hr>      <img src="' + b[1].picture1 + '" width="150" height="125">      <img src="' + b[1].picture2 + '" width="150" height="125">      <img src="' + b[1].picture3 + '" width="150" height="125">      <img src="' + b[1].picture4 + '" width="150" height="125">      <img src="' + b[1].picture5 + '" width="150" height="125">    </div>  </div>');
-            this.elementRef.nativeElement.querySelector('#' + b[0] + 'modify').addEventListener('click', this.modify.bind(this));
-            this.elementRef.nativeElement.querySelector('#' + b[0] + 'remove').addEventListener('click', this.remove.bind(this));
+            document.getElementById("infoss").insertAdjacentHTML('afterbegin', '    <div id="' + a[0] + 'div"  class="card text-white bg-secondary mb-3" style="display:block">      <div class="card-body">        <h5 class="card-title">          &nbsp;&nbsp;' + a[1].title + ' &nbsp;          <img src="/assets/img/calendar.png" width="20" height="20" style=" float: center;" alt=""> ' + a[1].date + '       <img id="' + a[0] + 'remove" (click)="remove(' + "'" + a[0] + "'" + ')" src="/assets/img/remove.png" width="20" height="20" style="float: right;" alt="">          <img src="/assets/img/empty.png" width="10" height="10" style="float: right;" alt="">          <img <img id="' + a[0] + 'modify" (click)="modifyn(' + "'" + a[0] + "'" + ')"  src="/assets/img/modify.png" width="20" height="20" style="float: right;" alt="">        </h5>        <table>          <tr>            <td> <img src="' + a[1].picture1 + '" width="150" height="125"></td>            <td>              <p class="card-text"> ' + a[1].subject + '</p>              <p class="card-text bg-dark"> ' + a[1].description + '</p>            </td>          </tr>        </table>      </div>    </div>');
+            this.elementRef.nativeElement.querySelector('#' + a[0] + 'remove').addEventListener('click', this.remove.bind(this));
+            this.elementRef.nativeElement.querySelector('#' + a[0] + 'modify').addEventListener('click', this.modifyn.bind(this));
 
             // @ts-ignore
             document.getElementById("waiting").style.display = "none"
 
-          }
+          })
+            ;
+        } else {
+
+          // @ts-ignore
+          document.getElementById("waiting").style.display = "none"
+
+          // @ts-ignore
+          document.getElementById("nodata").style.display = "none"
+
+        }
 
 
-
-
-
-        })
-
-      } else {
-        // @ts-ignore
-        document.getElementById("waiting").style.display = "none"
-        // @ts-ignore
-        document.getElementById("nodata").style.display = "block"
-      }
-    });
-  }
-
-  // @ts-ignore
-  approve(str) {
-
-    const httpOptions = {
-      headers: new HttpHeaders()
-    }
-    httpOptions.headers.append('Access-Control-Allow-Origin', '*');
-    httpOptions.headers.append('Content-Type', 'application/json');
-    httpOptions.headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-
-    var loc = localStorage.getItem("adminloc");
-    var typ = localStorage.getItem("admintyp");
-
-    if (typeof str == "object") {
-      var x = str.srcElement.id
-    } else {
-      x = str
-    }
-
-    x = x.replace('approve', '');
-    this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/problems/" + loc + "/" + x + ".json", httpOptions).subscribe(responseData => {
-
-      this.http.put("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/problems/approved/" + loc + "/" + x + ".json", responseData, httpOptions).subscribe(responseData => { })
-
-
-      this.http.delete("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/problems/" + loc + "/" + x + ".json", httpOptions).subscribe(responseData => {
-
-        location.reload();
       })
 
 
-        ;
-    })
+    } else {
+
+
+      this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/infos/.json", httpOptions).subscribe(responseData => {
+        console.log(responseData);
+
+        if (responseData != null) {
+
+          Object.entries(responseData).map(b => {
+            Object.entries(b[1]).map(a => {
+              console.log(a[1])
+              // @ts-ignore
+              document.getElementById("infoss").insertAdjacentHTML('afterbegin', '    <div id="' + a[0] + 'div"  class="card text-white bg-secondary mb-3" style="display:block">      <div class="card-body">        <h5 class="card-title">          &nbsp;&nbsp;' + a[1].title + ' &nbsp;          <img src="/assets/img/calendar.png" width="20" height="20" style=" float: center;" alt=""> ' + a[1].date + '       <img id="' + a[0] + 'remove" (click)="remove(' + "'" + a[0] + "'" + ')" src="/assets/img/remove.png" width="20" height="20" style="float: right;" alt="">          <img src="/assets/img/empty.png" width="10" height="10" style="float: right;" alt="">          <img <img id="' + a[0] + 'modify" (click)="modifyn(' + "'" + a[0] + "'" + ')"  src="/assets/img/modify.png" width="20" height="20" style="float: right;" alt="">        </h5>        <table>          <tr>            <td> <img src="' + a[1].picture1 + '" width="150" height="125"></td>            <td>              <p class="card-text"> ' + a[1].subject + '</p>              <p class="card-text bg-dark"> ' + a[1].description + '</p>            </td>          </tr>        </table>      </div>    </div>');
+              this.elementRef.nativeElement.querySelector('#' + a[0] + 'remove').addEventListener('click', this.remove.bind(this));
+              this.elementRef.nativeElement.querySelector('#' + a[0] + 'modify').addEventListener('click', this.modifyn.bind(this));
+
+              // @ts-ignore
+              document.getElementById("waiting").style.display = "none"
+
+            })
+
+          })
+            ;
+        } else {
+
+          // @ts-ignore
+          document.getElementById("waiting").style.display = "none"
+
+          // @ts-ignore
+          document.getElementById("nodata").style.display = "none"
+
+        }
+
+
+
+
+
+      } )
+
+    }
 
   }
+
+
 
   // @ts-ignore
   remove(str) {
@@ -140,7 +153,6 @@ export class AFrInfoComponent implements OnInit {
     httpOptions.headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 
     var loc = localStorage.getItem("adminloc");
-    var typ = localStorage.getItem("admintyp");
 
     if (typeof str == "object") {
       var x = str.srcElement.id
@@ -149,15 +161,15 @@ export class AFrInfoComponent implements OnInit {
     }
 
     x = x.replace('remove', '');
-    this.http.delete("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/problems/approved/" + loc + "/" + x + ".json", httpOptions).subscribe(responseData => {
+    this.http.delete("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/infos/" + loc + "/" + x + ".json", httpOptions).subscribe(responseData => {
+      this.refresh();
 
-      location.reload();
     })
   }
 
-  // @ts-ignore
-  modify(str) {
 
+  // @ts-ignore
+  send() {
     const httpOptions = {
       headers: new HttpHeaders()
     }
@@ -165,8 +177,110 @@ export class AFrInfoComponent implements OnInit {
     httpOptions.headers.append('Content-Type', 'application/json');
     httpOptions.headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 
+
+
     var loc = localStorage.getItem("adminloc");
-    var typ = localStorage.getItem("admintyp");
+
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    var h = String(today.getHours()).padStart(2, '0');
+    var m = String(today.getMinutes()).padStart(2, '0');
+    var s = String(today.getSeconds()).padStart(2, '0');
+    var time = h + ":" + m + ":" + s + "  " + mm + '/' + dd + '/' + yyyy;
+
+
+
+
+
+    const object = {
+      title: (document.getElementById("idtitlex") as HTMLFormElement)['value'],
+      subject: (document.getElementById("idsubjectx") as HTMLFormElement)['value'],
+      description: (document.getElementById("iddescriptionx") as HTMLFormElement)['value'],
+      location: loc,
+      date: time,
+      picture1: localStorage.getItem("picc1"),
+    }
+
+    this.http.post("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/infos/" + loc + ".json", object, httpOptions).subscribe(responseDataa => {
+      alert("L'info a été publié avec succès !")
+
+    })
+
+
+  }
+
+
+
+  // @ts-ignore
+  modifyn(str) {
+    const httpOptions = {
+      headers: new HttpHeaders()
+    }
+    httpOptions.headers.append('Access-Control-Allow-Origin', '*');
+    httpOptions.headers.append('Content-Type', 'application/json');
+    httpOptions.headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    var h = String(today.getHours()).padStart(2, '0');
+    var m = String(today.getMinutes()).padStart(2, '0');
+    var s = String(today.getSeconds()).padStart(2, '0');
+    var time = h + ":" + m + ":" + s + "  " + mm + '/' + dd + '/' + yyyy;
+
+    var loc = localStorage.getItem("adminloc");
+
+    if (typeof str == "object") {
+      var x = str.srcElement.id
+    } else {
+      x = str
+    }
+
+    x = x.replace('modifyn', '');
+
+    this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/events/" + loc + "/" + x + ".json", httpOptions).subscribe(responseData => {
+
+      if (typeof responseData == "object") {
+
+
+
+        // @ts-ignore
+        document.getElementById("events").insertAdjacentHTML('afterbegin', '<div id="' + x + 'div" class="card text-white bg-secondary mb-3"> <div class="card-body"> <h5 class="card-title"> <label for="idtitlex">Title</label> <input type="text" class="form-control" id="idtitlex" placeholder="title"> <label for="idtitlex">Subject</label> <textarea type="textarea" class="form-control" id="idsubjectx" placeholder="subject" rows="3"></textarea> <label for="idtitlex">Desciption</label> <textarea type="textarea" class="form-control" id="iddescriptionx" placeholder="description" rows="5"></textarea> <label for="iddate_evx">Date de l"evènement</label> <textarea type="textarea" class="form-control" id="iddate_enx" placeholder="Date de l"évènement" rows="3"></textarea> <br> Nouvelles Images <br> <br> <button type="file" (click)="picupload()" accept="image/*" class="btn btn-success"> <img src="/assets/img/arrow-bar-up.png" width="30" height="25" style="filter: invert(1); float: left;" alt="">&nbsp; Télecharger</button> <br> <br> <div class=" row"> <div class="col" style="background-color: aliceblue;" id="pic1">&nbsp;</div>&nbsp; <div class="col" style="background-color: aliceblue;" id="pic2">&nbsp;</div>&nbsp; <div class="col" style="background-color: aliceblue;" id="pic3">&nbsp;</div>&nbsp; <div class="col" style="background-color: aliceblue;" id="pic4">&nbsp;</div>&nbsp; <div class="col" style="background-color: aliceblue;" id="pic5">&nbsp;</div> </div> <br><button type="file" (click)="modifyn(' + "'" + x + "'" + ')" accept="image/*" class="btn text-end btn-warning"> <img src="/assets/img/arrow-bar-up.png" width="30" height="25" style="filter: invert(1); float: left;" alt="">&nbsp; Modifier</button></h5> </div></div> ');
+        this.modify(x);
+
+      }
+    })
+
+
+
+
+
+
+  }
+
+
+  // @ts-ignore
+  modify(str) {
+    const httpOptions = {
+      headers: new HttpHeaders()
+    }
+    httpOptions.headers.append('Access-Control-Allow-Origin', '*');
+    httpOptions.headers.append('Content-Type', 'application/json');
+    httpOptions.headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    var h = String(today.getHours()).padStart(2, '0');
+    var m = String(today.getMinutes()).padStart(2, '0');
+    var s = String(today.getSeconds()).padStart(2, '0');
+    var time = h + ":" + m + ":" + s + "  " + mm + '/' + dd + '/' + yyyy;
+
+    var loc = localStorage.getItem("adminloc");
+
 
     if (typeof str == "object") {
       var x = str.srcElement.id
@@ -175,82 +289,50 @@ export class AFrInfoComponent implements OnInit {
     }
 
     x = x.replace('modify', '');
-    this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/problems/approved/" + loc + "/" + x + ".json", httpOptions).subscribe(responseData => {
 
 
-      // @ts-ignore
-      alert(x)
-      // @ts-ignore
-      document.getElementById(x + "div").insertAdjacentHTML('beforeend', ' <div class="card text-white bg-secondary mb-3">    <div class="card-body">      <h5 class="card-title">        <label for="' + x + 'titlex">Title</label>        <input type="text" class="form-control" id="' + x + 'titlex" value="' + responseData.title + '">        <label for="' + x + 'subjectx">Subject</label>        <textarea  type="textarea" class="form-control" id="' + x + 'subjectx" rows="3">' + responseData.subject + '</textarea>        <label for="' + x + 'descriptionx">Desciption</label>        <textarea  type="textarea" class="form-control" id="' + x + 'descriptionx" rows="5">' + responseData.description + '</textarea>        <label for="' + x + 'typex">Type</label>      <select id="' + x + 'typex" class="form-control">        <option selected  value="' + responseData.type + '">' + responseData.type + '</option>        <option value="type_domestic">Domestique</option>        <option value="type_medical">Médical</option>        <option value="type_chemical">Chémique</option>        <option value="type_toxic">Toxique</option>        <option value="type_brokenroad">Route Cassée</option>        <option value="type_obstacleroad">R.Obstacle</option>        <option value="type_train">Train Panne</option>      </select>      <br>      Nouvelles Images      <br>   <br>      <button  id="' + x + 'picupload" (click)="picupload(' + "'" + x + "'" + ')" type="file" accept="image/*" class="btn btn-success">        <img src="/assets/img/arrow-bar-up.png" width="30" height="25" style="filter: invert(1); float: left;"          alt="">&nbsp; Télecharger</button>          <br>   <br>      <div class=" row">          <div class="col" style="background-color: aliceblue;" id="pic1">&nbsp;</div>&nbsp;          <div class="col" style="background-color: aliceblue;" id="pic2">&nbsp;</div>&nbsp;          <div class="col" style="background-color: aliceblue;" id="pic3">&nbsp;</div>&nbsp;          <div class="col" style="background-color: aliceblue;" id="pic4">&nbsp;</div>&nbsp;          <div class="col" style="background-color: aliceblue;" id="pic5">&nbsp;</div>      </div>      <br>      Images Actuelles      <br>      <br>      <img src="' + responseData.picture1 + '" width="150" height="125"> &nbsp;      <img src="' + responseData.picture2 + '" width="150" height="125"> &nbsp;      <img src="' + responseData.picture3 + '" width="150" height="125"> &nbsp;      <img src="' + responseData.picture4 + '" width="150" height="125"> &nbsp;      <img src="' + responseData.picture5 + '" width="150" height="125">      </h5> &nbsp;<br>      <button id="' + x + 'modifyx" (click)="modifyx(' + "'" + x + "'" + ')" type="file"  accept="image/*" class="btn text-end btn-warning">        <img src="/assets/img/arrow-bar-up.png" width="30" height="25" style="filter: invert(1); float: left;"          alt="">&nbsp; Modifier</button>    </div>  </div>');
-      this.elementRef.nativeElement.querySelector('#' + x + 'modifyx').addEventListener('click', this.modifyx.bind(this));
-      this.elementRef.nativeElement.querySelector('#' + x + 'picupload').addEventListener('click', this.picupload.bind(this));
+    this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/events/" + loc + "/.json", httpOptions).subscribe(responseData => {
+      console.log(responseData);
 
-      ;
-    })
+      if (typeof responseData == "object") {
 
-  }
-  // @ts-ignore
-  modifyx(str) {
-    const httpOptions = {
-      headers: new HttpHeaders()
-    }
-    httpOptions.headers.append('Access-Control-Allow-Origin', '*');
-    httpOptions.headers.append('Content-Type', 'application/json');
-    httpOptions.headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 
-    var loc = localStorage.getItem("adminloc");
-    var typ = localStorage.getItem("admintyp");
-
-    if (typeof str == "object") {
-      var x = str.srcElement.id
-    } else {
-      x = str
-    }
-
-    x = x.replace('modifyx', '');
-
-    this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/problems/approved/" + loc + "/" + x + ".json", httpOptions).subscribe(responseData => {
-
-      const object = {
-        title: (document.getElementById(x + "titlex") as HTMLFormElement)['value'],
-        subject: (document.getElementById(x + "subjectx") as HTMLFormElement)['value'],
-        description: (document.getElementById(x + "descriptionx") as HTMLFormElement)['value'],
         // @ts-ignore
-        location: responseData.location,
-        // @ts-ignore
-        mun: responseData.mun,
-        // @ts-ignore
-        lat: responseData.lat,
-        // @ts-ignore
-        lon: responseData.lon,
-        type: (document.getElementById(x + "typex") as HTMLFormElement)['value'],
-        // @ts-ignore
-        name: responseData.name,
-        // @ts-ignore
-        phone: responseData.phone,
-        // @ts-ignore
-        date: responseData.date,
-        picture1: localStorage.getItem("picc1"),
-        picture2: localStorage.getItem("picc2"),
-        picture3: localStorage.getItem("picc3"),
-        picture4: localStorage.getItem("picc4"),
-        picture5: localStorage.getItem("picc5"),
+        document.getElementById("events").insertAdjacentHTML('afterbegin', ' <br><br><br> <div id="' + x + 'div" <button type="file" (click)="modify(' + "'" + x + "'" + ')" accept="image/*" class="btn text-end btn-warning"> <img src="/assets/img/arrow-bar-up.png" width="30" height="25" style="filter: invert(1); float: left;" alt="">&nbsp; Modifier</button></h5> </div></div> ');
+
+
+
+        const object = {
+          title: (document.getElementById("idtitlex") as HTMLFormElement)['value'],
+          subject: (document.getElementById("idsubjectx") as HTMLFormElement)['value'],
+          description: (document.getElementById("iddescriptionx") as HTMLFormElement)['value'],
+          location: loc,
+          date_mod: time,
+          // @ts-ignore
+          date_en: (document.getElementById("iddate_enx") as HTMLFormElement)['value'],
+          // @ts-ignore
+          date: time,
+          picture1: localStorage.getItem("picc1"),
+          picture2: localStorage.getItem("picc2"),
+          picture3: localStorage.getItem("picc3"),
+          picture4: localStorage.getItem("picc4"),
+          picture5: localStorage.getItem("picc5"),
+        }
+
+        this.http.put("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/events/" + loc + "/" + x + ".json", object, httpOptions).subscribe(responseDataa => {
+          this.refresh();
+        })
+
+
       }
-
-      this.http.put("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/problems/approved/" + loc + "/" + x + ".json", object, httpOptions).subscribe(responseDataa => {
-
-        location.reload();
-      })
-
-
     })
 
 
 
   }
 
-  // @ts-ignore
-  picupload(str) {
+
+  picupload() {
 
 
     if (localStorage.getItem("capture") == "5") {
@@ -405,6 +487,30 @@ export class AFrInfoComponent implements OnInit {
 
   }
 
+  showadd() {
+    // @ts-ignore
+    if (document.getElementById("slideDiv").style.display == "block") {
+      // @ts-ignore
+      document.getElementById("slideDiv").style.display = "none"
+    } else {
+      // @ts-ignore
+      document.getElementById("slideDiv").style.display = "block"
+    }
+
+
+  }
+
+  deconnecter() {
+    localStorage.removeItem("adminnom")
+    localStorage.removeItem("adminloc")
+    localStorage.removeItem("adminp")
+    this._router.navigate(['/a-fr-home']);
+
+  }
+
+  aboutme() {
+
+  }
+
+
 }
-
-

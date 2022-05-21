@@ -112,11 +112,23 @@ export class FrContactComponent implements OnInit {
       alert('Veuillez remplir le formulaire en entier pour fournir le message.')
       return;
     }
+
+    
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
+    var h = String(today.getHours()).padStart(2, '0');
+    var m = String(today.getMinutes()).padStart(2, '0');
+    var s = String(today.getSeconds()).padStart(2, '0');
+    var time = h + ":" + m + ":" + s + " " + dd + '/' + mm + '/' + yyyy;
+
     const object = {
       name: name,
       sub: sub,
       email: email,
-      message: message
+      message: message,
+      date: time
     }
   
   
@@ -125,6 +137,11 @@ export class FrContactComponent implements OnInit {
      this.router.navigate(['/fr-news']);
     });
   }
+
+  aboutme() {
+    alert("GreenCity est une application Web mobile hybride permettant de signaler les problèmes civils/environnementaux quotidiens ou de les consulter ainsi que d'autres informations. \n\n Développé par : Mohamed Dhia Jebali et Aymen Masmoudi \n Fabriqué à partir de SSS Innovation Startup \n\n Votre version actuelle : v"+ localStorage.getItem("oldversion"))
+    
+      }
 
 
   

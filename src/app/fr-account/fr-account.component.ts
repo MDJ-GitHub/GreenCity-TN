@@ -14,6 +14,7 @@ export class FrAccountComponent implements OnInit {
     window.scrollTo(0, 0);
     this.getlocation()
     this.getInfo()
+    localStorage.setItem("profile-photoo","assets/img/person-fill.png")
   }
 
   profileph() {
@@ -62,9 +63,18 @@ export class FrAccountComponent implements OnInit {
     if (localStorage.getItem("profile-name")) {
       var name = localStorage.getItem("profile-name")
       var phone = localStorage.getItem("profile-phone")
+       // @ts-ignore
+      var x = name
 
-   
-      this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/accounts/"+name+"-"+phone+".json",httpOptions).subscribe(responseData => {
+           // @ts-ignore
+                while (x.includes(" ")) {
+                   // @ts-ignore
+                   x =  x.replace(' ','_');
+                }
+      
+      this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/accounts/"+x+"-"+phone+".json",httpOptions).subscribe(responseData => {
+        if (responseData != null) {
+
         console.log(responseData) ;
         (document.getElementById("name") as HTMLElement).innerHTML = '<img src="/assets/img/person.png" width="25" height="25"> &nbsp; ' + name ;
         (document.getElementById("phone") as HTMLElement).innerHTML = '<img src="/assets/img/phone.png" width="20" height="25"> &nbsp; ' + phone ;
@@ -74,13 +84,25 @@ export class FrAccountComponent implements OnInit {
         (document.getElementById("nbrpro") as HTMLElement).innerHTML = '<img src="/assets/img/document-richtext.png" width="25" height="25"> &nbsp; ' + responseData.nbrpro ;
          // @ts-ignore
         (document.getElementById("score") as HTMLElement).innerHTML = '<img src="/assets/img/star.png" width="25" height="25"> &nbsp; ' + responseData.score ;
-        (document.getElementById("profile") as HTMLElement).style.display ="block"
+        (document.getElementById("profile") as HTMLElement).style.display ="block" ;
+        (document.getElementById("waiting") as HTMLElement).style.display ="none" ;
+
+      } else {
+        alert("Le profil de votre compte est supprimé par les administrateurs ou corrompu, veuillez contacter les administrateurs pour plus d'informations.") ;
+        (document.getElementById("newprofile") as HTMLElement).style.display ="block" ;
+        (document.getElementById("waiting") as HTMLElement).style.display ="none" ;
+        
+      }
+
      });
+
+
 
 
   } else {
 
-    (document.getElementById("newprofile") as HTMLElement).style.display ="block"
+    (document.getElementById("newprofile") as HTMLElement).style.display ="block" ;
+    (document.getElementById("waiting") as HTMLElement).style.display ="none" ;
   
   }
 
@@ -150,6 +172,16 @@ navselectauto() {
 }
 
 createProfile() {
+
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0');
+  var yyyy = today.getFullYear();
+  var h = String(today.getHours()).padStart(2, '0');
+  var m = String(today.getMinutes()).padStart(2, '0');
+  var s = String(today.getSeconds()).padStart(2, '0');
+  var time = h + ":" + m + ":" + s + " " + dd + '/' + mm + '/' + yyyy;
+
   const httpOptions = {
     headers: new HttpHeaders()
   }
@@ -169,7 +201,8 @@ createProfile() {
    phone:  phone,
    photo: photo,
    nbrpro: "0",
-   score: "0"
+   score: "0",
+   date: time,
 }
 
 this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/accounts/"+name+"-"+phone+".json",httpOptions).subscribe(responseData => {
@@ -196,8 +229,15 @@ this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.a
   localStorage.setItem("profile-score",responseData.score)
   return;
   } else {
+    var x = name
 
-    this.http.put("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/accounts/"+name+"-"+phone+".json",pobject,httpOptions).subscribe(responseData => {
+    // @ts-ignore
+         while (x.includes(" ")) {
+            // @ts-ignore
+            x =  x.replace(' ','_');
+         }
+
+    this.http.put("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/accounts/"+x+"-"+phone+".json",pobject,httpOptions).subscribe(responseData => {
   console.log(responseData);
   localStorage.setItem("profile-name",name)
   localStorage.setItem("profile-phone",phone)
@@ -254,13 +294,27 @@ modifierx() {
    nbrpro: localStorage.getItem("profile-nbrpro"),
    score: localStorage.getItem("profile-score")
 }
+var x = name
 
-this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/accounts/"+name+"-"+phone+".json",httpOptions).subscribe(responseData => {
+// @ts-ignore
+     while (x.includes(" ")) {
+        // @ts-ignore
+        x =  x.replace(' ','_');
+     }
+
+this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/accounts/"+x+"-"+phone+".json",httpOptions).subscribe(responseData => {
   if (responseData != null) {
   return;
   } else {
+    var x = name
 
-    this.http.put("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/accounts/"+name+"-"+phone+".json",pobject,httpOptions).subscribe(responseData => {
+    // @ts-ignore
+         while (x.includes(" ")) {
+            // @ts-ignore
+            x =  x.replace(' ','_');
+         }
+
+    this.http.put("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/accounts/"+x+"-"+phone+".json",pobject,httpOptions).subscribe(responseData => {
   console.log(responseData);
   localStorage.setItem("profile-name",name)
   localStorage.setItem("profile-phone",phone)
@@ -275,5 +329,10 @@ this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.a
 
 
 }
+
+aboutme() {
+  alert("GreenCity est une application Web mobile hybride permettant de signaler les problèmes civils/environnementaux quotidiens ou de les consulter ainsi que d'autres informations. \n\n Développé par : Mohamed Dhia Jebali et Aymen Masmoudi \n Fabriqué à partir de SSS Innovation Startup \n\n Votre version actuelle : v"+ localStorage.getItem("oldversion"))
+  
+    }
 
 }

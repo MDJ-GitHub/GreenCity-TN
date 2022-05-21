@@ -1,0 +1,99 @@
+<nav class="navbar shadow-lg fixed-top navbar-dark bg-outline-success justify-content-between py-0">
+
+  <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+    <button class="btn  " id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">
+      <img src="/assets/img/settings.png" width="30" height="25" alt="">
+    </button>
+    <div ngbDropdownMenu aria-labelledby="dropdownManual">
+      <button (click)="aboutme()" ngbDropdownItem><img src="/assets/img/question-fill.png" width="25" height="25"
+          class="rounded ms-auto" alt="">&nbsp;À propos de Moi</button>
+    </div>
+    <img src="/assets/img/logo.png" width="55" height="40" class="" alt="">
+  </div>
+  <div>
+    &nbsp;
+
+
+  </div>
+
+      <div>
+
+      </div>
+
+      <div>
+
+
+      </div>
+
+      <div id="x" class="text-end">
+          <h5>Se connecter &nbsp;</h5>
+      </div>
+
+  </nav>
+
+  <div id="" class="text-center"  style="background-image: url('/assets/img/backgroundadmin.png');     background-repeat: no-repeat;  background-attachment: fixed; background-size: 100% 100%;">
+    <br>
+    <br>
+    <div class="container">
+        <div class="row">
+          <div class="col-sm">
+
+          </div>
+          <div class="col-sm">
+            <table class="text-center">
+                <tr>
+                    <td> &nbsp;</td>
+                <td> &nbsp;
+                    <img src="/assets/img/logo.png" width="420" height="420">
+                </td>
+                
+                <td>
+                    <div class="card shadow-lg text-start" style="width: 24rem;">
+                        <div class="card-body">
+                          <h5 class="card-title">Bienvenue dans l'interface du mode administrateur de GreenCity</h5>
+                          <hr>
+                          <P class="card-title"> &nbsp; &nbsp;Nom d'utilisateur</P>
+                          <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                  <span class="input-group-text" id="basic-addon1"><img src="/assets/img/person-fill.png" width="20" height="25"></span>
+                              </div>
+                              <input type="text" class="form-control" placeholder="Insérez le nom d'utilisateur ici" aria-label="Username"
+                                  aria-describedby="basic-addon1" id="username">
+                          </div>
+          
+          
+                          <P class="card-title"> &nbsp; &nbsp;Mot de passe</P>
+                          <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                  <span class="input-group-text" id="basic-addon1"><img src="/assets/img/lock-fill.png" width="20" height="25"></span>
+                              </div>
+                              <input type="text" class="form-control" placeholder="Insérez le mot de passe ici" aria-label="Username"
+                                  aria-describedby="basic-addon1" id="password">
+                          </div>
+                          <button (click)="login()" style="background-color:#75c612; color:white" class="btn">Connecter</button>  &nbsp;
+                          <button class="btn btn-outline-success">Mot de passe oublié ?</button>
+                        </div>
+                      </div>
+                </td>
+                <td> &nbsp;</td>
+                </tr>
+                
+                    </table>
+          </div>
+          <div class="col-sm">
+
+          </div>
+        </div>
+      </div>
+
+
+
+      <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>

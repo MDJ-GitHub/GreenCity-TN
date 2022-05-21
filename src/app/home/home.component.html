@@ -1,61 +1,210 @@
-<div style="background-image: url('/assets/img/wallpaper.jpg');     background-repeat: no-repeat;
-background-size: 100% 100%; background-attachment: fixed;" class="container">
+<div class="container"
+    style="background-image: url('/assets/img/background.jpeg');     background-repeat: no-repeat; background-size: 100% 100%; background-attachment: fixed;">
 
-<div class="text-center">
-<br>
-<br>
-<br>
-
-    <img src="/assets/img/logotitle.png" width="350" height="225" class="" alt="">
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+    <div id="interfacea">
+        <div class="text-center">
+            <br>
+            <h1>
+                Bienvenue à</h1>
+            <img src="/assets/img/logo.png" width="250" height="200">
+            <br><br>
+            <h3>
+                Veuillez sélectionner la position.</h3>
 
 
-    <div class="card text-center" style="width: 19rem;">
-        <div class="card-body">
-            <table class="">
-                <tr>
-                <td>
-                  <img (click)="startfr()"   src="/assets/img/fr.png" width="75" height="50" class="rounded ms-auto text-start"  alt="">&nbsp;&nbsp;&nbsp;
-                </td>
-                <td>
-                   <img (click)="startar()" src="/assets/img/tn.png" width="75" height="50" class="rounded ms-auto"  alt="">&nbsp;&nbsp;&nbsp;
-                </td>
-                <td>
-                 <img (click)="starten()" src="/assets/img/en.png" width="75" height="50" class="rounded ms-auto"  alt="">
-                </td>
-                
-                </tr>
-                
-                <tr>
-                    <td>
-                        <h5 class="card-title">Français&nbsp;&nbsp;</h5>
-                    </td>
-                    <td>
-                        <h5 class="card-title">عربية&nbsp;&nbsp;</h5>
-                    </td>
-                    <td>
-                        <h5 class="card-title">English</h5>
-                    </td>
-                    
-                    </tr>
-                
-                    </table>
-        
         </div>
-      </div>
-           
-           
+
+        <div id="la" (click)="selectloca()" class="card shadow rounded mb-3"
+            style="max-width: 20rem; background-color: white;">
+
+            <div class="card-body">
+
+                <h5 class="card-title"> <img src="/assets/img/flag-fill.png" width="25" height="30" style="float: left;"
+                        alt=""> &nbsp; Localisation Actuelle &nbsp;</h5>
+                <h6 id="currentposition" class="text-center"> <img src="/assets/img/location.png" width="15" height="20"
+                        class="d-inline-block align-top" alt="">position actuel</h6>
+            </div>
+        </div>
+
+        <div id="lb" (click)="selectlocb()" class="card shadow rounded mb-3"
+            style="max-width: 20rem; background-color: white;">
+
+            <div class="card-body">
+
+                <h5 class="card-title"> <img src="/assets/img/flag.png" width="25" height="30" style="float: left;"
+                        alt=""> &nbsp; Localisation Manuel &nbsp;</h5>
+                <select id="man" class="form-select" aria-label="Sélectionnez localisation manuel">
+                    <option selected value="Ariana">Ariana</option>
+                    <option value="Béja">Béja</option>
+                    <option value="Ben Arous">Ben Arous</option>
+                    <option value="Gabès">Gabès</option>
+                    <option value="Gafsa">Gafsa</option>
+                    <option value="Jendouba">Jendouba</option>
+                    <option value="Kairouan">Kairouan</option>
+                    <option value="Kasserine">Kasserine</option>
+                    <option value="Kebili">Kebili</option>
+                    <option value="Kef">Kef</option>
+                    <option value="Mahdia">Mahdia</option>
+                    <option value="Manouba">Manouba</option>
+                    <option value="Médenine">Médenine</option>
+                    <option value="Monastir">Monastir</option>
+                    <option value="Nabeul">Nabeul</option>
+                    <option value="Sfax">Sfax</option>
+                    <option value="Sidi Bouzid">Sidi Bouzid</option>
+                    <option value="Siliana">Siliana</option>
+                    <option value="Sousse">Sousse</option>
+                    <option value="Tataouine">Tataouine</option>
+                    <option value="Tozeur">Tozeur</option>
+                    <option value="Tunis">Tunis</option>
+                    <option value="Zaghouan">Zaghouan</option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <br>    <br>
+        <nav class=" fixed-bottom"
+            style="background-image: url('/assets/img/background.jpeg');     background-repeat: no-repeat; background-size: 100% 100%; background-attachment: fixed;">
+            <div class="text-center " style="   position: sticky; top: 0;">
+                <div class="text-center">
+
+                    <div (click)="next()" class="btn shadow text-center" style="background-color:#75c612; color:white;">Suivant
+                        ➤</div>
+        
+                </div>
+
+                <div id="b1" class="inline-block">
+                    <img id="b1" src="/assets/img/slotf.png" width="50" height="5" class="center">
+                </div>
+                &nbsp;
+                <div id="b2" class="inline-block">
+                    <img src="/assets/img/slot.png" width="50" height="5" class="center" alt="">
+                </div>
+                &nbsp;
+                <div id="b3" class="inline-block">
+                    <img src="/assets/img/slot.png" width="50" height="5" class="center" alt="">
+                </div>
+            </div>
+            <br>
+            
+        </nav>
+
+
+    </div>
+
+    <div id="interfaceb" style="display:none">
+
+
+        <div class="text-center">
+            <br>
+            <h1>
+                Signaler les Problèmes !</h1>
+            <img src="/assets/img/introa.png" width="300" height="320">
+            <br><br> <br>
+            <h4>
+                Signalez tout type de problèmes dans votre voisinage.
+                route cassée, déchet dangereux, éclirage public.
+
+                Vous nommez, vous le signalez !</h4>
+
+
+        </div>
+        <br>
+
+
+  
+
+        <br>
 
 
 
-</div>
+
+        <br>
+
+        <nav class=" fixed-bottom"
+            style="background-image: url('/assets/img/background.jpeg');     background-repeat: no-repeat; background-size: 100% 100%; background-attachment: fixed;">
+            <div class="text-center " style="   position: sticky; top: 0;">
+                <div class="text-center">
+
+                    <div (click)="nextnext()" class="btn shadow text-center" style="background-color:#75c612; color:white;">Suivant
+                        ➤</div>
+        
+                </div>
+
+                <div id="b1" class="inline-block">
+                    <img id="b1" src="/assets/img/slotf.png" width="50" height="5" class="center">
+                </div>
+                &nbsp;
+                <div id="b2" class="inline-block">
+                    <img src="/assets/img/slotf.png" width="50" height="5" class="center" alt="">
+                </div>
+                &nbsp;
+                <div id="b3" class="inline-block">
+                    <img src="/assets/img/slot.png" width="50" height="5" class="center" alt="">
+                </div>
+            </div>
+            <br>
+            
+        </nav>
+
+    </div>
 
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+    <div id="interfacec" style="display:none">
+
+
+        <div class="text-center">
+            <br>
+            <h1>
+                Consulter les Problems !</h1>
+            <img src="/assets/img/introb.png" width="300" height="320">
+            <br><br> <br>
+            <h4>
+                Tenez-vous au courant des derniers problèmes approuvés trouvés partout en Tunisie !
+</h4>
+
+
+        </div>
+        <br>
+
+
+  
+
+        <br>
+
+
+
+
+        <br>
+
+        <nav class=" fixed-bottom"
+            style="background-image: url('/assets/img/background.jpeg');     background-repeat: no-repeat; background-size: 100% 100%; background-attachment: fixed;">
+            <div class="text-center " style="   position: sticky; top: 0;">
+                <div class="text-center">
+
+                    <div (click)="done()" class="btn shadow text-center" style="background-color:#75c612; color:white;">Démarrer !
+                        ➤</div>
+        
+                </div>
+
+                <div id="b1" class="inline-block">
+                    <img id="b1" src="/assets/img/slotf.png" width="50" height="5" class="center">
+                </div>
+                &nbsp;
+                <div id="b2" class="inline-block">
+                    <img src="/assets/img/slotf.png" width="50" height="5" class="center" alt="">
+                </div>
+                &nbsp;
+                <div id="b3" class="inline-block">
+                    <img src="/assets/img/slotf.png" width="50" height="5" class="center" alt="">
+                </div>
+            </div>
+            <br>
+            
+        </nav>
+
+    </div>
+
 
 
 
