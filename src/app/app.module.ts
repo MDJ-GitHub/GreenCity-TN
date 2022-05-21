@@ -30,6 +30,7 @@ import { AFrMessagesComponent } from './a-fr-messages/a-fr-messages.component';
 import { AFrApprovedComponent } from './a-fr-approved/a-fr-approved.component';
 import { AFrHomeComponent } from './a-fr-home/a-fr-home.component';
 import { AFrAdminaccountsComponent } from './a-fr-adminaccounts/a-fr-adminaccounts.component';
+import { FrConfComponent } from './fr-conf/fr-conf.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { AFrAdminaccountsComponent } from './a-fr-adminaccounts/a-fr-adminaccoun
     AFrMessagesComponent,
     AFrApprovedComponent,
     AFrHomeComponent,
-    AFrAdminaccountsComponent
+    AFrAdminaccountsComponent,
+    FrConfComponent
   ],
   imports: [
     BrowserModule,

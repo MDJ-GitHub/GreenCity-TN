@@ -16,7 +16,7 @@ export class AppComponent {
 
 
 
-    localStorage.setItem("newversion","2")
+    localStorage.setItem("newversion","3")
 
     if (localStorage.getItem("oldversion")) {
 
@@ -29,7 +29,7 @@ export class AppComponent {
     var b = localStorage.getItem("newversion")
 
     if (localStorage.getItem("oldversion") != localStorage.getItem("newversion")) {
-      alert("Les dernières mises à jour ! :  \n Version Ancienne : v"+a+"\n Version Nouvelle : v"+b+"\n\n  Ce qui est nouveau ? : \n - Les interruptions du GPS non actif sont moins nombreuses. \n - La fonction À propos de moi est fonctionnelle. \n\n N'oubliez pas de signaler une anomalie au sein de l'application avec l'interface Contact") ;
+      alert("Les dernières mises à jour ! :  \n Version Ancienne : v"+a+"\n Version Nouvelle : v"+b+"\n\n  Ce qui est nouveau ? : \n - Les interruptions du GPS non actif sont moins nombreuses. \n - La fonction À propos de moi est fonctionnelle. \n - La fonction confidentialité a été ajoutée. \n\n N'oubliez pas de signaler une anomalie au sein de l'application avec l'interface Contact") ;
      
           // @ts-ignore
       localStorage.setItem("oldversion",localStorage.getItem("newversion")) ; 
@@ -161,6 +161,11 @@ export class AppComponent {
         }
         if (routex.includes('/fr-contact')) {
           this._router.navigate(['/fr-contact']);
+          return;
+        }
+
+        if (routex.includes('/fr-conf')) {
+          this._router.navigate(['/fr-conf']);
           return;
         }
         this._router.navigate(['/fr-news']);

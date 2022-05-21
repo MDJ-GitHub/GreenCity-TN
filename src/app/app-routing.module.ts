@@ -8,6 +8,7 @@ import { FrEventsComponent } from './fr-events/fr-events.component';
 import { FrInfoComponent } from './fr-info/fr-info.component';
 import { FrAccountComponent } from './fr-account/fr-account.component';
 import { FrContactComponent } from './fr-contact/fr-contact.component';
+import { FrConfComponent } from './fr-conf/fr-conf.component';
 import { AFrHomeComponent } from './a-fr-home/a-fr-home.component';
 import { AFrReportsComponent } from './a-fr-reports/a-fr-reports.component';
 import { AFrApprovedComponent } from './a-fr-approved/a-fr-approved.component';
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'fr-info', component: FrInfoComponent },
   { path: 'fr-account', component: FrAccountComponent },
   { path: 'fr-contact', component: FrContactComponent },
+  { path: 'fr-conf', component: FrConfComponent },
   { path: 'a-fr-home', component: AFrHomeComponent },
   { path: 'a-fr-reports', component: AFrReportsComponent },
   { path: 'a-fr-approved', component: AFrApprovedComponent },
