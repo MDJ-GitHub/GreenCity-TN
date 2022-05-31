@@ -35,7 +35,7 @@ export class AFrAdminaccountsComponent implements OnInit {
     httpOptions.headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 
 
-    this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/adminaccounts/.json",httpOptions).subscribe(responseData => {
+    this.http.get("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/adminaccounts/.json",httpOptions).subscribe(responseData => {
       if (responseData != null) {
 
         Object.entries(responseData).map(b => {
@@ -88,7 +88,7 @@ export class AFrAdminaccountsComponent implements OnInit {
     }
 
     x = x.replace('remove', '');
-    this.http.delete("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/adminaccounts/" + x+ ".json", httpOptions).subscribe(responseData => {
+    this.http.delete("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/adminaccounts/" + x+ ".json", httpOptions).subscribe(responseData => {
 
       alert("Le compte a été supprimé !")
       location.reload();
@@ -115,7 +115,7 @@ export class AFrAdminaccountsComponent implements OnInit {
     }
 
     x = x.replace('modify', '');
-    this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/problems/" + loc + "/" + x + ".json", httpOptions).subscribe(responseData => {
+    this.http.get("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/problems/" + loc + "/" + x + ".json", httpOptions).subscribe(responseData => {
 
 
       // @ts-ignore
@@ -149,7 +149,7 @@ export class AFrAdminaccountsComponent implements OnInit {
 
     x = x.replace('modifyx', '');
 
-    this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/problems/" + loc + "/" + x + ".json", httpOptions).subscribe(responseData => {
+    this.http.get("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/problems/" + loc + "/" + x + ".json", httpOptions).subscribe(responseData => {
 
       const object = {
         title: (document.getElementById(x + "titlex") as HTMLFormElement)['value'],
@@ -177,7 +177,7 @@ export class AFrAdminaccountsComponent implements OnInit {
         picture5: localStorage.getItem("picc5"),
       }
 
-      this.http.put("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/problems/" + loc + "/" + x + ".json", object, httpOptions).subscribe(responseDataa => {
+      this.http.put("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/problems/" + loc + "/" + x + ".json", object, httpOptions).subscribe(responseDataa => {
         alert("Le problème a été modifié !")
         location.reload();
       })
@@ -395,12 +395,12 @@ addaccount() {
 
     var x = username.replace(' ', '_');
 
-    this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/adminaccounts/"+x+"-"+cpassword+".json",httpOptions).subscribe(responseData => {
+    this.http.get("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/adminaccounts/"+x+"-"+cpassword+".json",httpOptions).subscribe(responseData => {
       if (responseData != null) {
         alert("Ce nom d'utilisateur existe, essayez d'utiliser un autre nom d'utilisateur.")
       } else {
 
-        this.http.put("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/adminaccounts/"+x+"-"+cpassword+".json",object,httpOptions).subscribe(responseDataa => {
+        this.http.put("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/adminaccounts/"+x+"-"+cpassword+".json",object,httpOptions).subscribe(responseDataa => {
           alert("Le compte a été creé avec succès !")
           location.reload();
 

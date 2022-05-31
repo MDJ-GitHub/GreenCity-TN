@@ -5,6 +5,7 @@ import html2canvas from 'html2canvas';
 import { copyCSSStyles } from 'html2canvas/dist/types/dom/document-cloner';
 import { getLocaleDirection } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { boxShadow } from 'html2canvas/dist/types/css/property-descriptors/box-shadow';
 
 
 @Component({
@@ -25,10 +26,9 @@ export class FrReportComponent implements AfterViewInit {
     this.getlocation();
     navigator.geolocation.getCurrentPosition((position) => {
     }
-    ,(error) => 
-    {
-      alert("Afin de signaler la position du problème, vous devez activer l'accès GPS.")
-    }
+      , (error) => {
+        alert("Afin de signaler la position du problème, vous devez activer l'accès GPS.")
+      }
     );
 
     localStorage.setItem("step", "1");
@@ -201,24 +201,24 @@ export class FrReportComponent implements AfterViewInit {
           x = x.replace(' ', '_');
         }
 
-        this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/accounts/" + x + "-" + phone + ".json", httpOptions).subscribe(responseData => {
+        this.http.get("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/accounts/" + x + "-" + phone + ".json", httpOptions).subscribe(responseData => {
           if (responseData != null) {
 
             // @ts-ignore
             var name = localStorage.getItem("profile-name");
-         
+
             var phonee = localStorage.getItem("profile-phone");
-             // @ts-ignore
+            // @ts-ignore
             document.getElementById("telex").innerHTML = phonee
 
             // @ts-ignore
             var photo = localStorage.getItem("profile-photo");
             // @ts-ignore
             document.getElementById("nomx").innerHTML = name;
-         
-         
 
-            
+
+
+
             (document.getElementById("newprofile") as HTMLFormElement).style.display = "none";
             (document.getElementById("sameprofile") as HTMLFormElement).style.display = "block";
             return;
@@ -276,6 +276,8 @@ export class FrReportComponent implements AfterViewInit {
   capture() {
 
     if (localStorage.getItem("capture") == "1") {
+      var snd = new Audio("assets/sfx/camera.mp3"); // buffers automatically when created
+      snd.play();
       let div = document.getElementById('capture');
       html2canvas(div as HTMLFormElement).then(
 
@@ -298,6 +300,8 @@ export class FrReportComponent implements AfterViewInit {
     }
 
     if (localStorage.getItem("capture") == "2") {
+      var snd = new Audio("assets/sfx/camera.mp3"); // buffers automatically when created
+      snd.play();
       let div = document.getElementById('capture');
       html2canvas(div as HTMLFormElement).then(
         function (canvas: any) {
@@ -314,6 +318,8 @@ export class FrReportComponent implements AfterViewInit {
     }
 
     if (localStorage.getItem("capture") == "3") {
+      var snd = new Audio("assets/sfx/camera.mp3"); // buffers automatically when created
+      snd.play();
       let div = document.getElementById('capture');
       html2canvas(div as HTMLFormElement).then(
         function (canvas: any) {
@@ -331,6 +337,8 @@ export class FrReportComponent implements AfterViewInit {
     }
 
     if (localStorage.getItem("capture") == "4") {
+      var snd = new Audio("assets/sfx/camera.mp3"); // buffers automatically when created
+      snd.play();
       let div = document.getElementById('capture');
       html2canvas(div as HTMLFormElement).then(
         function (canvas: any) {
@@ -348,6 +356,8 @@ export class FrReportComponent implements AfterViewInit {
     }
 
     if (localStorage.getItem("capture") == "5") {
+      var snd = new Audio("assets/sfx/camera.mp3"); // buffers automatically when created
+      snd.play();
       let div = document.getElementById('capture');
       html2canvas(div as HTMLFormElement).then(
         function (canvas: any) {
@@ -667,8 +677,7 @@ export class FrReportComponent implements AfterViewInit {
         x = x.replace(' ', '_');
       }
 
-      this.http.put("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/accounts/" + x + "-" + phone + ".json", pobject, httpOptions).subscribe(responseData => {
-        console.log(responseData);
+      this.http.put("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/accounts/" + x + "-" + phone + ".json", pobject, httpOptions).subscribe(responseData => {
       });
 
 
@@ -693,7 +702,7 @@ export class FrReportComponent implements AfterViewInit {
         x = x.replace(' ', '_');
       }
 
-      this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/accounts/" + x + "-" + phone + ".json", httpOptions).subscribe(responseDataa => {
+      this.http.get("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/accounts/" + x + "-" + phone + ".json", httpOptions).subscribe(responseDataa => {
         if (responseDataa != null) {
 
           // @ts-ignore
@@ -712,7 +721,7 @@ export class FrReportComponent implements AfterViewInit {
           }
 
           var x = name.replace(' ', '_');
-          this.http.put("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/accounts/" + x + "-" + phone + ".json", ob, httpOptions).subscribe(responseData => {
+          this.http.put("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/accounts/" + x + "-" + phone + ".json", ob, httpOptions).subscribe(responseData => {
             console.log(responseData);
           });
 
@@ -726,9 +735,8 @@ export class FrReportComponent implements AfterViewInit {
       phone = "Anonyme"
     }
 
-
-
-
+    // @ts-ignore
+    var bs = document.getElementById("bs").value
 
 
     // @ts-ignore
@@ -746,6 +754,7 @@ export class FrReportComponent implements AfterViewInit {
       picture4: localStorage.getItem("picc4"),
       picture5: localStorage.getItem("picc5"),
       mun: mun,
+      bs: bs,
       lat: lat,
       lon: lon
     }
@@ -755,12 +764,12 @@ export class FrReportComponent implements AfterViewInit {
     const element = document.getElementById("waiting") as HTMLFormElement;
     element.scrollIntoView();
 
-    this.http.post("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/problems/" + loc + ".json", object, httpOptions).subscribe(responseData => {
+    this.http.post("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/problems/" + loc + ".json", object, httpOptions).subscribe(responseData => {
       console.log(responseData);
       // @ts-ignore
       document.getElementById("waiting").style.display = "none"
       alert("Le rapport a été envoyé avec succès! Il sera vérifié par les administrateurs pour le moment.")
-      this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/index/problems/" + loc + "/objects.json", httpOptions).subscribe(responseDataa => {
+      this.http.get("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/index/problems/" + loc + "/objects.json", httpOptions).subscribe(responseDataa => {
         if (responseDataa != null) {
 
           // @ts-ignore
@@ -773,8 +782,8 @@ export class FrReportComponent implements AfterViewInit {
 
           }
 
-          this.http.put("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/index/problems/" + loc + "/objects.json", o, httpOptions).subscribe(responseDatax => {
-            this.router.navigate(['/fr-news']);
+          this.http.put("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/index/problems/" + loc + "/objects.json", o, httpOptions).subscribe(responseDatax => {
+            this.router.navigate(['/fr-problems']);
           })
 
         } else {
@@ -782,8 +791,8 @@ export class FrReportComponent implements AfterViewInit {
             // @ts-ignore
             list: responseData.name
           }
-          this.http.put("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/index/problems/" + loc + "/objects.json", o, httpOptions).subscribe(responseDataxx => {
-            this.router.navigate(['/fr-news']);
+          this.http.put("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/index/problems/" + loc + "/objects.json", o, httpOptions).subscribe(responseDataxx => {
+            this.router.navigate(['/fr-problems']);
           })
 
         }
@@ -943,61 +952,61 @@ export class FrReportComponent implements AfterViewInit {
     // @ts-ignore
     if (document.getElementById("manl").value == "Ariana") {
       // @ts-ignore
-      document.getElementById("mun").innerHTML = '<select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Ariana Ville">Ariana Ville</option>  <option value="Ettadhamen">Ettadhamen</option>  <option value="Kalâat el-Andalous">Kalâat el-Andalous</option>  <option value="La Soukra">La Soukra</option>  <option value="Mnihla">Mnihla</option>  <option value="Raoued">Raoued</option>  <option value="Sidi Thabet">Sidi Thabet</option></select>'
+      document.getElementById("mun").innerHTML = '<select id="mun class="form-select" aria-label="Sélectionnez municipalité">  <option value="Ariana">Ariana</option>  <option value="La Soukra">La Soukra</option>  <option value="Raoued">Raoued</option>  <option value="Kalâat el-Andalous">Kalâat el-Andalous</option>  <option value="Sidi Thabet">Sidi Thabet</option>  <option value="Ettadhamen-Mnihla">Ettadhamen-Mnihla</option></select>'
     }
 
     // @ts-ignore
     if (document.getElementById("manl").value == "Béja") {
       // @ts-ignore
-      document.getElementById("mun").innerHTML = '<select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Amdoun">Amdoun</option>  <option value="Béja Nord">Béja Nord</option>  <option value="Béja Sud">Béja Sud</option>  <option value="Goubellat">Goubellat</option>  <option value="Medjez el-Bab">Medjez el-Bab</option>  <option value="Nefza">Nefza</option>  <option value="Téboursouk">Téboursouk</option>  <option value="Testour">Testour</option>  <option value="Thibar">Thibar</option></select>'
+      document.getElementById("mun").innerHTML = ' <select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Béja">Béja</option>  <option value="El Maâgoula">El Maâgoula</option>  <option value="Zahret Medien">Zahret Medien</option>  <option value="Nefza">Nefza</option>  <option value="Téboursouk">Téboursouk</option>  <option value="Testour">Testour</option>  <option value="Goubellat">Goubellat</option>  <option value="Majaz al Bab">Majaz al Bab</option></select> '
     }
 
     // @ts-ignore
     if (document.getElementById("manl").value == "Ben Arous") {
       // @ts-ignore
-      document.getElementById("mun").innerHTML = '<select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Ben Arous">Ben Arous</option>  <option value="Bou Mhel el-Bassatine">Bou Mhel el-Bassatine</option>  <option value="El Mourouj">El Mourouj</option>  <option value="Ezzahra">Ezzahra</option>  <option value="Fouchana">Fouchana</option>  <option value="Hammam Chott">Hammam Chott</option>  <option value="Hammam Lif">Hammam Lif</option>  <option value="Mohamedia">Mohamedia</option>  <option value="Medina Jedida">Medina Jedida</option>  <option value="Mégrine">Mégrine</option>  <option value="Mornag">Mornag</option>  <option value="Radès">Radès</option></select>'
+      document.getElementById("mun").innerHTML = ' <select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Ben Arous">Ben Arous</option>  <option value="El Mourouj">El Mourouj</option>  <option value="Hammam Lif">Hammam Lif</option>  <option value="Hammam Chott">Hammam Chott</option>  <option value="Bou Mhel el-Bassatine">Bou Mhel el-Bassatine</option>  <option value="Ezzahra">Ezzahra</option>  <option value="Radès">Radès</option>  <option value="Mégrine">Mégrine</option>  <option value="Mohamedia-Fouchana">Mohamedia-Fouchana</option>  <option value="Mornag">Mornag</option>  <option value="Khalidia">Khalidia</option></select> '
     }
 
     // @ts-ignore
     if (document.getElementById("manl").value == "Bizerte") {
       // @ts-ignore
-      document.getElementById("mun").innerHTML = '<select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Bizerte Nord">Bizerte Nord</option>  <option value="Bizerte Sud">Bizerte Sud</option>  <option value="El Alia">El Alia</option>  <option value="Ghar El Melh">Ghar El Melh</option>  <option value="Ghezala">Ghezala</option>  <option value="Joumine">Joumine</option>  <option value="Mateur">Mateur</option>  <option value="Menzel Bourguiba">Menzel Bourguiba</option>  <option value="Menzel Jemil">Menzel Jemil</option>  <option value="Ras Jebel">Ras Jebel</option>  <option value="Sejnane">Sejnane</option>  <option value="Tinja">Tinja</option>  <option value="Utique">Utique</option>  <option value="Zarzouna">Zarzouna</option></select>'
+      document.getElementById("mun").innerHTML = ' <select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Bizerte">Bizerte</option>  <option value="Sejnane">Sejnane</option>  <option value="Mateur">Mateur</option>  <option value="Menzel Bourguiba">Menzel Bourguiba</option>  <option value="Tinja">Tinja</option>  <option value="Ghar al Milh">Ghar al Milh</option>  <option value="Aousja">Aousja</option>  <option value="Menzel Jemil">Menzel Jemil</option>  <option value="Menzel Abderrahmane">Menzel Abderrahmane</option>  <option value="El Alia">El Alia</option>  <option value="Ras Jebel">Ras Jebel</option>  <option value="Metline">Metline</option>  <option value="Raf Raf">Raf Raf</option></select> '
     }
 
     // @ts-ignore
     if (document.getElementById("manl").value == "Gabès") {
       // @ts-ignore
-      document.getElementById("mun").innerHTML = '<select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Gabès Médina">Gabès Médina</option>  <option value="Gabès Ouest">Gabès Ouest</option>  <option value="Gabès Sud">Gabès Sud</option>  <option value="Ghannouch">Ghannouch</option>  <option value="El Hamma">El Hamma</option>  <option value="Matmata">Matmata</option>  <option value="Mareth">Mareth</option>  <option value="Menzel El Habib">Menzel El Habib</option>  <option value="Métouia">Métouia</option>  <option value="Nouvelle Matmata">Nouvelle Matmata</option></select>'
+      document.getElementById("mun").innerHTML = ' <select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Gabès">Gabès</option>  <option value="Chenini Nahal">Chenini Nahal</option>  <option value="Ghannouch">Ghannouch</option>  <option value="Métouia">Métouia</option>  <option value="Oudhref">Oudhref</option>  <option value="El Hamma">El Hamma</option>  <option value="Matmata">Matmata</option>  <option value="Nouvelle Matmata">Nouvelle Matmata</option>  <option value="Mareth">Mareth</option>  <option value="Zarat">Zarat</option></select> '
     }
 
     // @ts-ignore
     if (document.getElementById("manl").value == "Gafsa") {
       // @ts-ignore
-      document.getElementById("mun").innerHTML = '<select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Belkhir">Belkhir</option>  <option value="El Guettar">El Guettar</option>  <option value="El Ksar">El Ksar</option>  <option value="Gafsa Nord">Gafsa Nord</option>  <option value="Gafsa Sud">Gafsa Sud</option>  <option value="Mdhilla">Mdhilla</option>  <option value="Métlaoui">Métlaoui</option>  <option value="Moularès">Moularès</option>  <option value="Redeyef">Redeyef</option>  <option value="Sened">Sened</option>  <option value="Sidi Aïch">Sidi Aïch</option></select>'
+      document.getElementById("mun").innerHTML = ' <select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Gafsa">Gafsa</option>  <option value="El Ksar">El Ksar</option>  <option value="Moularès">Moularès</option>  <option value="Redeyef">Redeyef</option>  <option value="Métlaoui">Métlaoui</option>  <option value="Mdhila">Mdhila</option>  <option value="El Guettar">El Guettar</option>  <option value="Sened">Sened</option></select> '
     }
 
     // @ts-ignore
     if (document.getElementById("manl").value == "Jendouba") {
       // @ts-ignore
-      document.getElementById("mun").innerHTML = '<select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Aïn Draham">Aïn Draham</option>  <option value="Balta-Bou Aouane">Balta-Bou Aouane</option>  <option value="Bou Salem">Bou Salem</option>  <option value="Fernana">Fernana</option>  <option value="Ghardimaou">Ghardimaou</option>  <option value="Jendouba Sud">Jendouba Sud</option>  <option value="Jendouba Nord">Jendouba Nord</option>  <option value="Oued Meliz">Oued Meliz</option>  <option value="Tabarka">Tabarka</option></select>'
+      document.getElementById("mun").innerHTML = ' <select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Jendouba">Jendouba</option>  <option value="Bou Salem">Bou Salem</option>  <option value="Tabarka">Tabarka</option>  <option value="Aïn Draham">Aïn Draham</option>  <option value="Fernana">Fernana</option>  <option value="Beni MTir">Beni MTir</option>  <option value="Ghardimaou">Ghardimaou</option>  <option value="Oued Melliz">Oued Melliz</option></select> '
     }
 
     // @ts-ignore
     if (document.getElementById("manl").value == "Kairouan") {
       // @ts-ignore
-      document.getElementById("mun").innerHTML = '<select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Bou Hajla">Bou Hajla</option>  <option value="Chebika">Chebika</option>  <option value="Echrarda">Echrarda</option>  <option value="El Alâa">El Alâa</option>  <option value="Haffouz">Haffouz</option>  <option value="Hajeb El Ayoun">Hajeb El Ayoun</option>  <option value="Kairouan Nord">Kairouan Nord</option>  <option value="Kairouan Sud">Kairouan Sud</option>  <option value="Nasrallah">Nasrallah</option>  <option value="Oueslatia">Oueslatia</option>  <option value="Sbikha">Sbikha</option></select>'
+      document.getElementById("mun").innerHTML = ' <select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Kairouan">Kairouan</option>  <option value="Chebika">Chebika</option>  <option value="Sbikha">Sbikha</option>  <option value="Oueslatia">Oueslatia</option>  <option value="Aïn Djeloula">Aïn Djeloula</option>  <option value="Haffouz">Haffouz</option>  <option value="Alaâ">Alaâ</option>  <option value="Hajeb El Ayoun">Hajeb El Ayoun</option>  <option value="Nasrallah">Nasrallah</option>  <option value="Menzel Mehiri">Menzel Mehiri</option>  <option value="Echrarda">Echrarda</option>  <option value="Bou Hajla">Bou Hajla</option></select> '
     }
 
     // @ts-ignore
-    if (document.getElementById("manl").value == "Kairouan") {
+    if (document.getElementById("manl").value == "Kasserine") {
       // @ts-ignore
-      document.getElementById("mun").innerHTML = '<select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Bou Hajla">Bou Hajla</option>  <option value="Chebika">Chebika</option>  <option value="Echrarda">Echrarda</option>  <option value="El Alâa">El Alâa</option>  <option value="Haffouz">Haffouz</option>  <option value="Hajeb El Ayoun">Hajeb El Ayoun</option>  <option value="Kairouan Nord">Kairouan Nord</option>  <option value="Kairouan Sud">Kairouan Sud</option>  <option value="Nasrallah">Nasrallah</option>  <option value="Oueslatia">Oueslatia</option>  <option value="Sbikha">Sbikha</option></select>'
+      document.getElementById("mun").innerHTML = ' <select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="El Ayoun">El Ayoun</option>  <option value="Ezzouhour">Ezzouhour</option>  <option value="Fériana">Fériana</option>  <option value="Foussana">Foussana</option>  <option value="Haïdra">Haïdra</option>  <option value="Hassi El-Ferid">Hassi El-Ferid</option>  <option value="Jedelienne">Jedelienne</option>  <option value="Kasserine Nord">Kasserine Nord</option>  <option value="Kasserine Sud">Kasserine Sud</option>  <option value="Majel Bel Abbès">Majel Bel Abbès</option>  <option value="Sbeïtla">Sbeïtla</option>  <option value="Sbiba">Sbiba</option>  <option value="Thala">Thala</option></select> '
     }
 
     // @ts-ignore
-    if (document.getElementById("manl").value == "Kairouan") {
+    if (document.getElementById("manl").value == "Kebili") {
       // @ts-ignore
-      document.getElementById("mun").innerHTML = '<select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Bou Hajla">Bou Hajla</option>  <option value="Chebika">Chebika</option>  <option value="Echrarda">Echrarda</option>  <option value="El Alâa">El Alâa</option>  <option value="Haffouz">Haffouz</option>  <option value="Hajeb El Ayoun">Hajeb El Ayoun</option>  <option value="Kairouan Nord">Kairouan Nord</option>  <option value="Kairouan Sud">Kairouan Sud</option>  <option value="Nasrallah">Nasrallah</option>  <option value="Oueslatia">Oueslatia</option>  <option value="Sbikha">Sbikha</option></select>'
+      document.getElementById("mun").innerHTML = ' <select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Kebili">Kebili</option>  <option value="Djemna">Djemna</option>  <option value="Douz">Douz</option>  <option value="El Golâa">El Golâa</option>  <option value="Souk Lahad">Souk Lahad</option></select> '
     }
 
     // @ts-ignore
@@ -1007,94 +1016,89 @@ export class FrReportComponent implements AfterViewInit {
     }
 
     // @ts-ignore
-    if (document.getElementById("manl").value == "Kébili") {
-      // @ts-ignore
-      document.getElementById("mun").innerHTML = '<select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Douz Nord">Douz Nord</option>  <option value="Douz Sud">Douz Sud</option>  <option value="Faouar">Faouar</option>  <option value="Kébili Nord">Kébili Nord</option>  <option value="Kébili Sud">Kébili Sud</option>  <option value="Souk Lahad">Souk Lahad</option></select>'
-    }
-
-    // @ts-ignore
     if (document.getElementById("manl").value == "Kef") {
       // @ts-ignore
-      document.getElementById("mun").innerHTML = '<select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Dahmani">Dahmani</option>  <option value="Jérissa">Jérissa</option>  <option value="El Ksour">El Ksour</option>  <option value="Sers">Sers</option>  <option value="Kalâat Khasba">Kalâat Khasba</option>  <option value="Kalaat Senan">Kalaat Senan</option>  <option value="Kef Est">Kef Est</option>  <option value="Kef Ouest">Kef Ouest</option>  <option value="Nebeur">Nebeur</option>  <option value="Sakiet Sidi Youssef">Sakiet Sidi Youssef</option>  <option value="Tajerouine">Tajerouine</option></select>'
+      document.getElementById("mun").innerHTML = ' <select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="El Kef">El Kef</option>  <option value="Nebeur">Nebeur</option>  <option value="Touiref">Touiref</option>  <option value="Sakiet Sidi-Youssef">Sakiet Sidi-Youssef</option>  <option value="Tajerouine">Tajerouine</option>  <option value="Menzel Salem">Menzel Salem</option>  <option value="Kalaat es-Senam">Kalaat es-Senam</option>  <option value="Kalâat Khasba">Kalâat Khasba</option>  <option value="Jérissa">Jérissa</option>  <option value="El Ksour">El Ksour</option>  <option value="Dahmani">Dahmani</option>  <option value="Sers">Sers</option></select> '
     }
 
     // @ts-ignore
     if (document.getElementById("manl").value == "Mahdia") {
       // @ts-ignore
-      document.getElementById("mun").innerHTML = '<select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Bou Merdes">Bou Merdes</option>  <option value="Chebba">Chebba</option>  <option value="Chorbane">Chorbane</option>  <option value="El Jem">El Jem</option>  <option value="Essouassi">Essouassi</option>  <option value="Hebira">Hebira</option>  <option value="Ksour Essef">Ksour Essef</option>  <option value="Mahdia">Mahdia</option>  <option value="Melloulèche">Melloulèche</option>  <option value="Ouled Chamekh">Ouled Chamekh</option>  <option value="Sidi Alouane">Sidi Alouane</option>  <option value="Rejiche	-">Rejiche	-</option>  <option value="El Bradâa">El Bradâa</option></select>'
+      document.getElementById("mun").innerHTML = ' <select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Mahdia">Mahdia</option>  <option value="Rejiche">Rejiche</option>  <option value="Bou Merdes">Bou Merdes</option>  <option value="Ouled Chamekh">Ouled Chamekh</option>  <option value="Chorbane">Chorbane</option>  <option value="Hebira">Hebira</option>  <option value="Essouassi">Essouassi</option>  <option value="El Djem">El Djem</option>  <option value="Kerker">Kerker</option>  <option value="Chebba">Chebba</option>  <option value="Melloulèche">Melloulèche</option>  <option value="Sidi Alouane">Sidi Alouane</option>  <option value="Ksour Essef">Ksour Essef</option>  <option value="El Bradâa">El Bradâa</option></select> '
     }
 
     // @ts-ignore
     if (document.getElementById("manl").value == "Manouba") {
       // @ts-ignore
-      document.getElementById("mun").innerHTML = '<select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Borj El Amri">Borj El Amri</option>  <option value="Djedeida">Djedeida</option>  <option value="Douar Hicher">Douar Hicher</option>  <option value="El Batan">El Batan</option>  <option value="La Manouba">La Manouba</option>  <option value="Mornaguia">Mornaguia</option>  <option value="Oued Ellil">Oued Ellil</option>  <option value="Tebourba">Tebourba</option></select>'
+      document.getElementById("mun").innerHTML = ' <select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Manouba">Manouba</option>  <option value="Den Den">Den Den</option>  <option value="Douar Hicher">Douar Hicher</option>  <option value="Oued Ellil">Oued Ellil</option>  <option value="Mornaguia">Mornaguia</option>  <option value="Borj El-Amri">Borj El-Amri</option>  <option value="Djedeida">Djedeida</option>  <option value="Tebourba">Tebourba</option>  <option value="El Battan">El Battan</option></select> '
     }
 
     // @ts-ignore
-    if (document.getElementById("manl").value == "Médenine") {
+    if (document.getElementById("manl").value == "Medenine") {
       // @ts-ignore
-      document.getElementById("mun").innerHTML = '<select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Ben Gardane">Ben Gardane</option>  <option value="Beni Khedache">Beni Khedache</option>  <option value="Djerba - Ajim">Djerba - Ajim</option>  <option value="Djerba - Houmt Souk">Djerba - Houmt Souk</option>  <option value="Djerba - Midoun">Djerba - Midoun</option>  <option value="Médenine Nord">Médenine Nord</option>  <option value="Médenine Sud">Médenine Sud</option>  <option value="Sidi Makhlouf">Sidi Makhlouf</option>  <option value="Zarzis">Zarzis</option></select>'
+      document.getElementById("mun").innerHTML = ' <select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Medenine">Medenine</option>  <option value="Beni Khedache">Beni Khedache</option>  <option value="Ben Gardane">Ben Gardane</option>  <option value="Zarzis">Zarzis</option>  <option value="Houmt El-Souk-(Djerba)">Houmt El-Souk-(Djerba)</option>  <option value="Midoun (Djerba)">Midoun (Djerba)</option>  <option value="Ajim (Djerba)">Ajim (Djerba)</option></select> '
     }
 
     // @ts-ignore
     if (document.getElementById("manl").value == "Monastir") {
       // @ts-ignore
-      document.getElementById("mun").innerHTML = '<select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Bekalta">Bekalta</option>  <option value="Bembla">Bembla</option>  <option value="Beni Hassen">Beni Hassen</option>  <option value="Jemmal">Jemmal</option>  <option value="Ksar Hellal">Ksar Hellal</option>  <option value="Ksibet el-Médiouni">Ksibet el-Médiouni</option>  <option value="Moknine">Moknine</option>  <option value="Monastir">Monastir</option>  <option value="Ouerdanine">Ouerdanine</option>  <option value="Sahline">Sahline</option>  <option value="Sayada-Lamta-Bou Hajar">Sayada-Lamta-Bou Hajar</option>  <option value="Téboulba">Téboulba</option>  <option value="Zéramdine">Zéramdine</option></select>'
+      document.getElementById("mun").innerHTML = ' <select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Bekalta">Bekalta</option>  <option value="Bembla">Bembla</option>  <option value="Beni Hassen">Beni Hassen</option>  <option value="Jemmal">Jemmal</option>  <option value="Ksar Hellal">Ksar Hellal</option>  <option value="Ksibet el-Médiouni">Ksibet el-Médiouni</option>  <option value="Moknine">Moknine</option>  <option value="Monastir">Monastir</option>  <option value="Ouerdanine">Ouerdanine</option>  <option value="Sahline">Sahline</option>  <option value="Sayada-Lamta-Bou Hajar">Sayada-Lamta-Bou Hajar</option>  <option value="Téboulba">Téboulba</option>  <option value="Zéramdine">Zéramdine</option></select> '
     }
 
     // @ts-ignore
     if (document.getElementById("manl").value == "Nabeul") {
       // @ts-ignore
-      document.getElementById("mun").innerHTML = '<select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Béni Khalled">Béni Khalled</option>  <option value="Béni Khiar">Béni Khiar</option>  <option value="Bou Argoub">Bou Argoub</option>  <option value="Dar Chaâbane El Fehri">Dar Chaâbane El Fehri</option>  <option value="El Haouaria">El Haouaria</option>  <option value="El Mida">El Mida</option>  <option value="Grombalia">Grombalia</option>  <option value="Hammam Ghezèze">Hammam Ghezèze</option>  <option value="Hammamet">Hammamet</option>  <option value="Kélibia">Kélibia</option>  <option value="Korba">Korba</option>  <option value="Menzel Bouzelfa">Menzel Bouzelfa</option>  <option value="Menzel Temime">Menzel Temime</option>  <option value="Nabeul">Nabeul</option>  <option value="Soliman">Soliman</option>  <option value="Takelsa">Takelsa</option></select>'
+      document.getElementById("mun").innerHTML = ' <select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Azmour">Azmour</option>  <option value="Béni Khalled">Béni Khalled</option>  <option value="Béni Khiar">Béni Khiar</option>  <option value="Bou Argoub">Bou Argoub</option>  <option value="Dar Allouch">Dar Allouch</option>  <option value="Dar Châabane">Dar Châabane</option>  <option value="El Haouaria">El Haouaria</option>  <option value="El Maâmoura">El Maâmoura</option>  <option value="El Mida">El Mida</option>  <option value="Grombalia">Grombalia</option>  <option value="Hammam Ghezèze">Hammam Ghezèze</option>  <option value="Hammamet">Hammamet</option>  <option value="Kélibia">Kélibia</option>  <option value="Korba">Korba</option>  <option value="Korbous">Korbous</option>  <option value="Menzel Bouzelfa">Menzel Bouzelfa</option>  <option value="Menzel Horr">Menzel Horr</option>  <option value="Menzel Temime">Menzel Temime</option>  <option value="Nabeul">Nabeul</option>  <option value="Soliman">Soliman</option>  <option value="Somâa">Somâa</option>  <option value="Takelsa">Takelsa</option>  <option value="Tazarka">Tazarka</option>  <option value="Zaouief Djedidi">Zaouief Djedidi</option></select> '
     }
 
     // @ts-ignore
     if (document.getElementById("manl").value == "Sfax") {
       // @ts-ignore
-      document.getElementById("mun").innerHTML = '<select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Agareb">Agareb</option>  <option value="Bir Ali Ben Khalifa">Bir Ali Ben Khalifa</option>  <option value="El Amra">El Amra</option>  <option value="El Hencha">El Hencha</option>  <option value="Graïba">Graïba</option>  <option value="Jebiniana">Jebiniana</option>  <option value="Kerkennah">Kerkennah</option>  <option value="Mahrès">Mahrès</option>  <option value="Menzel Chaker">Menzel Chaker</option>  <option value="Sakiet Eddaïer">Sakiet Eddaïer</option>  <option value="Sakiet Ezzit">Sakiet Ezzit</option>  <option value="Sfax Ouest">Sfax Ouest</option>  <option value="Sfax Sud">Sfax Sud</option>  <option value="Sfax Ville">Sfax Ville</option>  <option value="Skhira">Skhira</option>  <option value="Thyna">Thyna</option></select>'
+      document.getElementById("mun").innerHTML = ' <select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Sfax">Sfax</option>  <option value="Sakiet Ezzit">Sakiet Ezzit</option>  <option value="Chihia">Chihia</option>  <option value="Sakiet Eddaïer">Sakiet Eddaïer</option>  <option value="Gremda">Gremda</option>  <option value="El Ain">El Ain</option>  <option value="Thyna">Thyna</option>  <option value="Agareb">Agareb</option>  <option value="Jebiniana">Jebiniana</option>  <option value="El Hencha">El Hencha</option>  <option value="Menzel Chaker">Menzel Chaker</option>  <option value="Ghraïba-Tunisia">Ghraïba-Tunisia</option>  <option value="Bir Ali-Ben-Khélifa">Bir Ali-Ben-Khélifa</option>  <option value="Skhira">Skhira</option>  <option value="Mahares">Mahares</option>  <option value="Kerkennah">Kerkennah</option></select> '
     }
 
     // @ts-ignore
     if (document.getElementById("manl").value == "Sidi Bouzid") {
       // @ts-ignore
-      document.getElementById("mun").innerHTML = '<select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Bir El Hafey">Bir El Hafey</option>  <option value="Cebbala Ouled Asker">Cebbala Ouled Asker</option>  <option value="Jilma">Jilma</option>  <option value="Meknassy">Meknassy</option>  <option value="Menzel Bouzaiane">Menzel Bouzaiane</option>  <option value="Mezzouna">Mezzouna</option>  <option value="Ouled Haffouz">Ouled Haffouz</option>  <option value="Regueb">Regueb</option>  <option value="Sidi Ali Ben Aoun">Sidi Ali Ben Aoun</option>  <option value="Sidi Bouzid Est">Sidi Bouzid Est</option>  <option value="Sidi Bouzid Ouest">Sidi Bouzid Ouest</option>  <option value="Souk Jedid">Souk Jedid</option></select>'
+      document.getElementById("mun").innerHTML = ' <select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Bir El-Hafey">Bir El-Hafey</option>  <option value="Cebbala Ouled-Asker">Cebbala Ouled-Asker</option>  <option value="Jilma">Jilma</option>  <option value="Menzel Bouzaiane">Menzel Bouzaiane</option>  <option value="Meknassy">Meknassy</option>  <option value="Mezzouna">Mezzouna</option>  <option value="Ouled Haffouz">Ouled Haffouz</option>  <option value="Regueb">Regueb</option>  <option value="Sidi Ali-Ben-Aoun">Sidi Ali-Ben-Aoun</option>  <option value="Sidi Bouzid-(capital)">Sidi Bouzid-(capital)</option></select> '
     }
 
     // @ts-ignore
     if (document.getElementById("manl").value == "Siliana") {
       // @ts-ignore
-      document.getElementById("mun").innerHTML = '<select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Bargou">Bargou</option>  <option value="Bou Arada">Bou Arada</option>  <option value="El Aroussa">El Aroussa</option>  <option value="El Krib">El Krib</option>  <option value="Gaâfour">Gaâfour</option>  <option value="Kesra">Kesra</option>  <option value="Makthar">Makthar</option>  <option value="Rouhia">Rouhia</option>  <option value="Sidi Bou Rouis">Sidi Bou Rouis</option>  <option value="Siliana Nord">Siliana Nord</option>  <option value="Siliana Sud">Siliana Sud</option></select>'
+      document.getElementById("mun").innerHTML = ' <select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Siliana">Siliana</option>  <option value="Bou Arada">Bou Arada</option>  <option value="Gaâfour">Gaâfour</option>  <option value="El Krib">El Krib</option>  <option value="Sidi Bou-Rouis">Sidi Bou-Rouis</option>  <option value="Maktar">Maktar</option>  <option value="Rouhia">Rouhia</option>  <option value="Kesra">Kesra</option>  <option value="Bargou">Bargou</option>  <option value="El Aroussa">El Aroussa</option></select> '
     }
 
     // @ts-ignore
     if (document.getElementById("manl").value == "Sousse") {
       // @ts-ignore
-      document.getElementById("mun").innerHTML = '<select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Akouda">Akouda</option>  <option value="Bouficha">Bouficha</option>  <option value="Enfida">Enfida</option>  <option value="Hammam Sousse">Hammam Sousse</option>  <option value="Hergla">Hergla</option>  <option value="Kalâa Kebira">Kalâa Kebira</option>  <option value="Kalâa Seghira">Kalâa Seghira</option>  <option value="Kondar">Kondar</option>  <option value="Msaken">Msaken</option>  <option value="Sidi Bou Ali">Sidi Bou Ali</option>  <option value="Sidi El Hani">Sidi El Hani</option>  <option value="Sousse Jawhara">Sousse Jawhara</option>  <option value="Sousse Médina">Sousse Médina</option>  <option value="Sousse Riadh">Sousse Riadh</option>  <option value="Sousse Sidi Abdelhamid">Sousse Sidi Abdelhamid</option></select>'
+      document.getElementById("mun").innerHTML = ' <select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Sousse">Sousse</option>  <option value="Ksibet Thrayet">Ksibet Thrayet</option>  <option value="Ezzouhour">Ezzouhour</option>  <option value="Zaouiet Sousse">Zaouiet Sousse</option>  <option value="Hammam Sousse">Hammam Sousse</option>  <option value="Akouda">Akouda</option>  <option value="Kalâa Kebira">Kalâa Kebira</option>  <option value="Sidi Bou-Ali">Sidi Bou-Ali</option>  <option value="Hergla">Hergla</option>  <option value="Enfidha">Enfidha</option>  <option value="Bouficha">Bouficha</option>  <option value="Sidi El-Hani">Sidi El-Hani</option>  <option value="Msaken">Msaken</option>  <option value="Kalâa Seghira">Kalâa Seghira</option>  <option value="Messaadine">Messaadine</option>  <option value="Kondar">Kondar</option></select> '
     }
 
     // @ts-ignore
     if (document.getElementById("manl").value == "Tataouine") {
       // @ts-ignore
-      document.getElementById("mun").innerHTML = '<select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Bir Lahmar">Bir Lahmar</option>  <option value="Dehiba">Dehiba</option>  <option value="Ghomrassen">Ghomrassen</option>  <option value="Remada">Remada</option>  <option value="Smâr">Smâr</option>  <option value="Tataouine Nord">Tataouine Nord</option>  <option value="Tataouine Sud">Tataouine Sud</option></select>'
+      document.getElementById("mun").innerHTML = ' <select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Tataouine">Tataouine</option>  <option value="Bir Lahmar">Bir Lahmar</option>  <option value="Ghomrassen">Ghomrassen</option>  <option value="Dehiba">Dehiba</option>  <option value="Remada">Remada</option></select> '
     }
 
     // @ts-ignore
     if (document.getElementById("manl").value == "Tozeur") {
       // @ts-ignore
-      document.getElementById("mun").innerHTML = '<select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Degache">Degache</option>  <option value="Hazoua">Hazoua</option>  <option value="Nefta">Nefta</option>  <option value="Tameghza">Tameghza</option>  <option value="Tozeur">Tozeur</option></select>'
+      document.getElementById("mun").innerHTML = ' <select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Tozeur">Tozeur</option>  <option value="Degache">Degache</option>  <option value="Hamet Jerid">Hamet Jerid</option>  <option value="Nafta">Nafta</option>  <option value="Tamerza">Tamerza</option></select> '
     }
 
     // @ts-ignore
     if (document.getElementById("manl").value == "Tunis") {
       // @ts-ignore
-      document.getElementById("mun").innerHTML = '<select id="mun" class="form-select" aria-label="Sélectionnez municipalité>  <option value="Carthage">Carthage</option> <option value="Carthage">Carthage</option>  <option value="La Goulette">La Goulette</option>  <option value="La Marsa">La Marsa</option>  <option value="Le Bardo">Le Bardo</option>  <option value="Le Kram">Le Kram</option>  <option value="Sidi Bou Saïd">Sidi Bou Saïd</option>  <option value="Sidi Hassine">Sidi Hassine</option>  <option value="Tunis">Tunis</option></select>'
+      document.getElementById("mun").innerHTML = '<select id="mun" class="form-select" aria-label="Sélectionnez municipalité>  <option value="Carthage">Carthage</option> <option value="Carthage">Carthage</option>  <option value="La Goulette">La Goulette</option>  <option value="La Marsa">La Marsa</option>  <option value="Le Bardo">Le Bardo</option>  <option value="Le Kram">Le Kram</option>  <option value="Sidi Bou-Saïd">Sidi Bou-Saïd</option>  <option value="Sidi Hassine">Sidi Hassine</option>  <option value="Tunis">Tunis</option></select>'
     }
 
     // @ts-ignore
     if (document.getElementById("manl").value == "Zaghouan") {
       // @ts-ignore
-      document.getElementById("mun").innerHTML = '<select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Bir Mcherga">Bir Mcherga</option>  <option value="El Fahs">El Fahs</option>  <option value="Nadhour">Nadhour</option>  <option value="Saouaf">Saouaf</option>  <option value="Zaghouan">Zaghouan</option>  <option value="Zriba">Zriba</option></select>'
+      document.getElementById("mun").innerHTML = ' <select id="mun" class="form-select" aria-label="Sélectionnez municipalité">  <option value="Zaghouan">Zaghouan</option>  <option value="Zriba">Zriba</option>  <option value="Bir Mcherga">Bir Mcherga</option>  <option value="Djebel Oust">Djebel Oust</option>  <option value="El Fahs">El Fahs</option>  <option value="Nadhour">Nadhour</option></select> '
     }
+    this.selecta()
 
 
 
@@ -1103,8 +1107,74 @@ export class FrReportComponent implements AfterViewInit {
   selecta() {
     // @ts-ignore
     if (document.getElementById("mun").value == "Tunis") {
+             // @ts-ignore
+             document.getElementById("bs").style.display = "block"
       // @ts-ignore
-      document.getElementById("bs").style.display = "block"
+      document.getElementById("bs").innerHTML = '             <select  id="bs"  class="form-select" aria-label="Sélectionnez municipalité municipaux">              <option value="Bab Bhar">Bab Bhar</option>              <option value="La Médina">La Médina</option>              <option value="Bab souika">Bab souika</option>              <option value="Sidi Béchir">Sidi Béchir</option>              <option value="Essijoumi">Essijoumi</option>              <option value="El Omrane">El Omrane</option>              <option value="Cité El khadra">Cité El khadra</option>              <option value="El Ouardia">El Ouardia</option>              <option value="Ezzouhour">Ezzouhour</option>              <option value="Ettahrir">Ettahrir</option>              <option value="El Omrane Superieur">El Omrane Superieur</option>              <option value="El Menzah">El Menzah</option>              <option value="Jebel Jelloud">Jebel Jelloud</option>              <option value="El Kabaria">El Kabaria</option>              <option value="El Hrairia">El Hrairia</option>              <option value="Service central de létat civil">Service central de létat civil</option>            </select> '
+    }
+
+    // @ts-ignore
+    if (document.getElementById("mun").value == "Le Bardo") {
+             // @ts-ignore
+             document.getElementById("bs").style.display = "block"
+      // @ts-ignore
+      document.getElementById("bs").innerHTML = '    <select  id="bs"  class="form-select" aria-label="Sélectionnez municipalité municipaux">              <option value="Le Bardo">Le Bardo</option>              <option value="Ksar Saïd">Ksar Saïd</option>      <option value="Al Hadiqa">Al Hadiqa</option>        </select> '
+    }
+
+    // @ts-ignore
+    if (document.getElementById("mun").value == "La Goulette") {
+             // @ts-ignore
+             document.getElementById("bs").style.display = "block"
+      // @ts-ignore
+      document.getElementById("bs").innerHTML = '    <select  id="bs"  class="form-select" aria-label="Sélectionnez municipalité municipaux">              <option value="La Goulette">La Goulette</option>              <option value="Cité Tayeb-Mehiri">Cité Tayeb-Mehiri</option>          </select> '
+    }
+
+    // @ts-ignore
+    if (document.getElementById("mun").value == "Le Kram") {
+             // @ts-ignore
+             document.getElementById("bs").style.display = "block"
+      // @ts-ignore
+      document.getElementById("bs").innerHTML = '    <select  id="bs"  class="form-select" aria-label="Sélectionnez municipalité municipaux">              <option value=" Le Kram-Est"> Le Kram-Est</option>              <option value="Ksar Saïd">Ksar Saïd</option>              <option value="Le Kram-Ouest">Le Kram-Ouest</option>          </select> '
+    }
+
+    // @ts-ignore
+    if (document.getElementById("mun").value == "La Marsa") {
+             // @ts-ignore
+             document.getElementById("bs").style.display = "block"
+      // @ts-ignore
+      document.getElementById("bs").innerHTML = '    <select  id="bs"  class="form-select" aria-label="Sélectionnez municipalité municipaux">              <option value="Gammarth">Gammarth</option>              <option value="La Marsa-Médina">La Marsa-Médina</option>              <option value="La Marsa-Erriadh">La Marsa-Erriadh</option>          </select> '
+    }
+
+    // @ts-ignore
+    if (document.getElementById("mun").value == "Ariana") {
+             // @ts-ignore
+             document.getElementById("bs").style.display = "block"
+      // @ts-ignore
+      document.getElementById("bs").innerHTML = '    <select  id="bs"  class="form-select" aria-label="Sélectionnez municipalité municipaux">              <option value="El Manzah">El Manzah</option>              <option value="Ariana-Médina">Ariana-Médina</option>              <option value="Ariana Supérieur">Ariana Supérieur</option>     <option value="Ennasr">Ennasr</option>       </select> '
+    }
+
+    // @ts-ignore
+    if (document.getElementById("mun").value == "La Soukra") {
+             // @ts-ignore
+             document.getElementById("bs").style.display = "block"
+      // @ts-ignore
+      document.getElementById("bs").innerHTML = '    <select  id="bs"  class="form-select" aria-label="Sélectionnez municipalité municipaux">              <option value="Borj El-Wazir">Borj El-Wazi</option>              <option value="Parc">Parc</option>              <option value="Ariana Supérieur">Ariana Supérieur</option>     <option value="Ennasr">Ennasr</option>       </select> '
+    }
+
+    // @ts-ignore
+    if (document.getElementById("mun").value == "Raoued") {
+             // @ts-ignore
+             document.getElementById("bs").style.display = "block"
+      // @ts-ignore
+      document.getElementById("bs").innerHTML = '    <select  id="bs"  class="form-select" aria-label="Sélectionnez municipalité municipaux">              <option value="Cité La-Gazelle">Cité La-Gazelle</option>              <option value="Sidi Omer">Sidi Omer</option>              <option value="Ariana Supérieur">Ariana Supérieur</option>     <option value="Ennasr">Ennasr</option>       </select> '
+    }
+
+    // @ts-ignore
+    if (document.getElementById("mun").value == "Ben Arous") {
+             // @ts-ignore
+             document.getElementById("bs").style.display = "block"
+      // @ts-ignore
+      document.getElementById("bs").innerHTML = '    <select  id="bs"  class="form-select" aria-label="Sélectionnez municipalité municipaux">              <option value="Sidi Mosbeh">Sidi Mosbeh</option>              <option value="Medina Jedida">Medina Jedida</option>              <option value="Ben Arous-Charguia">Ben Arous-Charguia</option>     <option value="Ennasr">Ben Arous-Gharbia</option>       </select> '
     }
   }
 
@@ -1130,9 +1200,9 @@ export class FrReportComponent implements AfterViewInit {
   }
 
   aboutme() {
-    alert("GreenCity est une application Web mobile hybride permettant de signaler les problèmes civils/environnementaux quotidiens ou de les consulter ainsi que d'autres informations. \n\n Développé par : Mohamed Dhia Jebali et Aymen Masmoudi \n Fabriqué à partir de SSS Innovation Startup \n\n Votre version actuelle : v"+ localStorage.getItem("oldversion"))
-    
-      }
+    alert("GreenCity est une application Web mobile hybride permettant de signaler les problèmes civils/environnementaux quotidiens ou de les consulter ainsi que d'autres informations. \n\n Développé par : Mohamed Dhia Jebali et Aymen Masmoudi \n Fabriqué à partir de SSS Innovation Startup \n\n Votre version actuelle : v" + localStorage.getItem("oldversion"))
+
+  }
 
 }
 

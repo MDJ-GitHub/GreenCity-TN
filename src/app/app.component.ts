@@ -14,9 +14,23 @@ export class AppComponent {
   constructor(private elementRef: ElementRef, private http: HttpClient, private _router: Router) { }
   ngOnInit(): void {
 
+    const httpOptions = {
+      headers: new HttpHeaders()
+    }
+    httpOptions.headers.append('Access-Control-Allow-Origin', '*');
+    httpOptions.headers.append('Content-Type', 'application/json');
+    httpOptions.headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+
+    const o = {
+      name:"x",
+    }
+
+    
+      this.http.put("https://a.free.mdj.ravendb.cloud/objects.json", o, httpOptions).subscribe(responseDataxx => {
+  })
 
 
-    localStorage.setItem("newversion","3")
+    localStorage.setItem("newversion","9")
 
     if (localStorage.getItem("oldversion")) {
 
@@ -29,7 +43,7 @@ export class AppComponent {
     var b = localStorage.getItem("newversion")
 
     if (localStorage.getItem("oldversion") != localStorage.getItem("newversion")) {
-      alert("Les dernières mises à jour ! :  \n Version Ancienne : v"+a+"\n Version Nouvelle : v"+b+"\n\n  Ce qui est nouveau ? : \n - Les interruptions du GPS non actif sont moins nombreuses. \n - La fonction À propos de moi est fonctionnelle. \n - La fonction confidentialité a été ajoutée. \n\n N'oubliez pas de signaler une anomalie au sein de l'application avec l'interface Contact") ;
+      alert("Les dernières mises à jour ! :  \n Version Ancienne : v"+a+"\n Version Nouvelle : v"+b+"\n\n  Ce qui est nouveau ? : \n - Corrections des terms. \n\n N'oubliez pas de signaler une anomalie au sein de l'application avec l'interface Contact") ;
      
           // @ts-ignore
       localStorage.setItem("oldversion",localStorage.getItem("newversion")) ; 
@@ -70,7 +84,7 @@ export class AppComponent {
               var cpassword = SHA256(password).toString(enc.Hex);
      // @ts-ignore
               var x = username.replace(' ', '_');
-        this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/adminaccounts/" + x + "-" + cpassword + ".json", httpOptions).subscribe(responseData => {
+        this.http.get("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/adminaccounts/" + x + "-" + cpassword + ".json", httpOptions).subscribe(responseData => {
           if (responseData != null) {
 
 
@@ -168,16 +182,10 @@ export class AppComponent {
           this._router.navigate(['/fr-conf']);
           return;
         }
-        this._router.navigate(['/fr-news']);
+        this._router.navigate(['/fr-problems']);
       }
 
-      if (localStorage.getItem("startup") == "ar") {
-        this._router.navigate(['/ar-news']);
-      }
 
-      if (localStorage.getItem("startup") == "en") {
-        this._router.navigate(['/en-news']);
-      }
 
     }
 
@@ -191,7 +199,7 @@ export class AppComponent {
   startfr() {
 
     localStorage.setItem("startup", "fr")
-    this._router.navigate(['/fr-news']);
+    this._router.navigate(['/fr-problems']);
   }
 
 

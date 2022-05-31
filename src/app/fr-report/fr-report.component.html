@@ -16,10 +16,10 @@
             class=" ms-auto" alt="">&nbsp;Localisation Manuel</button>
         <button (click)="navselectauto()" ngbDropdownItem><img src="/assets/img/geo.png" width="25" height="25"
             class=" ms-auto" alt="">&nbsp;Localisation Actuelle</button>
-            <button (click)="aboutme()"  ngbDropdownItem><img src="/assets/img/question-fill.png" width="25" height="25"
-              class="rounded ms-auto" alt="">&nbsp;À propos de Moi</button>
-              <button routerLink="/fr-conf"  ngbDropdownItem><img src="/assets/img/archive-fill.png" width="25" height="25"
-                class="rounded ms-auto" alt="">&nbsp;Confidentialité</button>
+        <button (click)="aboutme()" ngbDropdownItem><img src="/assets/img/question-fill.png" width="25" height="25"
+            class="rounded ms-auto" alt="">&nbsp;À propos de Moi</button>
+        <button routerLink="/fr-conf" ngbDropdownItem><img src="/assets/img/archive-fill.png" width="25" height="25"
+            class="rounded ms-auto" alt="">&nbsp;Confidentialité</button>
       </div>
 
     </div>
@@ -41,6 +41,7 @@
       <option selected value="Ariana">Ariana</option>
       <option value="Béja">Béja</option>
       <option value="Ben Arous">Ben Arous</option>
+      <option value="Bizerte">Bizerte</option>
       <option value="Gabès">Gabès</option>
       <option value="Gafsa">Gafsa</option>
       <option value="Jendouba">Jendouba</option>
@@ -50,7 +51,7 @@
       <option value="Kef">Kef</option>
       <option value="Mahdia">Mahdia</option>
       <option value="Manouba">Manouba</option>
-      <option value="Médenine">Médenine</option>
+      <option value="Médenine">Medenine</option>
       <option value="Monastir">Monastir</option>
       <option value="Nabeul">Nabeul</option>
       <option value="Sfax">Sfax</option>
@@ -273,6 +274,7 @@
             <option selected value="Ariana">Ariana</option>
             <option value="Béja">Béja</option>
             <option value="Ben Arous">Ben Arous</option>
+            <option value="Bizerte">Bizerte</option>
             <option value="Gabès">Gabès</option>
             <option value="Gafsa">Gafsa</option>
             <option value="Jendouba">Jendouba</option>
@@ -282,7 +284,7 @@
             <option value="Kef">Kef</option>
             <option value="Mahdia">Mahdia</option>
             <option value="Manouba">Manouba</option>
-            <option value="Médenine">Médenine</option>
+            <option value="Médenine">Medenine</option>
             <option value="Monastir">Monastir</option>
             <option value="Nabeul">Nabeul</option>
             <option value="Sfax">Sfax</option>
@@ -302,27 +304,14 @@
           </select>
           <p>Municipalité de la position du problème (rempli manuel)</p>
 
-          <div id="bs" style="display:none;">
-            <h5>Arrondisments Municipaux</h5>
-            <select class="form-select" aria-label="Sélectionnez municipalité municipaux">
-              <option value="Bab Bhar">Bab Bhar</option>
-              <option value="La Médina">La Médina</option>
-              <option value="Bab souika">Bab souika</option>
-              <option value="Sidi Béchir">Sidi Béchir</option>
-              <option value="Essijoumi">Essijoumi</option>
-              <option value="El Omrane">El Omrane</option>
-              <option value="Cité El khadra">Cité El khadra</option>
-              <option value="El Ouardia">El Ouardia</option>
-              <option value="Ezzouhour">Ezzouhour</option>
-              <option value="Ettahrir">Ettahrir</option>
-              <option value="El Omrane Superieur">El Omrane Superieur</option>
-              <option value="El Menzah">El Menzah</option>
-              <option value="Jebel Jelloud">Jebel Jelloud</option>
-              <option value="El Kabaria">El Kabaria</option>
-              <option value="El Hrairia">El Hrairia</option>
-              <option value="Service central de l'état civil">Service central de l'état civil</option>
-            </select>
-          </div>
+
+
+
+
+          <h5>Arrondisments Municipaux</h5>
+          <select id="bs" class="form-select" aria-label="Sélectionnez municipalité municipaux">
+            <option selected value="non">Non</option>
+          </select>
 
           <hr>
           <h5 class="card-title"> <img src="/assets/img/geo.png" width="25" height="30" style="float: left;" alt="">
@@ -384,7 +373,7 @@
             style="max-width: 10rem; max-height: 6rem;">
             <div class="card-body">
               <img src="/assets/img/type_security.png" width="50" height="50" alt="">
-              <h5 style="color:black; font-size:small;">Sécurité et    &nbsp; Nuisances</h5>
+              <h5 style="color:black; font-size:small;">Sécurité et &nbsp; Nuisances</h5>
             </div>
           </div>
         </div>
@@ -722,7 +711,7 @@
 </div>
 <nav class="navbar fixed-bottom  shadow-lg bg-white rounded " style="height: 1.6cm;">
   <img routerLink="/fr-contact" src="/assets/img/fr-profile.png" width="38" height="48" class="center" alt="">
-  <img routerLink="/fr-news" src="/assets/img/fr-news.png" width="38" height="48" class="center" alt="">
+  <img routerLink="/fr-problems" src="/assets/img/fr-news.png" width="38" height="48" class="center" alt="">
   <img routerLink="/fr-report" src="/assets/img/fr-detect.png" width="38" height="48" class="center" alt="">
   <img routerLink="/fr-events" src="/assets/img/fr-table.png" width="38" height="48" class="center" alt="">
   <img routerLink="/fr-info" src="/assets/img/fr-others.png" width="38" height="48" class="center" alt="">

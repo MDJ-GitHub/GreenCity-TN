@@ -28,7 +28,7 @@ export class AFrAccountsComponent implements OnInit {
     var cpassword = SHA256(password).toString(enc.Hex);
     // @ts-ignore
     var x = username.replace(' ', '_');
-    this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/adminaccounts/" + x + "-" + cpassword + ".json", httpOptions).subscribe(responseData => {
+    this.http.get("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/adminaccounts/" + x + "-" + cpassword + ".json", httpOptions).subscribe(responseData => {
       if (responseData != null) {
         // @ts-ignore
         if (responseData.big == "1") {
@@ -56,7 +56,7 @@ export class AFrAccountsComponent implements OnInit {
     
 
 
-    this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/accounts/.json",httpOptions).subscribe(responseData => {
+    this.http.get("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/accounts/.json",httpOptions).subscribe(responseData => {
       if (responseData != null) {
 
         Object.entries(responseData).map(b => {
@@ -102,7 +102,7 @@ export class AFrAccountsComponent implements OnInit {
       }
   
       x = x.replace('remove', '');
-      this.http.delete("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/accounts/" + x+ ".json", httpOptions).subscribe(responseData => {
+      this.http.delete("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/accounts/" + x+ ".json", httpOptions).subscribe(responseData => {
   
         alert("Le compte a été supprimé !")
         location.reload();
@@ -145,7 +145,7 @@ export class AFrAccountsComponent implements OnInit {
     }
 
     x = x.replace('modify', '');
-    this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/problems/approved/" + loc + "/" + x + ".json", httpOptions).subscribe(responseData => {
+    this.http.get("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/problems/approved/" + loc + "/" + x + ".json", httpOptions).subscribe(responseData => {
 
 
       // @ts-ignore
@@ -177,7 +177,7 @@ export class AFrAccountsComponent implements OnInit {
 
     x = x.replace('modifyx', '');
 
-    this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/problems/approved/" + loc + "/" + x + ".json", httpOptions).subscribe(responseData => {
+    this.http.get("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/problems/approved/" + loc + "/" + x + ".json", httpOptions).subscribe(responseData => {
 
       const object = {
         title: (document.getElementById(x + "titlex") as HTMLFormElement)['value'],
@@ -205,7 +205,7 @@ export class AFrAccountsComponent implements OnInit {
         picture5: localStorage.getItem("picc5"),
       }
 
-      this.http.put("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/problems/approved/" + loc + "/" + x + ".json", object, httpOptions).subscribe(responseDataa => {
+      this.http.put("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/problems/approved/" + loc + "/" + x + ".json", object, httpOptions).subscribe(responseDataa => {
 
         location.reload();
       })

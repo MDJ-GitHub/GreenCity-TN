@@ -33,9 +33,15 @@ export class AFrHomeComponent implements OnInit {
     var password = localStorage.getItem("adminp")
           // @ts-ignore
           var cpassword = SHA256(password).toString(enc.Hex);
+          var x = ""
  // @ts-ignore
-          var x = username.replace(' ', '_');
-    this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/adminaccounts/" + x + "-" + cpassword + ".json", httpOptions).subscribe(responseData => {
+ if (username) {
+ if (username.includes(" ")) {
+    // @ts-ignore
+         x = username.replace(' ', '_');
+  }
+}
+    this.http.get("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/adminaccounts/" + x + "-" + cpassword + ".json", httpOptions).subscribe(responseData => {
       if (responseData != null) {
           this._router.navigate(['/a-fr-reports']);
       }
@@ -71,7 +77,7 @@ export class AFrHomeComponent implements OnInit {
 
     var x = username.replace(' ', '_');
 
-    this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/adminaccounts/" + x + "-" + cpassword + ".json", httpOptions).subscribe(responseData => {
+    this.http.get("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/adminaccounts/" + x + "-" + cpassword + ".json", httpOptions).subscribe(responseData => {
       if (responseData != null) {
         // @ts-ignore
         localStorage.setItem("adminnom", responseData.username)

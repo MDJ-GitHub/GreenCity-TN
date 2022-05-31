@@ -27,7 +27,7 @@ export class AFrInfoComponent implements OnInit {
     var cpassword = SHA256(password).toString(enc.Hex);
     // @ts-ignore
     var x = username.replace(' ', '_');
-    this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/adminaccounts/" + x + "-" + cpassword + ".json", httpOptions).subscribe(responseData => {
+    this.http.get("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/adminaccounts/" + x + "-" + cpassword + ".json", httpOptions).subscribe(responseData => {
       if (responseData != null) {
         // @ts-ignore
         if (responseData.big == "1") {
@@ -66,7 +66,7 @@ export class AFrInfoComponent implements OnInit {
 
     if (loc != "Tous") {
 
-      this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/infos/" + loc + "/.json", httpOptions).subscribe(responseData => {
+      this.http.get("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/infos/" + loc + "/.json", httpOptions).subscribe(responseData => {
         console.log(responseData);
 
         if (responseData != null) {
@@ -100,7 +100,7 @@ export class AFrInfoComponent implements OnInit {
     } else {
 
 
-      this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/infos/.json", httpOptions).subscribe(responseData => {
+      this.http.get("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/infos/.json", httpOptions).subscribe(responseData => {
         console.log(responseData);
 
         if (responseData != null) {
@@ -161,7 +161,7 @@ export class AFrInfoComponent implements OnInit {
     }
 
     x = x.replace('remove', '');
-    this.http.delete("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/infos/" + loc + "/" + x + ".json", httpOptions).subscribe(responseData => {
+    this.http.delete("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/infos/" + loc + "/" + x + ".json", httpOptions).subscribe(responseData => {
       this.refresh();
 
     })
@@ -203,7 +203,7 @@ export class AFrInfoComponent implements OnInit {
       picture1: localStorage.getItem("picc1"),
     }
 
-    this.http.post("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/infos/" + loc + ".json", object, httpOptions).subscribe(responseDataa => {
+    this.http.post("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/infos/" + loc + ".json", object, httpOptions).subscribe(responseDataa => {
       alert("L'info a été publié avec succès !")
 
     })
@@ -241,7 +241,7 @@ export class AFrInfoComponent implements OnInit {
 
     x = x.replace('modifyn', '');
 
-    this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/events/" + loc + "/" + x + ".json", httpOptions).subscribe(responseData => {
+    this.http.get("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/events/" + loc + "/" + x + ".json", httpOptions).subscribe(responseData => {
 
       if (typeof responseData == "object") {
 
@@ -291,7 +291,7 @@ export class AFrInfoComponent implements OnInit {
     x = x.replace('modify', '');
 
 
-    this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/events/" + loc + "/.json", httpOptions).subscribe(responseData => {
+    this.http.get("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/events/" + loc + "/.json", httpOptions).subscribe(responseData => {
       console.log(responseData);
 
       if (typeof responseData == "object") {
@@ -319,7 +319,7 @@ export class AFrInfoComponent implements OnInit {
           picture5: localStorage.getItem("picc5"),
         }
 
-        this.http.put("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/events/" + loc + "/" + x + ".json", object, httpOptions).subscribe(responseDataa => {
+        this.http.put("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/events/" + loc + "/" + x + ".json", object, httpOptions).subscribe(responseDataa => {
           this.refresh();
         })
 

@@ -24,7 +24,7 @@ import { ArReportComponent } from './ar-report/ar-report.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'fr-news', component: FrNewsComponent },
+  { path: 'fr-problems', component: FrNewsComponent },
   { path: 'fr-report', component: FrReportComponent },
   { path: 'fr-events', component: FrEventsComponent },
   { path: 'fr-info', component: FrInfoComponent },

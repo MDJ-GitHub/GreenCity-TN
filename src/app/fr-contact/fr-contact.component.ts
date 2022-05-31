@@ -132,9 +132,9 @@ export class FrContactComponent implements OnInit {
     }
   
   
-    this.http.post("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/messages.json",object, httpOptions).subscribe(responseData => {
+    this.http.post("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/messages.json",object, httpOptions).subscribe(responseData => {
      alert("Le message a été envoyé avec succès !")
-     this.router.navigate(['/fr-news']);
+     this.router.navigate(['/fr-contact']);
     });
   }
 

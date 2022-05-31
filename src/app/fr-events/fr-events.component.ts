@@ -30,7 +30,7 @@ export class FrEventsComponent implements OnInit {
     if (localStorage.getItem("locmode") != "all") {
 
 
-      this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/events/" + loc + "/.json", httpOptions).subscribe(responseData => {
+      this.http.get("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/events/" + loc + "/.json", httpOptions).subscribe(responseData => {
         if (responseData != null) {
 
 
@@ -57,7 +57,7 @@ export class FrEventsComponent implements OnInit {
 
     } else {
 
-      this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/events/.json", httpOptions).subscribe(responseData => {
+      this.http.get("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/events/.json", httpOptions).subscribe(responseData => {
         if (responseData != null) {
 
           var pp = "assets/img/person-fill.png"

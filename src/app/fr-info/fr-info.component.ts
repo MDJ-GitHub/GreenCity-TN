@@ -30,13 +30,13 @@ export class FrInfoComponent implements OnInit {
     if (localStorage.getItem("locmode") != "all") {
 
 
-      this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/infos/" + loc + "/.json", httpOptions).subscribe(responseData => {
+      this.http.get("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/infos/" + loc + "/.json", httpOptions).subscribe(responseData => {
         if (responseData != null) {
 
 
           Object.entries(responseData).map(b => {
               // @ts-ignore
-              document.getElementById("info").insertAdjacentHTML('afterend', '       <div class="rounded shadow card bg-light" style="display: block;">  <h5 class="card-title text-center">' + b[1].title + '</h5>     <p class="card-text">' + b[1].subject + '</p>    <img id="' + b[0] + 'btn"      (click)="collapse(' + "'" + b[0] + "'" + ')" class="card-img-top" src="' + b[1].picture1 + '"      <div class="card">        <div id="'+b[0]+'" style="display:none" class="">          ' + b[1].description  + '     </div>          <div class="card-body">        </div>      <hr>     &nbsp; <img src="/assets/img/map.png" width="18" height="18" style=" float: center;"> ' + b[1].location + '  <br>   <br>  </div>');
+              document.getElementById("info").insertAdjacentHTML('afterend', '       <div class="rounded shadow card bg-light" style="display: block;">  <h5 class="card-title text-center">' + b[1].title + '</h5>     <p class="card-text">' + b[1].subject + '</p>    <img id="' + b[0] + 'btn"      (click)="collapse(' + "'" + b[0] + "'" + ')" class="card-img-top" src="' + b[1].picture1 + '"      <div class="card">        <div id="'+b[0]+'" style="display:none" class="">          ' + b[1].description  + '     </div>          <div class="card-body">        </div>         &nbsp; <img src="/assets/img/map.png" width="18" height="18" style=" float: center;"> ' + b[1].location + '  <br>   <br>  </div>');
               this.elementRef.nativeElement.querySelector('#' + b[0] + 'btn').addEventListener('click', this.collapse.bind(this));
 
 
@@ -56,7 +56,7 @@ export class FrInfoComponent implements OnInit {
 
     } else {
 
-      this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/info/.json", httpOptions).subscribe(responseData => {
+      this.http.get("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/infos/.json", httpOptions).subscribe(responseData => {
         if (responseData != null) {
 
           var pp = "assets/img/person-fill.png"
@@ -69,7 +69,7 @@ export class FrInfoComponent implements OnInit {
 
 
                   // @ts-ignore
-                  document.getElementById("info").insertAdjacentHTML('afterend', '       <div class="card shadow rounded bg-light" style="display: block;">  <h5 class="card-title text-center">' + b[1].title + '</h5>     <p class="card-text">' + b[1].subject + '</p>    <img id="' + b[0] + 'btn"      (click)="collapse(' + "'" + b[0] + "'" + ')" class="card-img-top" src="' + b[1].picture + '"      <div class="card">        <div id="'+b[0]+'" style="display:none" class="">          ' + b[1].text + '     </div>          <div class="card-body">        </div>      <hr>     &nbsp; <img src="/assets/img/map.png" width="18" height="18" style=" float: center;"> ' + b[1].location + '  <br>   <br>  </div>');
+                  document.getElementById("info").insertAdjacentHTML('afterend', '       <div class="card shadow rounded bg-light" style="display: block;">  <h5 class="card-title text-center">' + b[1].title + '</h5>     <p class="card-text">' + b[1].subject + '</p>    <img id="' + b[0] + 'btn"      (click)="collapse(' + "'" + b[0] + "'" + ')" class="card-img-top" src="' + b[1].picture1 + '"      <div class="card">        <div id="'+b[0]+'" style="display:none" class="">          ' + b[1].description + '     </div>          <div class="card-body">        </div>         &nbsp; <img src="/assets/img/map.png" width="18" height="18" style=" float: center;"> ' + b[1].location + '  <br>   <br>  </div>');
                   this.elementRef.nativeElement.querySelector('#' + b[0] + 'btn').addEventListener('click', this.collapse.bind(this));
 
     

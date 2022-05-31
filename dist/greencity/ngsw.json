@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1653141892217,
+  "timestamp": 1653833370522,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -13,7 +13,7 @@
       "urls": [
         "/favicon.ico",
         "/index.html",
-        "/main.841a5e0a1e10fe58.js",
+        "/main.80dd2fac6b1d4507.js",
         "/manifest.webmanifest",
         "/polyfills.ddde01c20682b77d.js",
         "/runtime.c04fa090224d4e78.js",
@@ -29,6 +29,7 @@
         "ignoreVary": true
       },
       "urls": [
+        "/assets/icons/479695de-fa55-444d-b2ee-a36872e1f71f.webm",
         "/assets/icons/icon-128x128.png",
         "/assets/icons/icon-144x144.png",
         "/assets/icons/icon-152x152.png",
@@ -441,13 +442,15 @@
         "/assets/img/x-octagon.png",
         "/assets/img/x-square-fill.png",
         "/assets/img/x-square.png",
-        "/assets/img/x.png"
+        "/assets/img/x.png",
+        "/assets/sfx/camera.mp3"
       ],
       "patterns": []
     }
   ],
   "dataGroups": [],
   "hashTable": {
+    "/assets/icons/479695de-fa55-444d-b2ee-a36872e1f71f.webm": "68ed793777fd831f9e00615676d9e58342cb988d",
     "/assets/icons/icon-128x128.png": "90d8d18b00a5ae1cd1817ac01e9c9de77eeb1ffd",
     "/assets/icons/icon-144x144.png": "7389b272e9649e4fe9639a3b69cf6b72925d911e",
     "/assets/icons/icon-152x152.png": "9ac834fd95a9513ead35d76a35be6de43a3117bc",
@@ -648,7 +651,7 @@
     "/assets/img/forward-fill.png": "940abf67465bd3c689ac5449c4972eb1f1d4dec8",
     "/assets/img/forward.png": "188ac6321aa8ff129db65472504592d0d63e2f13",
     "/assets/img/fr-detect.png": "aec92d18785e228b7e94059678aa69f6cd4b3d02",
-    "/assets/img/fr-news.png": "6b092cea0ab75b06cae93c6f7f239106203c7fa5",
+    "/assets/img/fr-news.png": "0988f54500a6fd58049e1deabbab9047a52993e0",
     "/assets/img/fr-others.png": "476e364bb481605c6b709bb3456c36717b24c2cd",
     "/assets/img/fr-profile.png": "1f46c1dd3e800e6c72989e72adee58671ca8afaa",
     "/assets/img/fr-table.png": "195c985316cd76c3c51b010d0e2ab36d5262f0dc",
@@ -861,9 +864,10 @@
     "/assets/img/x-square-fill.png": "486244e9868ff68140f539282f196a332b531794",
     "/assets/img/x-square.png": "82c2b2ddd753b8ace9dacfdd7f75fdd140b7e9be",
     "/assets/img/x.png": "c8b8464a6afeaa70683c77688ae7d4d512ae24ff",
+    "/assets/sfx/camera.mp3": "bcd5ea1cb297c615e0833d3a0ba70b05d0c8d559",
     "/favicon.ico": "8f536e0f8a62028fd6aa1706fae22935d0daa2b2",
-    "/index.html": "36bd83a2c7486cda226bfd2370efbe325a764c40",
-    "/main.841a5e0a1e10fe58.js": "0dc4694992b2c1de3028dc06a3bb59142be9d01f",
+    "/index.html": "d5ddebd97b6e2b9280b7569c5982b9fa790e6726",
+    "/main.80dd2fac6b1d4507.js": "f833196f59fed4db95d2e954e27055621e94206e",
     "/manifest.webmanifest": "de18125059f11724e8a1b5a118554b15fc14dda8",
     "/polyfills.ddde01c20682b77d.js": "de43c439b3e47f4c95f5d03ac6398886ddbdbc87",
     "/runtime.c04fa090224d4e78.js": "04b03256a9cf342e6971065b4f252d64a73c7b0e",

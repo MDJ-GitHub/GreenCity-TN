@@ -72,7 +72,7 @@ export class FrAccountComponent implements OnInit {
                    x =  x.replace(' ','_');
                 }
       
-      this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/accounts/"+x+"-"+phone+".json",httpOptions).subscribe(responseData => {
+      this.http.get("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/accounts/"+x+"-"+phone+".json",httpOptions).subscribe(responseData => {
         if (responseData != null) {
 
         console.log(responseData) ;
@@ -205,7 +205,7 @@ createProfile() {
    date: time,
 }
 
-this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/accounts/"+name+"-"+phone+".json",httpOptions).subscribe(responseData => {
+this.http.get("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/accounts/"+name+"-"+phone+".json",httpOptions).subscribe(responseData => {
   if (responseData != null) {
   console.log(responseData) ;
   (document.getElementById("name") as HTMLElement).innerHTML = '<img src="/assets/img/person.png" width="25" height="25"> &nbsp; ' + name ;
@@ -237,7 +237,7 @@ this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.a
             x =  x.replace(' ','_');
          }
 
-    this.http.put("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/accounts/"+x+"-"+phone+".json",pobject,httpOptions).subscribe(responseData => {
+    this.http.put("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/accounts/"+x+"-"+phone+".json",pobject,httpOptions).subscribe(responseData => {
   console.log(responseData);
   localStorage.setItem("profile-name",name)
   localStorage.setItem("profile-phone",phone)
@@ -302,7 +302,7 @@ var x = name
         x =  x.replace(' ','_');
      }
 
-this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/accounts/"+x+"-"+phone+".json",httpOptions).subscribe(responseData => {
+this.http.get("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/accounts/"+x+"-"+phone+".json",httpOptions).subscribe(responseData => {
   if (responseData != null) {
   return;
   } else {
@@ -314,7 +314,7 @@ this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.a
             x =  x.replace(' ','_');
          }
 
-    this.http.put("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/accounts/"+x+"-"+phone+".json",pobject,httpOptions).subscribe(responseData => {
+    this.http.put("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/accounts/"+x+"-"+phone+".json",pobject,httpOptions).subscribe(responseData => {
   console.log(responseData);
   localStorage.setItem("profile-name",name)
   localStorage.setItem("profile-phone",phone)

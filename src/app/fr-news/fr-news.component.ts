@@ -1,5 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { async, delay } from 'rxjs';
 
 
 
@@ -21,6 +22,72 @@ export class FrNewsComponent implements OnInit {
     this.getInfo()
   }
 
+
+       // @ts-ignore
+       async getItem(loc,it) {
+    const httpOptions = {
+      headers: new HttpHeaders()
+    }
+    httpOptions.headers.append('Access-Control-Allow-Origin', '*');
+    httpOptions.headers.append('Content-Type', 'application/json');
+    httpOptions.headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+
+
+    await new Promise<any>(resolve =>  this.http.get("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/approved/" + loc + "/" + it+ ".json", httpOptions).subscribe(responseData => {
+
+
+
+
+      var pp = "assets/img/person-fill.png"
+
+      // @ts-ignore
+      if (responseData.name != "Anonyme") {
+        // @ts-ignore
+        var prof = responseData.name;
+        while (prof.includes(" ")) {
+          prof = prof.replace(' ', '_');
+
+        }
+        // @ts-ignore
+        prof = prof + '-' + responseData.phone
+
+   
+              this.http.get("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/accounts/" + prof + ".json", httpOptions).subscribe(responseDataa => {
+
+
+
+          if (responseDataa != null) {
+            // @ts-ignore
+            pp = responseDataa.photo;
+          }
+
+          // @ts-ignore
+          document.getElementById("news").insertAdjacentHTML('beforebegin', '      <div class="shadow card bg-light rounded">      <table class="">        <thead>          <tr>            <td class="" style="width: 60px;" rowspan="2"> <img class="text-end" src="' + pp + '"     style="border-radius: 50%"        width="50" height="50"> </td>            <td class="">' + responseData.name + '</td>          </tr>          <tr>            <td class=""><img src="/assets/img/calendar.png" width="18" height="18" style=" float: center;"                alt="">&nbsp; ' + responseData.date + ' </td>          </tr>        </thead>      </table>            <img id="' + it + 'btn" (click)="collapse(' + "'" + it + "'" + ')" class="card-img-top" src="' + responseData.picture1 + '" style="max-height: 265px;"        alt="Card image cap">      <div class="card">        <div id="' + responseData + '" style="display:none" class="">                  <table>            <tr>              <td> <img src="' + responseData.picture2 + '" width="180" height="150"> </td>              <td> <img src="' + responseData.picture3 + '" width="180" height="150"> </td>            </tr>            <tr>              <td> <img src="' + responseData.picture4 + '" width="180" height="150"> </td>              <td> <img src="' + responseData.picture5 + '" width="180" height="150"> </td>            </tr>          </table>        </div>      </div>      <div>   <h5> &nbsp;' + responseData.title + '</h5>   ' + responseData.subject + '     </div>        <table><thead>  <tr>    <td class="tg-0lax" rowspan="2">&nbsp; &nbsp; <img src="/assets/img/' + responseData.type + '.png" width="45" height="45" style=" float: center;"></td>    <td class="tg-0lax" rowspan="2"><a href="https://maps.google.com/?q=' + responseData.lat + ',' + responseData.lon + '" class="btn btn-outline-dark"><img src="/assets/img/geo.png" width="13" height="18" style=" float: center;"> Position</a></td>    <td class="tg-0lax"><img src="/assets/img/map.png" width="18" height="18" style=" float: center;"> ' + responseData.location + '</td>  </tr>  <tr>    <td class="tg-0lax"><img src="/assets/img/location.png" width="18" height="18" style=" float: center;">&nbsp;' + responseData.mun + '</td>  </tr></thead></table>   </div>');
+          this.elementRef.nativeElement.querySelector('#' + it + 'btn').addEventListener('click', this.collapse.bind(this));
+   
+
+          // @ts-ignore
+        })
+      } else {
+
+
+        // @ts-ignore
+        document.getElementById("news").insertAdjacentHTML('beforebegin', '      <div class="shadow card bg-light rounded">      <table class="">        <thead>          <tr>            <td class="" style="width: 60px;" rowspan="2"> <img class="text-end" src="' + pp + '"     style="border-radius: 50%"        width="50" height="50"> </td>            <td class="">' + responseData.name + '</td>          </tr>          <tr>            <td class=""><img src="/assets/img/calendar.png" width="18" height="18" style=" float: center;"                alt="">&nbsp; ' + responseData.date + ' </td>          </tr>        </thead>      </table>            <img id="' + it + 'btn" (click)="collapse(' + "'" + it + "'" + ')" class="card-img-top" src="' + responseData.picture1 + '" style="max-height: 265px;"        alt="Card image cap">      <div class="card">        <div id="' + responseData + '" style="display:none" class="">                  <table>            <tr>              <td> <img src="' + responseData.picture2 + '" width="180" height="150"> </td>              <td> <img src="' + responseData.picture3 + '" width="180" height="150"> </td>            </tr>            <tr>              <td> <img src="' + responseData.picture4 + '" width="180" height="150"> </td>              <td> <img src="' + responseData.picture5 + '" width="180" height="150"> </td>            </tr>          </table>        </div>      </div>      <div>   <h5> &nbsp;' + responseData.title + '</h5>   ' + responseData.subject + '     </div>        <table><thead>  <tr>    <td class="tg-0lax" rowspan="2">&nbsp; &nbsp; <img src="/assets/img/' + responseData.type + '.png" width="45" height="45" style=" float: center;"></td>    <td class="tg-0lax" rowspan="2"><a href="https://maps.google.com/?q=' + responseData.lat + ',' + responseData.lon + '" class="btn btn-outline-dark"><img src="/assets/img/geo.png" width="13" height="18" style=" float: center;"> Position</a></td>    <td class="tg-0lax"><img src="/assets/img/map.png" width="18" height="18" style=" float: center;"> ' + responseData.location + '</td>  </tr>  <tr>    <td class="tg-0lax"><img src="/assets/img/location.png" width="18" height="18" style=" float: center;">&nbsp;' + responseData.mun + '</td>  </tr></thead></table>   </div>');
+        this.elementRef.nativeElement.querySelector('#' + it + 'btn').addEventListener('click', this.collapse.bind(this));
+
+
+
+      }
+
+
+
+
+    }))
+
+
+
+  }
+
   getInfo() {
     const httpOptions = {
       headers: new HttpHeaders()
@@ -31,77 +98,108 @@ export class FrNewsComponent implements OnInit {
 
     var loc = localStorage.getItem("currentpos");
 
+
+
+
+
     if (localStorage.getItem("locmode") != "all") {
 
+          /**
 
-      this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/approved/" + loc + ".json", httpOptions).subscribe(responseData => {
-        if (responseData != null) {
-
-
-          var pp = "assets/img/person-fill.png"
-          var c = {};
-
-          Object.entries(responseData).map(b => {
-
-
+      this.http.get("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/index/problems/" + loc + "/objects.json", httpOptions).subscribe(async responseDataa => {
+        if (responseDataa != null) {
 
           // @ts-ignore
-          if (b[1].name != "Anonyme") {
+          var list = responseDataa.list
+          var ex = list.split(",")
+          var i = 0;
+          do {
+
+             this.getItem(loc,ex[i])
+
+    
+
+            i++
+          } while (i != ex.length)
+
+
+        }
+        // @ts-ignore
+        document.getElementById("waiting").style.display = "none"
+      })
+**/
+
+  
+      
+
+    this.http.get("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/approved/" + loc + ".json", httpOptions).subscribe(responseData => {
+      if (responseData != null) {
+
+
+        var pp = "assets/img/person-fill.png"
+        var c = {};
+
+        Object.entries(responseData).map(b => {
+
+
+
+        // @ts-ignore
+        if (b[1].name != "Anonyme") {
+          // @ts-ignore
+        var prof = b[1].name  ;
+        while (prof.includes(" ")) {
+           prof =  prof.replace(' ','_');
+
+        }
             // @ts-ignore
-          var prof = b[1].name  ;
-          while (prof.includes(" ")) {
-             prof =  prof.replace(' ','_');
+          prof = prof + '-' + b[1].phone
 
-          }
-              // @ts-ignore
-            prof = prof + '-' + b[1].phone
-
-              this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/accounts/" + prof + ".json", httpOptions).subscribe(responseDataa => {
+            this.http.get("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/accounts/" + prof + ".json", httpOptions).subscribe(responseDataa => {
 
 
 
-                if (responseDataa != null) {
-                  // @ts-ignore
-                  pp = responseDataa.photo
-                }
-
+              if (responseDataa != null) {
                 // @ts-ignore
-                document.getElementById("news").insertAdjacentHTML('afterend', '      <div class="shadow card bg-light rounded">      <table class="">        <thead>          <tr>            <td class="" style="width: 60px;" rowspan="2"> <img class="text-end" src="' + pp + '"     style="border-radius: 50%"        width="50" height="50"> </td>            <td class="">' + b[1].name + '</td>          </tr>          <tr>            <td class=""><img src="/assets/img/calendar.png" width="18" height="18" style=" float: center;"                alt="">&nbsp; ' + b[1].date + ' </td>          </tr>        </thead>      </table>            <img id="' + b[0] + 'btn" (click)="collapse(' + "'" + b[0] + "'" + ')" class="card-img-top" src="' + b[1].picture1 + '" style="max-height: 265px;"        alt="Card image cap">      <div class="card">        <div id="' + b[0] + '" style="display:none" class="">                  <table>            <tr>              <td> <img src="' + b[1].picture2 + '" width="180" height="150"> </td>              <td> <img src="' + b[1].picture3 + '" width="180" height="150"> </td>            </tr>            <tr>              <td> <img src="' + b[1].picture4 + '" width="180" height="150"> </td>              <td> <img src="' + b[1].picture5 + '" width="180" height="150"> </td>            </tr>          </table>        </div>      </div>      <div>   <h5> &nbsp;' + b[1].title + '</h5>   ' + b[1].subject + '     </div>        <table><thead>  <tr>    <td class="tg-0lax" rowspan="2">&nbsp; &nbsp; <img src="/assets/img/' + b[1].type + '.png" width="45" height="45" style=" float: center;"></td>    <td class="tg-0lax" rowspan="2"><a href="https://maps.google.com/?q=' + b[1].lat + ',' + b[1].lon + '" class="btn btn-outline-dark"><img src="/assets/img/geo.png" width="13" height="18" style=" float: center;"> Position</a></td>    <td class="tg-0lax"><img src="/assets/img/map.png" width="18" height="18" style=" float: center;"> ' + b[1].location + '</td>  </tr>  <tr>    <td class="tg-0lax"><img src="/assets/img/location.png" width="18" height="18" style=" float: center;">&nbsp;' + b[1].mun + '</td>  </tr></thead></table>   </div>');
-                this.elementRef.nativeElement.querySelector('#' + b[0] + 'btn').addEventListener('click', this.collapse.bind(this));
-
-                // @ts-ignore
-                document.getElementById("waiting").style.display = "none"
-
-
-              })
-            } else {
-
+                pp = responseDataa.photo
+              }
 
               // @ts-ignore
-              document.getElementById("news").insertAdjacentHTML('afterend', '      <div class="shadow card bg-light rounded">      <table class="">        <thead>          <tr>            <td class="" style="width: 60px;" rowspan="2"> <img class="text-end" src="' + pp + '"     style="border-radius: 50%"        width="50" height="50"> </td>            <td class="">' + b[1].name + '</td>          </tr>          <tr>            <td class=""><img src="/assets/img/calendar.png" width="18" height="18" style=" float: center;"                alt="">&nbsp; ' + b[1].date + ' </td>          </tr>        </thead>      </table>            <img id="' + b[0] + 'btn" (click)="collapse(' + "'" + b[0] + "'" + ')" class="card-img-top" src="' + b[1].picture1 + '" style="max-height: 265px;"        alt="Card image cap">      <div class="card">        <div id="' + b[0] + '" style="display:none" class="">             <table>            <tr>              <td> <img src="' + b[1].picture2 + '" width="180" height="150"> </td>              <td> <img src="' + b[1].picture3 + '" width="180" height="150"> </td>            </tr>            <tr>              <td> <img src="' + b[1].picture4 + '" width="180" height="150"> </td>              <td> <img src="' + b[1].picture5 + '" width="180" height="150"> </td>            </tr>          </table>        </div>      </div>      <div>   <h5> &nbsp;' + b[1].title + '</h5>   ' + b[1].subject + '     </div>        <table><thead>  <tr>    <td class="tg-0lax" rowspan="2">&nbsp; &nbsp; <img src="/assets/img/' + b[1].type + '.png" width="45" height="45" style=" float: center;"></td>    <td class="tg-0lax" rowspan="2"><a href="https://maps.google.com/?q=' + b[1].lat + ',' + b[1].lon + '" class="btn btn-outline-dark"><img src="/assets/img/geo.png" width="13" height="18" style=" float: center;"> Position</a></td>    <td class="tg-0lax"><img src="/assets/img/map.png" width="18" height="18" style=" float: center;"> ' + b[1].location + '</td>  </tr>  <tr>    <td class="tg-0lax"><img src="/assets/img/location.png" width="18" height="18" style=" float: center;">&nbsp;' + b[1].mun + '</td>  </tr></thead></table>   </div>');
+              document.getElementById("news").insertAdjacentHTML('afterend', '      <div class="shadow card bg-light rounded">      <table class="">        <thead>          <tr>            <td class="" style="width: 60px;" rowspan="2"> <img class="text-end" src="' + pp + '"     style="border-radius: 50%"        width="50" height="50"> </td>            <td class="">' + b[1].name + '</td>          </tr>          <tr>            <td class=""><img src="/assets/img/calendar.png" width="18" height="18" style=" float: center;"                alt="">&nbsp; ' + b[1].date + ' </td>          </tr>        </thead>      </table>            <img id="' + b[0] + 'btn" (click)="collapse(' + "'" + b[0] + "'" + ')" class="card-img-top" src="' + b[1].picture1 + '" style="max-height: 265px;"        alt="Card image cap">      <div class="card">        <div id="' + b[0] + '" style="display:none" class="">                  <table>            <tr>              <td> <img src="' + b[1].picture2 + '" width="180" height="150"> </td>              <td> <img src="' + b[1].picture3 + '" width="180" height="150"> </td>            </tr>            <tr>              <td> <img src="' + b[1].picture4 + '" width="180" height="150"> </td>              <td> <img src="' + b[1].picture5 + '" width="180" height="150"> </td>            </tr>          </table>        </div>      </div>      <div>   <h5> &nbsp;' + b[1].title + '</h5>   ' + b[1].subject + '     </div>        <table><thead>  <tr>    <td class="tg-0lax" rowspan="2">&nbsp; &nbsp; <img src="/assets/img/' + b[1].type + '.png" width="45" height="45" style=" float: center;"></td>    <td class="tg-0lax" rowspan="2"><a href="https://maps.google.com/?q=' + b[1].lat + ',' + b[1].lon + '" class="btn btn-outline-dark"><img src="/assets/img/geo.png" width="13" height="18" style=" float: center;"> Position</a></td>    <td class="tg-0lax"><img src="/assets/img/map.png" width="18" height="18" style=" float: center;"> ' + b[1].location + '</td>  </tr>  <tr>    <td class="tg-0lax"><img src="/assets/img/location.png" width="18" height="18" style=" float: center;">&nbsp;' + b[1].mun + '</td>  </tr></thead></table>   </div>');
               this.elementRef.nativeElement.querySelector('#' + b[0] + 'btn').addEventListener('click', this.collapse.bind(this));
 
               // @ts-ignore
               document.getElementById("waiting").style.display = "none"
 
-            }
+
+            })
+          } else {
+
+
+            // @ts-ignore
+            document.getElementById("news").insertAdjacentHTML('afterend', '      <div class="shadow card bg-light rounded">      <table class="">        <thead>          <tr>            <td class="" style="width: 60px;" rowspan="2"> <img class="text-end" src="' + pp + '"     style="border-radius: 50%"        width="50" height="50"> </td>            <td class="">' + b[1].name + '</td>          </tr>          <tr>            <td class=""><img src="/assets/img/calendar.png" width="18" height="18" style=" float: center;"                alt="">&nbsp; ' + b[1].date + ' </td>          </tr>        </thead>      </table>            <img id="' + b[0] + 'btn" (click)="collapse(' + "'" + b[0] + "'" + ')" class="card-img-top" src="' + b[1].picture1 + '" style="max-height: 265px;"        alt="Card image cap">      <div class="card">        <div id="' + b[0] + '" style="display:none" class="">             <table>            <tr>              <td> <img src="' + b[1].picture2 + '" width="180" height="150"> </td>              <td> <img src="' + b[1].picture3 + '" width="180" height="150"> </td>            </tr>            <tr>              <td> <img src="' + b[1].picture4 + '" width="180" height="150"> </td>              <td> <img src="' + b[1].picture5 + '" width="180" height="150"> </td>            </tr>          </table>        </div>      </div>      <div>   <h5> &nbsp;' + b[1].title + '</h5>   ' + b[1].subject + '     </div>        <table><thead>  <tr>    <td class="tg-0lax" rowspan="2">&nbsp; &nbsp; <img src="/assets/img/' + b[1].type + '.png" width="45" height="45" style=" float: center;"></td>    <td class="tg-0lax" rowspan="2"><a href="https://maps.google.com/?q=' + b[1].lat + ',' + b[1].lon + '" class="btn btn-outline-dark"><img src="/assets/img/geo.png" width="13" height="18" style=" float: center;"> Position</a></td>    <td class="tg-0lax"><img src="/assets/img/map.png" width="18" height="18" style=" float: center;"> ' + b[1].location + '</td>  </tr>  <tr>    <td class="tg-0lax"><img src="/assets/img/location.png" width="18" height="18" style=" float: center;">&nbsp;' + b[1].mun + '</td>  </tr></thead></table>   </div>');
+            this.elementRef.nativeElement.querySelector('#' + b[0] + 'btn').addEventListener('click', this.collapse.bind(this));
+
+            // @ts-ignore
+            document.getElementById("waiting").style.display = "none"
+
+          }
 
 
 
 
 
-          })
-        } else {
-          // @ts-ignore
-          document.getElementById("waiting").style.display = "none"
-          // @ts-ignore
-          document.getElementById("nodata").style.display = "block"
-        }
-      });
+        })
+      } else {
+        // @ts-ignore
+        document.getElementById("waiting").style.display = "none"
+        // @ts-ignore
+        document.getElementById("nodata").style.display = "block"
+      }
+    });
 
     } else {
 
-      this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/approved/.json", httpOptions).subscribe(responseData => {
+      this.http.get("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/approved/.json", httpOptions).subscribe(responseData => {
         if (responseData != null) {
 
           var pp = "assets/img/person-fill.png"
@@ -111,18 +209,18 @@ export class FrNewsComponent implements OnInit {
             Object.entries(a[1]).map(b => {
 
 
-          // @ts-ignore
-          if (b[1].name != "Anonyme") {
-            // @ts-ignore
-          var prof = b[1].name  ;
-          while (prof.includes(" ")) {
-             prof =  prof.replace(' ','_');
-
-          }
               // @ts-ignore
-            prof = prof + '-' + b[1].phone
+              if (b[1].name != "Anonyme") {
+                // @ts-ignore
+                var prof = b[1].name;
+                while (prof.includes(" ")) {
+                  prof = prof.replace(' ', '_');
 
-                this.http.get("https://greencity-tn-default-rtdb.europe-west1.firebasedatabase.app/accounts/" + prof + ".json", httpOptions).subscribe(responseDataa => {
+                }
+                // @ts-ignore
+                prof = prof + '-' + b[1].phone
+
+                this.http.get("https://greencitytemp-default-rtdb.europe-west1.firebasedatabase.app/accounts/" + prof + ".json", httpOptions).subscribe(responseDataa => {
 
 
 
@@ -254,7 +352,7 @@ export class FrNewsComponent implements OnInit {
   }
 
   aboutme() {
-alert("GreenCity est une application Web mobile hybride permettant de signaler les problèmes civils/environnementaux quotidiens ou de les consulter ainsi que d'autres informations. \n\n Développé par : Mohamed Dhia Jebali et Aymen Masmoudi \n Fabriqué à partir de SSS Innovation Startup \n\n Votre version actuelle : v"+ localStorage.getItem("oldversion"))
+    alert("GreenCity est une application Web mobile hybride permettant de signaler les problèmes civils/environnementaux quotidiens ou de les consulter ainsi que d'autres informations. \n\n Développé par : Mohamed Dhia Jebali et Aymen Masmoudi \n Fabriqué à partir de SSS Innovation Startup \n\n Votre version actuelle : v" + localStorage.getItem("oldversion"))
 
   }
 
